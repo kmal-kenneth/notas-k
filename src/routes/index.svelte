@@ -1,59 +1,32 @@
-<script context="module" lang="ts">
-	export const prerender = true;
+<script lang="ts" context="module">
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = async ({ fetch }) => {
+		const res = await fetch('/posts');
+		const data = await res.json();
+
+		return { props: { posts: data } };
+	};
 </script>
 
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+	import { goto } from '$app/navigation';
+
+	export let posts: Article[];
 </script>
 
-<svelte:head>
-	<title>Home</title>
-</svelte:head>
+<div class="my-4">
+	<h1 class="text-center text-3xl font-bold">My wonderful blog</h1>
+</div>
 
-<section>
-	<h1>
-		<div class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
+<div class="container mx-auto mt-4">
+	{#each posts as post}
+		<div
+			class="hover:bg-gray-200 cursor-pointer px-6 py-2 border-b border-gray-500"
+			on:click={() => goto('/blog/' + post.id)}
+		>
+			<h4 class="font-bold">{post.title}</h4>
+			<p class="mt-2 text-gray-800">{post.description}</p>
 		</div>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+	{/each}
+</div>
