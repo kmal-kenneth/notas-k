@@ -4,7 +4,6 @@ import { Marked } from '@ts-stack/markdown';
 import { MyRenderer } from '$lib/marked/renderer';
 import prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
-import type { ResponseHeaders } from '@sveltejs/kit/types/helper';
 
 export async function get({ params }): Promise<EndpointOutput> {
 	const { slug } = params;
@@ -19,10 +18,7 @@ export async function get({ params }): Promise<EndpointOutput> {
 			}
 			description
 			content
-			author {
-			slug
-			}
-			co_authors {
+			writer {
 			slug
 			}
 			group {

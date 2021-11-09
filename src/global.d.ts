@@ -29,3 +29,8 @@ interface Article {
 	slug: string;
 	group: Group;
 }
+
+interface PaginationData {
+	currentPage: number;
+	totalPages: number;
+}
