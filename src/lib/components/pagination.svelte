@@ -14,8 +14,6 @@
 		paginationData.currentPage + sidePages > paginationData.totalPages
 			? paginationData.totalPages
 			: paginationData.currentPage + sidePages;
-
-	console.log(start, end);
 </script>
 
 {#if paginationData.totalPages > 1}

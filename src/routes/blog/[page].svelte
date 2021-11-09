@@ -21,16 +21,17 @@
 
 <script lang="ts">
 	import Pagination from '$lib/components/pagination.svelte';
+	import Grid from '$lib/components/grid.svelte';
+	import Card from '$lib/components/article/card.svelte';
 
 	export let articles: Article[];
 	export let paginationData: PaginationData;
 </script>
 
-{#each articles as article, i}
-	<li>
-		{i + 1}: {article.title}
-	</li>
-{/each}
+<Grid>
+	{#each articles as article}
+		<Card {article} />
+	{/each}
+</Grid>
 
-{paginationData.totalPages}
 <Pagination {paginationData} />

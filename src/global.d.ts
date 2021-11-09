@@ -8,8 +8,10 @@ interface Image {
 	alternativeText: string;
 }
 
-interface Author {
+interface Writer {
 	slug: string;
+	photo: Image;
+	name: string;
 }
 
 interface Group {
@@ -21,13 +23,13 @@ interface Article {
 	title: string;
 	description: string;
 	content: string;
-	author: Author;
-	created_at: string;
-	updated_at: string;
+	writer: Writer;
 	image: Image;
-	updatedAt: string;
 	slug: string;
 	group: Group;
+	created_at: string;
+	updated_at: string;
+	published_at: string;
 }
 
 interface PaginationData {

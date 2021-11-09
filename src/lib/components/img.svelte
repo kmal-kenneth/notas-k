@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Cloudinary, CloudinaryImage, ImageTransformation } from '@cloudinary/url-gen';
+	import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 	import { Resize } from '@cloudinary/url-gen/actions/resize';
 	import { blur } from '@cloudinary/url-gen/actions/effect';
 
 	// Create your instance
-	const cld = new Cloudinary({
+	let cld = new Cloudinary({
 		cloud: {
 			cloudName: 'dsovqcsof'
 		},
@@ -17,14 +17,16 @@
 	export let alt: string;
 	export let height: string = '';
 	export let width: string = '';
-	let clazz;
+	let clazz: any;
 	export { clazz as class };
 
 	let image: CloudinaryImage;
 	let placeholder: CloudinaryImage;
+	let myURL: string;
+	let placeholderURL: string;
 
-	if (src) {
-		const filename = src.substring(src.lastIndexOf('/') + 1);
+	$: if (src) {
+		let filename = src.substring(src.lastIndexOf('/') + 1);
 
 		// Let's create a new image
 		image = cld.image(filename);
@@ -47,11 +49,10 @@
 
 		placeholder = cld.image(filename);
 		placeholder.resize(Resize.fit().width(10)).effect(blur(2000)).format('auto').quality('auto');
-	}
 
-	// When we're done, we can apply all our changes and create a URL.
-	const myURL = src ? image.toURL() : null;
-	const placeholderURL = src ? placeholder.toURL() : null;
+		myURL = image.toURL();
+		placeholderURL = placeholder.toURL();
+	}
 </script>
 
 <img
