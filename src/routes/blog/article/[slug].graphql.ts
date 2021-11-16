@@ -28,7 +28,7 @@ export async function get({ params }): Promise<EndpointOutput> {
 			tags {
 			slug
 			}
-			updatedAt
+			published_at
           }
         }`;
 

@@ -19,7 +19,7 @@
 			{/if}
 			{#if subtitle}
 				<p class="text-gray-600 text-light font-sans">
-					{{ subtitle }}
+					{subtitle}
 				</p>
 			{/if}
 		</div>

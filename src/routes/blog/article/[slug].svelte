@@ -56,7 +56,7 @@
 			<span class="text-sm tracking-wide">
 				<a class="font-medium" href={`/blog/collections/${article.slug}`}>{article.group.name}</a>
 				&nbsp;&middot;&nbsp;
-				<time datetime={article.updatedAt}>{timeHumans(article.updatedAt)}</time>
+				<time datetime={article.published_at}>{timeHumans(article.published_at)}</time>
 				&nbsp;&middot;&nbsp;
 				{readingTime(article.content)} min read
 			</span>

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	import CImage from '$lib/components/img.svelte';
 	import { readingTime, timeHumans } from '$lib/utils/time';
 
@@ -18,6 +20,7 @@
   border
   rounded-lg
 "
+	on:click={() => goto('/blog/article/' + article.slug)}
 >
 	<div>
 		<CImage
