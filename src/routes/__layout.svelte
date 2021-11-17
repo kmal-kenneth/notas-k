@@ -1,5 +1,7 @@
 <script lang="ts">
 	import '../app.css';
+	import Fa from 'svelte-fa';
+	import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 	import MyNav from '$lib/components/nav.svelte';
 
@@ -46,11 +48,11 @@
 	</a>
 
 	{#if !showMenu}
-		<button class="md:hidden focus:outline-none focus:shadow-outline " on:click={openMenu}>
-			abrir
-
-			<!-- <font-awesome-icon v-if="!showMenu" :icon="['fas', 'bars']" /> -->
-			<!-- <font-awesome-icon v-if="showMenu" :icon="['fas', 'times']" /> -->
+		<button
+			class="md:hidden focus:outline-none focus:shadow-outline text-2xl text-gray-200 hover:text-pink-800 transition-all duration-300"
+			on:click={openMenu}
+		>
+			<Fa icon={faBars} />
 		</button>
 	{/if}
 

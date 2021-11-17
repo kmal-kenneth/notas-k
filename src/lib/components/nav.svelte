@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher, onDestroy } from 'svelte';
+	import Fa from 'svelte-fa';
+	import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 	const dispatch = createEventDispatcher();
 	const close = () => dispatch('close');
@@ -50,19 +52,14 @@
 
 <svelte:window on:keydown={handle_keydown} />
 
-<div
-	class="modal"
-	class:flex={open}
-	class:hidden={!open}
-	class:bg-pink-500={open}
-	role="dialog"
-	aria-modal="true"
-	bind:this={modal}
-	on:click={close}
->
+<div class="modal" role="dialog" aria-modal="true" bind:this={modal} on:click={close}>
 	<div class="button">
 		<!-- svelte-ignore a11y-autofocus -->
-		<button autofocus on:click={close}>close modal</button>
+		<button
+			class="md:hidden focus:outline-none focus:shadow-outline text-2xl text-gray-200 hover:text-pink-800 transition-all duration-300"
+			autofocus
+			on:click={close}><Fa icon={faTimes} /></button
+		>
 	</div>
 
 	<nav class="menu ">
