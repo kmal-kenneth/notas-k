@@ -51,6 +51,6 @@
 
 <style lang="postcss">
 	.blur {
-		@apply bg-black border bg-opacity-10  backdrop-filter backdrop-blur-sm;
+		@apply bg-gray-900 border bg-opacity-10  backdrop-filter backdrop-blur-sm;
 	}
 </style>

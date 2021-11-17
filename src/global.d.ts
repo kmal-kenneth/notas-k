@@ -36,3 +36,8 @@ interface PaginationData {
 	currentPage: number;
 	totalPages: number;
 }
+
+interface Link {
+	href: string;
+	text: string;
+}

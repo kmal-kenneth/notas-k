@@ -96,7 +96,7 @@
 
 <style lang="postcss">
 	.item {
-		@apply w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in hover:text-green-400 text-gray-500;
+		@apply w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in hover:text-pink-900 text-gray-500;
 	}
 
 	.dots {
@@ -104,10 +104,10 @@
 	}
 
 	.active {
-		@apply border-b-4 border-green-400 text-green-500 font-bold flex;
+		@apply border-b-4 border-pink-900 text-pink-900 font-bold flex;
 	}
 
 	.arrow {
-		@apply h-8 w-8 flex justify-center items-center cursor-pointer hover:text-green-400 text-gray-500;
+		@apply h-8 w-8 flex justify-center items-center cursor-pointer hover:text-pink-900 text-gray-500;
 	}
 </style>
