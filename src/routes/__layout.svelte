@@ -45,12 +45,14 @@
 		</div>
 	</a>
 
-	<button class="md:hidden focus:outline-none focus:shadow-outline " on:click={openMenu}>
-		abrir
+	{#if !showMenu}
+		<button class="md:hidden focus:outline-none focus:shadow-outline " on:click={openMenu}>
+			abrir
 
-		<!-- <font-awesome-icon v-if="!showMenu" :icon="['fas', 'bars']" /> -->
-		<!-- <font-awesome-icon v-if="showMenu" :icon="['fas', 'times']" /> -->
-	</button>
+			<!-- <font-awesome-icon v-if="!showMenu" :icon="['fas', 'bars']" /> -->
+			<!-- <font-awesome-icon v-if="showMenu" :icon="['fas', 'times']" /> -->
+		</button>
+	{/if}
 
 	{#if showMenu}
 		<MyNav {links} on:close={openMenu} />
