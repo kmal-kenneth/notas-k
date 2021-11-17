@@ -4,6 +4,7 @@
 	import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 	import MyNav from '$lib/components/nav.svelte';
+	import MyLogo from '$lib/components/logo.svelte';
 
 	const links: Link[] = [
 		{
@@ -33,50 +34,27 @@
 
 <svelte:window bind:innerWidth />
 
-<header class="h-12 flex items-center justify-between px-4 ">
-	<a href="/" class="logo">
-		<div class="notas">notas</div>
-		<div class="flex ">
-			<div class="code">
-				{'{'}
-			</div>
-			<div class="code">K</div>
-			<div class="code">
-				{'}'}
-			</div>
-		</div>
-	</a>
+<div class="flex flex-col items-center">
+	<header class="flex items-center justify-between w-full h-12 px-4 max-w-screen-2xl">
+		<MyLogo />
 
-	{#if !showMenu}
-		<button
-			class="md:hidden focus:outline-none focus:shadow-outline text-2xl text-gray-200 hover:text-pink-800 transition-all duration-300"
-			on:click={openMenu}
-		>
-			<Fa icon={faBars} />
-		</button>
-	{/if}
+		{#if !showMenu}
+			<button
+				class="text-2xl text-gray-200 transition-all duration-300 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
+				on:click={openMenu}
+			>
+				<Fa icon={faBars} />
+			</button>
+		{/if}
 
-	{#if showMenu}
-		<MyNav {links} on:close={openMenu} />
-	{/if}
-</header>
+		{#if showMenu}
+			<MyNav {links} on:close={openMenu} />
+		{/if}
+	</header>
 
-{innerWidth}
+	{innerWidth}
 
-<main class="lg:px-4 z-0 min-h-full flex-grow">
-	<slot />
-</main>
-
-<style lang="postcss">
-	.logo {
-		@apply flex items-center text-gray-900 dark:text-gray-100;
-
-		.notas {
-			@apply font-dancing text-3xl mr-1 font-bold;
-		}
-
-		.code {
-			@apply flex font-victor font-bold text-3xl odd:text-pink-900 even:font-semibold;
-		}
-	}
-</style>
+	<main class="min-h-full px-4 max-w-screen-2xl">
+		<slot />
+	</main>
+</div>
