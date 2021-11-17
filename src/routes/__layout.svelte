@@ -18,15 +18,15 @@
 		}
 	];
 
-	let open = false;
+	let showMenu = false;
 	let innerWidth = 0;
-	$: open = innerWidth >= 768 ? true : false;
+	$: showMenu = innerWidth >= 768 ? true : false;
 
-	function openMenu() {
+	const openMenu = () => {
 		if (innerWidth <= 768) {
-			open = !open;
+			showMenu = !showMenu;
 		}
-	}
+	};
 </script>
 
 <svelte:window bind:innerWidth />
@@ -46,18 +46,15 @@
 	</a>
 
 	<button class="md:hidden focus:outline-none focus:shadow-outline " on:click={openMenu}>
-		{#if !open}
-			abrir
-		{/if}
+		abrir
 
-		{#if open}
-			cerrar
-		{/if}
-		<!-- <font-awesome-icon v-if="!open" :icon="['fas', 'bars']" /> -->
-		<!-- <font-awesome-icon v-if="open" :icon="['fas', 'times']" /> -->
+		<!-- <font-awesome-icon v-if="!showMenu" :icon="['fas', 'bars']" /> -->
+		<!-- <font-awesome-icon v-if="showMenu" :icon="['fas', 'times']" /> -->
 	</button>
 
-	<MyNav {links} {open} buttonAction={openMenu} />
+	{#if showMenu}
+		<MyNav {links} on:close={openMenu} />
+	{/if}
 </header>
 
 {innerWidth}

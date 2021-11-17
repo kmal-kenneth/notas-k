@@ -1,10 +1,40 @@
 <script lang="ts">
-	import { prefetch, prefetchRoutes } from '$app/navigation';
-	import { onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy } from 'svelte';
 
-	onMount(async () => {
-		prefetchRoutes();
-	});
+	const dispatch = createEventDispatcher();
+	const close = () => dispatch('close');
+
+	let modal;
+
+	const handle_keydown = (e) => {
+		if (e.key === 'Escape') {
+			close();
+			return;
+		}
+
+		if (e.key === 'Tab') {
+			// trap focus
+			const nodes = modal.querySelectorAll('*');
+			const tabbable: any[] = Array.from(nodes).filter((n: any) => n.tabIndex >= 0);
+
+			let index = tabbable.indexOf(document.activeElement);
+			if (index === -1 && e.shiftKey) index = 0;
+
+			index += tabbable.length + (e.shiftKey ? -1 : 1);
+			index %= tabbable.length;
+
+			tabbable[index].focus();
+			e.preventDefault();
+		}
+	};
+
+	const previously_focused: any = typeof document !== 'undefined' && document.activeElement;
+
+	if (previously_focused) {
+		onDestroy(() => {
+			previously_focused.focus();
+		});
+	}
 
 	export let links: Link[] = [
 		{
@@ -16,36 +46,30 @@
 			href: '/blog/1'
 		}
 	];
-
-	export let open = false;
-	export let buttonAction;
 </script>
 
+<svelte:window on:keydown={handle_keydown} />
+
 <div
-	class="flex flex-col items-center modal"
+	class="modal"
 	class:flex={open}
 	class:hidden={!open}
 	class:bg-pink-500={open}
+	role="dialog"
+	aria-modal="true"
+	bind:this={modal}
+	on:click={close}
 >
 	<div class="button">
-		<button class=" focus:outline-none focus:shadow-outline " on:click={buttonAction}>
-			{#if !open}
-				abrir
-			{/if}
-
-			{#if open}
-				cerrar
-			{/if}
-			<!-- <font-awesome-icon v-if="!open" :icon="['fas', 'bars']" /> -->
-			<!-- <font-awesome-icon v-if="open" :icon="['fas', 'times']" /> -->
-		</button>
+		<!-- svelte-ignore a11y-autofocus -->
+		<button autofocus on:click={close}>close modal</button>
 	</div>
 
 	<nav class="menu ">
 		<ul>
 			{#each links as item}
 				<li>
-					<a sveltekit:prefetch href={item.href} on:click={buttonAction}>{item.text}</a>
+					<a sveltekit:prefetch href={item.href} on:click={close}>{item.text}</a>
 				</li>
 			{/each}
 		</ul>
@@ -54,7 +78,11 @@
 
 <style lang="postcss">
 	.modal {
-		@apply absolute top-0 left-0 w-screen h-screen px-4 bg-gray-100 dark:bg-gray-900 md:relative md:w-auto  md:h-12 md:px-0 md:bg-opacity-0;
+		@apply fixed top-0 left-0 w-screen h-screen px-4 flex flex-col items-center
+		 bg-gray-100 bg-opacity-80 backdrop-filter backdrop-blur-sm 
+		 dark:bg-gray-900 dark:bg-opacity-80 
+		 md:relative md:w-auto  md:h-12 md:px-0 md:bg-opacity-10
+		 transition-all duration-300;
 
 		.button {
 			@apply md:hidden flex justify-end h-12 w-full;
