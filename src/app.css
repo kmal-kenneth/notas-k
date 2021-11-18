@@ -20,6 +20,6 @@ font-family: 'Open Sans', sans-serif;
 	}
 
 	a {
-		@apply text-pink-700  hover:text-pink-900 transition-all duration-200;
+		@apply text-pink-700  hover:text-pink-900 transition-all duration-200 underline;
 	}
 }

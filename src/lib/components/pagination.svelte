@@ -17,11 +17,11 @@
 </script>
 
 {#if paginationData.totalPages > 1}
-	<div class="flex flex-col items-center my-12">
-		<ul class="flex text-gray-700 font-medium">
+	<div class="flex flex-col items-center my-12 pagination">
+		<ul class="flex font-medium text-gray-700">
 			{#if paginationData.currentPage > 1}
-				<li class="arrow mr-1">
-					<a sveltekit:prefetch href={`${baseUrl}/${paginationData.currentPage - 1}`} class="">
+				<li class="mr-1 ">
+					<a sveltekit:prefetch href={`${baseUrl}/${paginationData.currentPage - 1}`} class="arrow">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="100%"
@@ -32,7 +32,7 @@
 							stroke-width="3"
 							stroke-linecap="round"
 							stroke-linejoin="round"
-							class="feather feather-chevron-left w-4 h-4"
+							class="w-4 h-4 feather feather-chevron-left"
 						>
 							<polyline points="15 18 9 12 15 6" />
 						</svg>
@@ -71,8 +71,8 @@
 			{/if}
 
 			{#if paginationData.currentPage < paginationData.totalPages}
-				<li class="arrow ml-1">
-					<a sveltekit:prefetch href={`${baseUrl}/${paginationData.currentPage + 1}`}>
+				<li class="ml-1">
+					<a sveltekit:prefetch href={`${baseUrl}/${paginationData.currentPage + 1}`} class="arrow">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="100%"
@@ -83,7 +83,7 @@
 							stroke-width="3"
 							stroke-linecap="round"
 							stroke-linejoin="round"
-							class="feather feather-chevron-right w-4 h-4"
+							class="w-4 h-4 feather feather-chevron-right"
 						>
 							<polyline points="9 18 15 12 9 6" />
 						</svg></a
@@ -95,19 +95,24 @@
 {/if}
 
 <style lang="postcss">
-	.item {
-		@apply w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in hover:text-pink-900 text-gray-500;
-	}
+	.pagination {
+		a {
+			@apply no-underline;
+		}
+		.item {
+			@apply w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in hover:text-pink-900 text-gray-500;
+		}
 
-	.dots {
-		@apply w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in text-gray-500;
-	}
+		.dots {
+			@apply w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in text-gray-500;
+		}
 
-	.active {
-		@apply border-b-4 border-pink-900 text-pink-900 font-bold flex;
-	}
+		.active {
+			@apply border-b-4 border-pink-900 text-pink-900 font-bold flex;
+		}
 
-	.arrow {
-		@apply h-8 w-8 flex justify-center items-center cursor-pointer hover:text-pink-900 text-gray-500;
+		.arrow {
+			@apply h-8 w-8 flex justify-center items-center cursor-pointer hover:text-pink-900 text-gray-500;
+		}
 	}
 </style>

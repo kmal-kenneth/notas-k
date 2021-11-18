@@ -69,7 +69,7 @@
 					<a
 						sveltekit:prefetch
 						href={item.href}
-						class="text-gray-900 dark:text-gray-100"
+						class="text-gray-900 no-underline dark:text-gray-100"
 						on:click={close}>{item.text}</a
 					>
 				</li>

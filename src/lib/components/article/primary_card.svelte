@@ -5,7 +5,7 @@
 	export let article: Article;
 </script>
 
-<a sveltekit:prefetch href={'/blog/article/' + article.slug} class="flex flex-wrap">
+<a sveltekit:prefetch href={'/blog/article/' + article.slug} class="flex flex-wrap no-underline">
 	<MyImg
 		src={article.image.url}
 		alt={article.image.alternativeText}
