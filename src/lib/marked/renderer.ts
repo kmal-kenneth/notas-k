@@ -25,7 +25,9 @@ export class MyRenderer extends Renderer {
 			// Let's create a new image
 			image = cld.image(filename);
 
-			image.format('auto').quality('auto');
+			const resize = Resize.fit().width(1024);
+
+			image.resize(resize).format('auto').quality('auto');
 
 			placeholder = cld.image(filename);
 			placeholder.resize(Resize.fit().width(10)).effect(blur(2000)).format('auto').quality('auto');
