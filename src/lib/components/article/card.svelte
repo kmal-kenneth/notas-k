@@ -13,7 +13,7 @@
 		class="object-cover object-center w-full rounded-lg h-72"
 	/>
 
-	<div class="flex flex-col justify-between flex-1 lg:px-4">
+	<div class="flex flex-col justify-between flex-1 ">
 		<div>
 			<div class="flex items-center justify-between mt-2 mb-1 text-xs leading-none">
 				<p class="text-gray-600 dark:text-gray-300">

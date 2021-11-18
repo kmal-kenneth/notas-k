@@ -30,7 +30,7 @@
 	export let paginationData: PaginationData;
 </script>
 
-<div class="mt-4 mb-8">
+<div class="mt-10 mb-16">
 	<PrimaryCard {article} />
 </div>
 
