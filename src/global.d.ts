@@ -12,6 +12,7 @@ interface Writer {
 	slug: string;
 	photo: Image;
 	name: string;
+	biography: string;
 }
 
 interface Group {

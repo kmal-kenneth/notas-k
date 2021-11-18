@@ -63,7 +63,5 @@
 	{height}
 	{width}
 	class={`bg-cover ${clazz || ''}`}
-	class:h-full={!height}
-	class:w-full={!width}
-	style="background-image: url({placeholderURL}); height: {height}; width: {width}"
+	style="background-image: url({placeholderURL}); "
 />

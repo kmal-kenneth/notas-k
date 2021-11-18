@@ -34,8 +34,8 @@
 
 <svelte:window bind:innerWidth />
 
-<div class="flex flex-col items-center">
-	<header class="flex items-center justify-between w-full h-12 px-4 max-w-screen-2xl">
+<div class="container px-4 mx-auto">
+	<header class="flex items-center justify-between w-full h-12 ">
 		<MyLogo />
 
 		{#if !showMenu}
@@ -52,9 +52,7 @@
 		{/if}
 	</header>
 
-	{innerWidth}
-
-	<main class="min-h-full px-4 max-w-screen-2xl">
+	<main class="min-h-full">
 		<slot />
 	</main>
 </div>

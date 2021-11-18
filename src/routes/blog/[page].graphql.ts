@@ -15,10 +15,15 @@ const query = `query ArticlePage($start: Int, $limit: Int) {
 	  writer {
 		slug
 		name
+		biography
 		photo {
 		  url
 		  alternativeText
 		}
+	  }
+	  group{
+		slug
+		name
 	  }
 	  published_at
 	}
@@ -32,7 +37,7 @@ articlesCount
   `;
 
 // Limit: number of posts per page
-const limit = 10;
+const limit = 4;
 
 /**
  * Get the post data for a specific page with a specific limit and offset.
@@ -66,11 +71,15 @@ export async function get({ params }): Promise<EndpointOutput> {
 	const { articles } = data.data;
 	const { articlesCount } = dataCount.data;
 
+	const article = articles[0];
+	articles.shift();
+
 	// Calculate the number of pages
 	const totalPages = Math.ceil(articlesCount / limit);
 	const currentPage: number = parseInt(page);
 
 	const body = {
+		article: article,
 		articles: articles,
 		paginationData: { totalPages, currentPage }
 	};

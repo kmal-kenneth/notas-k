@@ -13,24 +13,30 @@
 		}
 
 		const data = await res.json();
-		const { articles, paginationData } = data;
+		const { article, articles, paginationData } = data;
 
-		return { props: { articles: articles, paginationData: paginationData } };
+		return { props: { article: article, articles: articles, paginationData: paginationData } };
 	};
 </script>
 
 <script lang="ts">
 	import Pagination from '$lib/components/pagination.svelte';
 	import Grid from '$lib/components/grid.svelte';
-	import Card from '$lib/components/article/card.svelte';
+	import MyCard from '$lib/components/article/card.svelte';
+	import PrimaryCard from '$lib/components/article/primary_card.svelte';
 
+	export let article: Article;
 	export let articles: Article[];
 	export let paginationData: PaginationData;
 </script>
 
+<div class="mt-4 mb-8">
+	<PrimaryCard {article} />
+</div>
+
 <Grid>
 	{#each articles as article}
-		<Card {article} />
+		<MyCard {article} />
 	{/each}
 </Grid>
 
