@@ -20,6 +20,7 @@ export async function get({ params }): Promise<EndpointOutput> {
 			content
 			writer {
 			slug
+			name
 			}
 			group {
 			slug

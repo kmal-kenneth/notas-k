@@ -23,7 +23,7 @@
 	import '../../../lib/assets/css/article.postcss';
 	// import '/src/lib/assets/css/ prism-theme.css';
 
-	import ArticleHeader from '$lib/components/article/header.svelte';
+	import MyImg from '$lib/components/img.svelte';
 	import { readingTime, timeHumans } from '$lib/utils/time';
 
 	export let article: Article;
@@ -31,38 +31,37 @@
 </script>
 
 <article>
-	<ArticleHeader
+	<MyImg
 		src={article.image.url}
 		alt={article.image.alternativeText}
-		static-="false"
-		opacity={0}
+		height="384"
+		class="object-cover object-center w-full h-48 rounded-lg md:h-64 lg:h-96"
 	/>
 
-	<div
-		class="
-  mx-auto
-  mb-16
-  overflow-x-hidden
-  text-gray-800
-  sm:pxi-0
-  dark:text-gray-500
-  
-"
-	>
-		<section class="px-0 pt-8 mx-4 text-center lg:mx-32 md:mx-16 sm:mx-8">
-			<h1 class="mb-6 font-extrabold tracking-wider text-gray-800 dark:text-gray-400 text-4xl  ">
-				{article.title}
-			</h1>
-			<span class="text-sm tracking-wide">
-				<a class="font-medium" href={`/blog/collections/${article.slug}`}>{article.group.name}</a>
-				&nbsp;&middot;&nbsp;
-				<time datetime={article.published_at}>{timeHumans(article.published_at)}</time>
-				&nbsp;&middot;&nbsp;
-				{readingTime(article.content)} min read
-			</span>
-		</section>
-	</div>
-	<div class="lg:mx-auto md:mx-16 px-4 max-w-screen-lg">
+	<section class="max-w-screen-lg mx-auto mt-8 mb-16 text-center">
+		<h1 class="mb-6 text-4xl font-extrabold tracking-wider text-gray-800 dark:text-gray-200 ">
+			{article.title}
+		</h1>
+
+		<span class="text-sm tracking-wide">
+			<a
+				class="font-medium text-gray-800 dark:text-gray-200"
+				href={`/blog/collections/${article.group.slug}`}>{article.group.name}</a
+			>
+			&nbsp;&middot;&nbsp;
+			<time datetime={article.published_at}>{timeHumans(article.published_at)}</time>
+			&nbsp;&middot;&nbsp;
+			{readingTime(article.content)} min read &nbsp;&middot;&nbsp;
+			<span
+				>By <a
+					class="font-medium text-gray-800 dark:text-gray-200"
+					href={`/blog/author/${article.writer.slug}`}>{article.writer.name}</a
+				></span
+			>
+		</span>
+	</section>
+
+	<div class="max-w-screen-lg mx-auto">
 		<!-- <div class="px-4 mb-6">
 			<section class="relative mx-auto">
 				<p class="mb-4">{description}</p>

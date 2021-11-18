@@ -62,11 +62,16 @@
 		>
 	</div>
 
-	<nav class="menu ">
+	<nav class=" menu">
 		<ul>
 			{#each links as item}
 				<li>
-					<a sveltekit:prefetch href={item.href} on:click={close}>{item.text}</a>
+					<a
+						sveltekit:prefetch
+						href={item.href}
+						class="text-gray-900 dark:text-gray-100"
+						on:click={close}>{item.text}</a
+					>
 				</li>
 			{/each}
 		</ul>

@@ -1,8 +1,14 @@
 .content {
+	@apply font-open;
+
 	p,
 	span:not(.token),
 	li {
-		@apply tracking-wider leading-relaxed font-normal text-gray-800 text-base;
+		@apply tracking-wider leading-relaxed font-normal text-base;
+	}
+
+	strong {
+		@apply font-bold;
 	}
 
 	ol {
@@ -13,12 +19,11 @@
 		@apply list-disc ml-5 my-5;
 	}
 
-	li > ul {
-		@apply mt-0;
-	}
-
-	a {
-		@apply underline font-medium text-gray-700;
+	li {
+		ul,
+		ol {
+			@apply mt-0;
+		}
 	}
 
 	.contains-task-list {
@@ -29,14 +34,13 @@
 	}
 
 	pre {
-		@apply w-full my-4 mx-auto py-12 px-4 bg-no-repeat rounded-lg shadow-lg text-gray-200;
+		@apply w-full my-4 mx-auto py-12 px-4 bg-no-repeat rounded-lg shadow-lg bg-gray-900 dark:bg-gray-800 text-gray-200 dark:text-gray-100;
 
-		background-color: #282c34;
 		background-image: url('../svg/dots.svg');
 		background-position: 1em 1em;
 
 		code {
-			@apply whitespace-pre-wrap break-words;
+			@apply whitespace-pre-wrap break-words font-victor;
 			word-spacing: normal;
 			tab-size: 4;
 			hyphens: none;
@@ -44,7 +48,7 @@
 	}
 
 	:not(pre) > code {
-		@apply p-1 text-pink-900 text-base break-words bg-pink-100 rounded-md;
+		@apply p-1 text-pink-900 text-base break-words bg-pink-100 dark:bg-pink-800 dark:text-pink-100 rounded-md font-victor;
 	}
 
 	h1 {
@@ -75,7 +79,7 @@
 		@apply my-6 w-full table-auto rounded-t-lg overflow-hidden border;
 
 		thead {
-			@apply bg-gray-100;
+			@apply bg-pink-100 dark:bg-pink-800;
 			@apply text-left text-sm font-medium;
 			tr {
 				th {
@@ -88,22 +92,12 @@
 			@apply text-left text-base font-normal;
 
 			tr {
-				@apply p-1 border-b hover:bg-gray-100;
+				@apply p-1 border-b border-gray-200 dark:border-gray-800 hover:bg-pink-100 dark:hover:bg-pink-800;
 			}
 		}
 	}
 
 	blockquote {
-		@apply my-6 w-full pl-4 border-l-4 italic border-gray-700;
-	}
-}
-
-.dark {
-	.post-content {
-		p,
-		span:not(.token),
-		li {
-			@apply tracking-wider leading-relaxed font-normal text-gray-500 text-lg;
-		}
+		@apply my-6 w-full pl-4 border-l-4 italic border-pink-900;
 	}
 }

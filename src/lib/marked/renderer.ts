@@ -36,14 +36,15 @@ export class MyRenderer extends Renderer {
 		const placeholderURL = href ? placeholder.toURL() : null;
 
 		return `
-        <figure class="my-8 flex flex-col items-center px-4">
+        <figure class="my-8 flex flex-col items-center">
             <img
             loading="lazy"
             decoding="async"
             src="${myURL}"
             alt="${text}"
-            class="bg-cover w-full"
-            style="background-image: url(${placeholderURL}); "
+			width="1024"
+            class="bg-cover w-full rounded-lg"
+            style="background-image: url(${placeholderURL}); width: 1024; "
             />
 
             <figcaption class="text-center">
