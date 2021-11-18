@@ -56,7 +56,7 @@
 	<div class="button">
 		<!-- svelte-ignore a11y-autofocus -->
 		<button
-			class="md:hidden focus:outline-none focus:shadow-outline text-2xl text-gray-200 hover:text-pink-800 transition-all duration-300"
+			class="mx-4 text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 			autofocus
 			on:click={close}><Fa icon={faTimes} /></button
 		>
@@ -75,7 +75,7 @@
 
 <style lang="postcss">
 	.modal {
-		@apply fixed top-0 left-0 w-screen h-screen px-4 flex flex-col items-center
+		@apply fixed top-0 left-0 w-screen h-screen p-4 flex flex-col items-center
 		 bg-gray-100 bg-opacity-80 backdrop-filter backdrop-blur-sm 
 		 dark:bg-gray-900 dark:bg-opacity-80 
 		 md:relative md:w-auto  md:h-12 md:px-0 md:bg-opacity-10

@@ -40,7 +40,7 @@
 
 		{#if !showMenu}
 			<button
-				class="text-2xl text-gray-200 transition-all duration-300 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
+				class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 				on:click={openMenu}
 			>
 				<Fa icon={faBars} />
@@ -55,4 +55,24 @@
 	<main class="min-h-full">
 		<slot />
 	</main>
+
+	<footer class="mt-12">
+		<div>
+			{#if !showMenu}
+				<div class="flex justify-center">
+					<button
+						class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
+						on:click={openMenu}
+					>
+						<Fa icon={faBars} />
+					</button>
+				</div>
+			{/if}
+
+			{#if showMenu}
+				<MyNav {links} on:close={openMenu} />
+			{/if}
+		</div>
+		<p class="my-4 text-xs text-gray-800 dark:text-gray-200">Copyright © 2021 notas{'{K}'}</p>
+	</footer>
 </div>

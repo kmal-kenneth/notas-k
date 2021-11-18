@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-
 	import MyImg from '$lib/components/img.svelte';
 	import { readingTime, timeHumans } from '$lib/utils/time';
 

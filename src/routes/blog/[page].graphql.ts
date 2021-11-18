@@ -13,16 +13,9 @@ const query = `query ArticlePage($start: Int, $limit: Int) {
 	  description
 	  content
 	  writer {
-		slug
 		name
-		biography
-		photo {
-		  url
-		  alternativeText
-		}
 	  }
 	  group{
-		slug
 		name
 	  }
 	  published_at
@@ -37,7 +30,7 @@ articlesCount
   `;
 
 // Limit: number of posts per page
-const limit = 4;
+const limit = 11;
 
 /**
  * Get the post data for a specific page with a specific limit and offset.
