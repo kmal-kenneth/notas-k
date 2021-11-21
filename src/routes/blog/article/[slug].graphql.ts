@@ -1,5 +1,4 @@
 import type { EndpointOutput } from '@sveltejs/kit';
-import { strapiURL } from '$lib/env';
 import { Marked } from '@ts-stack/markdown';
 import { MyRenderer } from '$lib/marked/renderer';
 import prism from 'prismjs';
@@ -33,7 +32,7 @@ export async function get({ params }): Promise<EndpointOutput> {
           }
         }`;
 
-	const res = await fetch(`${strapiURL}/graphql`, {
+	const res = await fetch(`${import.meta.env.VITE_STRAPI_URL}/graphql`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

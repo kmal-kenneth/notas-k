@@ -1,6 +1,18 @@
 /// <reference types="@sveltejs/kit" />
 interface ImportMetaEnv {
-	strapiURL: string;
+	VITE_STRAPI_URL: string;
+	VITE_WEBSITE_URL: string;
+	VITE_WEBSITE_NAME: string;
+}
+
+interface Meta {
+	title: string;
+	description: string;
+	url: string;
+	image: string;
+	lenguage: string;
+	canonical: string;
+	robots: string;
 }
 
 interface Image {

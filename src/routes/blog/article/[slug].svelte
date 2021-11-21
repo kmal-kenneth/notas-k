@@ -3,7 +3,7 @@
 
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page: { params }, fetch }) => {
+	export const load: Load = async ({ page: { params, path }, fetch }) => {
 		const { slug } = params;
 
 		const res = await fetch(`/blog/article/${slug}.graphql`);
@@ -12,27 +12,41 @@
 			return { status: res.status };
 		}
 
-		const data = await res.json();
+		const { article, content } = await res.json();
 
-		return { props: { article: data.article, content: data.content } };
+		const meta: Meta = {
+			title: `${article.title} | notas {K}`,
+			description: article.description,
+			url: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
+			image: article.image.url,
+			lenguage: 'es',
+			canonical: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
+			robots: 'index, follow'
+		};
+
+		return { props: { article: article, content: content, meta: meta } };
 	};
 </script>
 
 <script lang="ts">
 	import 'prism-themes/themes/prism-one-dark.css';
 	import '../../../lib/assets/css/article.postcss';
-	// import '/src/lib/assets/css/ prism-theme.css';
 
+	import MyMeta from '$lib/components/meta.svelte';
 	import MyImg from '$lib/components/img.svelte';
+
 	import { readingTime, timeHumans } from '$lib/utils/time';
 
 	export let article: Article;
 	export let content: string;
+	export let meta: Meta;
 </script>
+
+<MyMeta {meta} />
 
 <article>
 	<MyImg
-		src={article.image.url}
+		src={meta.image}
 		alt={article.image.alternativeText}
 		height="384"
 		class="object-cover object-center w-full h-48 rounded-lg md:h-64 lg:h-96"

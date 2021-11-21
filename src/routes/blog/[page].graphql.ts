@@ -1,5 +1,4 @@
 import type { EndpointOutput } from '@sveltejs/kit';
-import { strapiURL } from '$lib/env';
 
 // Query: the articles of a specific page
 const query = `query ArticlePage($start: Int, $limit: Int) {
@@ -87,7 +86,7 @@ export async function get({ params }): Promise<EndpointOutput> {
  * @returns {Promise<Response>} response with the data
  */
 async function getData(query: string, variables: unknown): Promise<Response> {
-	return await fetch(`${strapiURL}/graphql`, {
+	return await fetch(`${import.meta.env.VITE_STRAPI_URL}/graphql`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
