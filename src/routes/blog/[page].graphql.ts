@@ -1,3 +1,4 @@
+import { getData } from '$lib/utils/fetch';
 import type { EndpointOutput } from '@sveltejs/kit';
 
 // Query: the articles of a specific page
@@ -28,8 +29,20 @@ articlesCount
 }
   `;
 
+// Query: metadata
+const queryMetadata = `query metadata {
+	meta {
+		title
+		description
+		image {
+		  url
+		  alternativeText
+		}
+	  }
+	}`;
+
 // Limit: number of posts per page
-const limit = 11;
+const limit = 3;
 
 /**
  * Get the post data for a specific page with a specific limit and offset.
@@ -54,14 +67,22 @@ export async function get({ params }): Promise<EndpointOutput> {
 	const resCount = await getData(queryCount, {});
 
 	if (!resCount.ok) {
-		return { status: res.status };
+		return { status: resCount.status };
+	}
+
+	const resMeta = await getData(queryMetadata, {});
+
+	if (!resMeta.ok) {
+		return { status: resMeta.status };
 	}
 
 	const data = await res.json();
 	const dataCount = await resCount.json();
+	const dataMeta = await resMeta.json();
 
 	const { articles } = data.data;
 	const { articlesCount } = dataCount.data;
+	const { meta } = dataMeta.data;
 
 	const article = articles[0];
 	articles.shift();
@@ -69,32 +90,16 @@ export async function get({ params }): Promise<EndpointOutput> {
 	// Calculate the number of pages
 	const totalPages = Math.ceil(articlesCount / limit);
 	const currentPage: number = parseInt(page);
+	const prevPage: number = currentPage > 1 ? currentPage - 1 : null;
+	const nextPage: number = currentPage < totalPages ? currentPage + 1 : null;
+	const totalItems: number = articlesCount;
 
 	const body = {
 		article: article,
 		articles: articles,
-		paginationData: { totalPages, currentPage }
+		paginationData: { totalPages, currentPage, prevPage, nextPage, totalItems },
+		metadata: meta
 	};
 
 	return { status: res.status, body: body };
-}
-
-/***
- * Make a graphql request using fetch
- * @param {string} query the query to be executed
- * @param {object} variables the variables to pass to the query
- * @returns {Promise<Response>} response with the data
- */
-async function getData(query: string, variables: unknown): Promise<Response> {
-	return await fetch(`${import.meta.env.VITE_STRAPI_URL}/graphql`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json'
-		},
-		body: JSON.stringify({
-			query,
-			variables
-		})
-	});
 }

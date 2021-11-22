@@ -31,4 +31,14 @@
 
 	<!-- Lenguaje -->
 	<meta http-equiv="content-language" content={meta.lenguage} />
+
+	<!-- Next -->
+	{#if meta.next}
+		<link rel="next" href={meta.next} />
+	{/if}
+
+	<!-- Prev -->
+	{#if meta.prev}
+		<link rel="prev" href={meta.prev} />
+	{/if}
 </svelte:head>

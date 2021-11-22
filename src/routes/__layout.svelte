@@ -34,7 +34,7 @@
 
 <svelte:window bind:innerWidth />
 
-<div class="container px-4 mx-auto">
+<div class="container px-4 mx-auto h-auto">
 	<header class="flex items-center justify-between w-full h-12 ">
 		<MyLogo />
 

@@ -32,7 +32,7 @@
 	import 'prism-themes/themes/prism-one-dark.css';
 	import '../../../lib/assets/css/article.postcss';
 
-	import MyMeta from '$lib/components/meta.svelte';
+	import { MetaApp } from '$lib/components/';
 	import MyImg from '$lib/components/img.svelte';
 
 	import { readingTime, timeHumans } from '$lib/utils/time';
@@ -42,7 +42,7 @@
 	export let meta: Meta;
 </script>
 
-<MyMeta {meta} />
+<MetaApp {meta} />
 
 <article>
 	<MyImg

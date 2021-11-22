@@ -13,6 +13,14 @@ interface Meta {
 	lenguage: string;
 	canonical: string;
 	robots: string;
+	next?: string;
+	prev?: string;
+}
+
+interface PageMetadata {
+	title: string;
+	description: string;
+	image: Image;
 }
 
 interface Image {
@@ -48,6 +56,9 @@ interface Article {
 interface PaginationData {
 	currentPage: number;
 	totalPages: number;
+	totalItems: number;
+	nextPage: number;
+	prevPage: number;
 }
 
 interface Link {
