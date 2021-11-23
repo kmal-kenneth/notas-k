@@ -11,4 +11,4 @@ export { default as MetaApp } from './meta.svelte'; // Meta data for pages with 
 // export components for articles in article folder
 export { default as CardArticle } from './article/card.svelte'; // Card for articles
 export { default as PrimaryCardArticle } from './article/primary_card.svelte'; // Primary card for articles
-// export { default as HeaderArticle } from './article/header.svelte'; // Header for articles
+export { default as HeaderArticle } from './article/header.svelte'; // Footer for articles
