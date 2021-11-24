@@ -33,6 +33,12 @@ const queryMetadata = `query metadata {
 		  alternativeText
 		}
 	  }
+	  home {
+    baner{
+      url
+      alternativeText
+    }
+  }
 	}`;
 
 // Limit: number of posts per page
@@ -68,7 +74,8 @@ export async function get(): Promise<EndpointOutput> {
 	const dataMeta = await resMeta.json();
 
 	const { articles } = data.data;
-	const { meta } = dataMeta.data;
+	const { meta, home } = dataMeta.data;
+	const { baner } = home;
 
 	const article = articles[0];
 	articles.shift();
@@ -76,7 +83,8 @@ export async function get(): Promise<EndpointOutput> {
 	const body = {
 		article: article,
 		articles: articles,
-		metadata: meta
+		metadata: meta,
+		baner: baner
 	};
 
 	return { status: res.status, body: body };

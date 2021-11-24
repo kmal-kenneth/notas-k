@@ -2,7 +2,7 @@
  * Base components
  */
 export { default as GridApp } from './grid.svelte'; // Grid for articles
-export { default as imageApp } from './img.svelte'; // Image powered by cloudinary
+export { default as ImageApp } from './img.svelte'; // Image powered by cloudinary
 export { default as LogoApp } from './logo.svelte'; // Logo for header of the app
 export { default as PaginationApp } from './pagination.svelte'; // Pagination for articles and oter content
 export { default as NavApp } from './nav.svelte'; // Nav for header of the app
