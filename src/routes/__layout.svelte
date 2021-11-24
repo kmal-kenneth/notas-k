@@ -73,6 +73,6 @@
 				<MyNav {links} on:close={openMenu} />
 			{/if}
 		</div>
-		<p class="my-4 text-xs text-gray-800 dark:text-gray-200">Copyright © 2021 notas {'{K}'}</p>
+		<p class="py-2 text-xs text-gray-800 dark:text-gray-200">Copyright © 2021 notas {'{K}'}</p>
 	</footer>
 </div>
