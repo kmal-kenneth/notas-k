@@ -34,27 +34,29 @@
 
 <svelte:window bind:innerWidth />
 
-<div class="container px-4 mx-auto h-auto">
-	<header class="flex items-center justify-between w-full h-12 ">
-		<MyLogo />
+<div class="container flex flex-col justify-between min-h-screen px-4 mx-auto ">
+	<div>
+		<header class="flex items-center justify-between w-full h-12 ">
+			<MyLogo />
 
-		{#if !showMenu}
-			<button
-				class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
-				on:click={openMenu}
-			>
-				<Fa icon={faBars} />
-			</button>
-		{/if}
+			{#if !showMenu}
+				<button
+					class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
+					on:click={openMenu}
+				>
+					<Fa icon={faBars} />
+				</button>
+			{/if}
 
-		{#if showMenu}
-			<MyNav {links} on:close={openMenu} />
-		{/if}
-	</header>
+			{#if showMenu}
+				<MyNav {links} on:close={openMenu} />
+			{/if}
+		</header>
 
-	<main class="min-h-full">
-		<slot />
-	</main>
+		<main class="min-h-full">
+			<slot />
+		</main>
+	</div>
 
 	<footer class="mt-12">
 		<div>

@@ -48,7 +48,7 @@
 	<MyImg
 		src={meta.image}
 		alt={article.image.alternativeText}
-		height="384"
+		height="768"
 		class="object-cover object-center w-full h-48 rounded-lg md:h-64 lg:h-96"
 	/>
 
@@ -69,7 +69,7 @@
 			<span
 				>By <a
 					class="font-medium text-gray-800 dark:text-gray-200"
-					href={`/blog/author/${article.writer.slug}`}>{article.writer.name}</a
+					href={`/blog/writer/${article.writer.slug}`}>{article.writer.name}</a
 				></span
 			>
 		</span>

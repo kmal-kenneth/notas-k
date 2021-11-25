@@ -29,10 +29,11 @@ interface Image {
 }
 
 interface Writer {
-	slug: string;
-	photo: Image;
 	name: string;
 	biography: string;
+	cover: Image;
+	photo: Image;
+	slug: string;
 }
 
 interface Group {
