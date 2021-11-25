@@ -2,7 +2,7 @@ import type { EndpointOutput } from '@sveltejs/kit';
 import { Marked } from '@ts-stack/markdown';
 import { MyRenderer } from '$lib/marked/renderer';
 import prism from 'prismjs';
-import loadLanguages from 'prismjs/components/';
+import loadLanguages from 'prismjs/components/index.js';
 
 export async function get({ params }): Promise<EndpointOutput> {
 	const { slug } = params;

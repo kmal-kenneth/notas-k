@@ -32,8 +32,7 @@
 	import 'prism-themes/themes/prism-one-dark.css';
 	import '../../../lib/assets/css/article.postcss';
 
-	import { MetaApp } from '$lib/components/';
-	import MyImg from '$lib/components/img.svelte';
+	import { MetaApp, ImageApp } from '$lib/components/';
 
 	import { readingTime, timeHumans } from '$lib/utils/time';
 
@@ -45,7 +44,7 @@
 <MetaApp {meta} />
 
 <article>
-	<MyImg
+	<ImageApp
 		src={meta.image}
 		alt={article.image.alternativeText}
 		height="768"
@@ -60,7 +59,7 @@
 		<span class="text-sm tracking-wide">
 			<a
 				class="font-medium text-gray-800 dark:text-gray-200"
-				href={`/blog/collections/${article.group.slug}`}>{article.group.name}</a
+				href={`#/blog/collections/${article.group.slug}`}>{article.group.name}</a
 			>
 			&nbsp;&middot;&nbsp;
 			<time datetime={article.published_at}>{timeHumans(article.published_at)}</time>

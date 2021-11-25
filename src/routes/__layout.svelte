@@ -14,10 +14,6 @@
 		{
 			text: 'Blog',
 			href: '/blog/1'
-		},
-		{
-			text: 'Proyectos Personales',
-			href: '/blog/1'
 		}
 	];
 
