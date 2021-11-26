@@ -21,6 +21,8 @@ const config = {
 		target: '#svelte',
 		adapter: cloudflare({
 			// any esbuild options
+			target: 'es2020',
+			platform: 'browser'
 		})
 	}
 };
