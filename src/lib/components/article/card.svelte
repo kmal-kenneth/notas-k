@@ -10,7 +10,7 @@
 		src={article.image.url}
 		alt={article.image.alternativeText}
 		height="384"
-		class="object-cover object-center w-full rounded-lg h-72"
+		class="object-cover object-center w-full rounded-lg h-44 sm:h-72 md:h-44 lg:h-64 xl:h-80 2xl:h-96 "
 	/>
 
 	<div class="flex flex-col justify-between flex-1 ">

@@ -44,15 +44,19 @@
 <MetaApp {meta} />
 
 <article>
-	<ImageApp
-		src={meta.image}
-		alt={article.image.alternativeText}
-		height="768"
-		class="object-cover object-center w-full h-48 rounded-lg md:h-64 lg:h-96"
-	/>
+	<section class="px-4">
+		<ImageApp
+			src={meta.image}
+			alt={article.image.alternativeText}
+			height="768"
+			class="object-cover object-center w-full h-48 rounded-lg sm:h-80 md:h-96"
+		/>
+	</section>
 
 	<section class="max-w-screen-lg mx-auto mt-8 mb-16 text-center">
-		<h1 class="mb-6 text-4xl font-extrabold tracking-wider text-gray-800 dark:text-gray-200 ">
+		<h1
+			class="mb-6 text-2xl font-extrabold tracking-wider text-gray-800 sm:text-3xl lg:text-4xl dark:text-gray-200 "
+		>
 			{article.title}
 		</h1>
 
@@ -74,7 +78,7 @@
 		</span>
 	</section>
 
-	<div class="max-w-screen-lg mx-auto">
+	<section class="max-w-screen-lg mx-auto">
 		<!-- <div class="px-4 mb-6">
 			<section class="relative mx-auto">
 				<p class="mb-4">{description}</p>
@@ -110,5 +114,5 @@
 				</div>
 			</section>
 		</div>
-	</div>
+	</section>
 </article>

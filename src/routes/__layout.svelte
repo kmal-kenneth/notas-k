@@ -30,15 +30,16 @@
 
 <svelte:window bind:innerWidth />
 
-<div class="container flex flex-col justify-between min-h-screen px-4 mx-auto ">
+<div class="container flex flex-col justify-between min-h-screen mx-auto ">
 	<div>
-		<header class="flex items-center justify-between w-full h-12 ">
+		<header class="flex items-center justify-between w-full h-12 px-4">
 			<MyLogo />
 
 			{#if !showMenu}
 				<button
 					class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 					on:click={openMenu}
+					aria-label="Open Navigation"
 				>
 					<Fa icon={faBars} />
 				</button>
@@ -54,13 +55,14 @@
 		</main>
 	</div>
 
-	<footer class="mt-12">
+	<footer class="px-4 mt-12">
 		<div>
 			{#if !showMenu}
 				<div class="flex justify-center">
 					<button
 						class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 						on:click={openMenu}
+						aria-label="Open Navigation"
 					>
 						<Fa icon={faBars} />
 					</button>

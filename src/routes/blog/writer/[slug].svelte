@@ -40,12 +40,12 @@
 
 <MetaApp {meta} />
 
-<div>
+<section class="px-4">
 	<ImageApp
 		src={writer.cover.url}
 		alt={writer.cover.alternativeText}
 		height="768"
-		class="object-cover object-center w-full h-48 rounded-lg md:h-64 lg:h-96"
+		class="object-cover object-center w-full h-48 rounded-lg sm:h-80 md:h-96"
 	/>
 
 	<div class="py-8 text-center">
@@ -62,4 +62,4 @@
 		</h2>
 		<p class="font-sans sm:text-xl">{writer.biography}</p>
 	</div>
-</div>
+</section>

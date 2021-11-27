@@ -53,7 +53,7 @@
 <svelte:window on:keydown={handle_keydown} />
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal} on:click={close}>
-	<div class="button">
+	<div class="button" aria-label="Close Navigation">
 		<!-- svelte-ignore a11y-autofocus -->
 		<button
 			class="mx-4 text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"

@@ -60,14 +60,16 @@
 
 <MetaApp meta={metadata} />
 
-<div class="mt-10 mb-16">
+<section class="px-4 mt-10 mb-16">
 	<PrimaryCard {article} />
-</div>
+</section>
 
-<Grid>
-	{#each articles as article}
-		<MyCard {article} />
-	{/each}
-</Grid>
+<section class="px-4">
+	<Grid>
+		{#each articles as article}
+			<MyCard {article} />
+		{/each}
+	</Grid>
+</section>
 
 <Pagination {paginationData} />
