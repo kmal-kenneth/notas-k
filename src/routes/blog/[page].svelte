@@ -24,7 +24,10 @@
 			url: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
 			image: metadata.image.url,
 			lenguage: 'es',
-			canonical: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
+			canonical:
+				page == '1'
+					? `${import.meta.env.VITE_WEBSITE_URL}`
+					: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
 			robots: 'index, follow',
 			next: paginationData.nextPage
 				? `${import.meta.env.VITE_WEBSITE_URL}/blog/${paginationData.nextPage}`

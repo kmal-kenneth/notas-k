@@ -1,5 +1,6 @@
 import { getData } from '$lib/utils/fetch';
 import type { EndpointOutput } from '@sveltejs/kit';
+import { buildPaginationData } from '$lib/utils/pagination';
 
 // Query: the articles of a specific page
 const query = `query ArticlePage($start: Int, $limit: Int) {
@@ -87,17 +88,19 @@ export async function get({ params }): Promise<EndpointOutput> {
 	const article = articles[0];
 	articles.shift();
 
-	// Calculate the number of pages
-	const totalPages = Math.ceil(articlesCount / limit);
-	const currentPage: number = parseInt(page);
-	const prevPage: number = currentPage > 1 ? currentPage - 1 : null;
-	const nextPage: number = currentPage < totalPages ? currentPage + 1 : null;
-	const totalItems: number = articlesCount;
+	// set the pagination data to stringify
+	const paginationData = buildPaginationData(
+		parseInt(page),
+		articlesCount,
+		limit,
+		'/blog',
+		'/'
+	) as unknown as string;
 
 	const body = {
 		article: article,
 		articles: articles,
-		paginationData: { totalPages, currentPage, prevPage, nextPage, totalItems },
+		paginationData: paginationData,
 		metadata: meta
 	};
 

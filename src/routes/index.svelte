@@ -3,85 +3,73 @@
 
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page: { path }, fetch }) => {
-		const res = await fetch(`/index.graphql`);
+	export const load: Load = async ({ page: { params, path }, fetch }) => {
+		const { page } = params;
+
+		const res = await fetch(`/blog/${1}.graphql`);
 
 		if (!res.ok) {
 			return { status: res.status };
 		}
 
 		const data = await res.json();
-		const { article, articles, baner } = data;
+		const { article, articles } = data;
 
 		const metadata: PageMetadata = data.metadata || {};
+		const paginationData: PaginationData = data.paginationData || {};
 
 		const meta: Meta = {
-			title: `${metadata.title}`,
+			title: `Pagina ${paginationData.currentPage} - ${metadata.title}`,
 			description: metadata.description,
 			url: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
 			image: metadata.image.url,
 			lenguage: 'es',
 			canonical: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
-			robots: 'index, follow'
+			robots: 'index, follow',
+			next: paginationData.nextPage
+				? `${import.meta.env.VITE_WEBSITE_URL}/blog/${paginationData.nextPage}`
+				: null,
+			prev: paginationData.prevPage
+				? `${import.meta.env.VITE_WEBSITE_URL}/blog/${paginationData.prevPage}`
+				: null
 		};
 
 		return {
 			props: {
 				article: article,
 				articles: articles,
-				metadata: meta,
-				baner: baner
+				paginationData: paginationData,
+				metadata: meta
 			}
 		};
 	};
 </script>
 
 <script lang="ts">
-	import { PrimaryCardArticle, GridApp, CardArticle, MetaApp, ImageApp } from '$lib/components';
+	import Pagination from '$lib/components/pagination.svelte';
+	import Grid from '$lib/components/grid.svelte';
+	import MyCard from '$lib/components/article/card.svelte';
+	import PrimaryCard from '$lib/components/article/primary_card.svelte';
+	import { MetaApp } from '$lib/components';
 
 	export let article: Article;
 	export let articles: Article[];
+	export let paginationData: PaginationData;
 	export let metadata: Meta;
-	export let baner: Image;
 </script>
 
 <MetaApp meta={metadata} />
 
-<div class="flex flex-wrap px-4 py-16 bg-teal-900">
-	<ImageApp
-		src={baner.url}
-		alt={baner.alternativeText}
-		height="384"
-		class="object-cover object-center w-full rounded-lg h-44 sm:h-72 md:h-96 lg:w-8/12"
-	/>
-
-	<div class="flex flex-col justify-center flex-1 text-base text-gray-100 lg:pl-4">
-		<h1
-			class="my-2 overflow-hidden text-lg font-semibold tracking-normal text-gray-100 overflow-ellipsis "
-		>
-			Anotamos hoy para el mañana
-		</h1>
-		<p class="mb-2 overflow-hidden overflow-ellipsis">
-			En busca del crecimiento personal y profesional, el desarrollo de la personalidad y el auto
-			aprendizaje.
-		</p>
-		<p class="mb-2 overflow-hidden overflow-ellipsis">
-			Realizamos una serie de articulos que te ayudaran a mejorar tu comprención en diversos temas.
-		</p>
-		<p class="overflow-hidden overflow-ellipsis">
-			De la mano de nuestros autores, te invitamos a leer y compartir sus experiencias.
-		</p>
-	</div>
-</div>
+<section class="px-4 mt-10 mb-16">
+	<PrimaryCard {article} />
+</section>
 
 <section class="px-4">
-	<div class="mt-10 mb-16">
-		<PrimaryCardArticle {article} />
-	</div>
-
-	<GridApp>
+	<Grid>
 		{#each articles as article}
-			<CardArticle {article} />
+			<MyCard {article} />
 		{/each}
-	</GridApp>
+	</Grid>
 </section>
+
+<Pagination {paginationData} />

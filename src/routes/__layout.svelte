@@ -39,7 +39,7 @@
 				<button
 					class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 					on:click={openMenu}
-					aria-label="Open Navigation"
+					type="button"
 				>
 					<Fa icon={faBars} />
 				</button>
@@ -62,7 +62,7 @@
 					<button
 						class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 						on:click={openMenu}
-						aria-label="Open Navigation"
+						type="button"
 					>
 						<Fa icon={faBars} />
 					</button>

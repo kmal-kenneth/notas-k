@@ -60,6 +60,9 @@ interface PaginationData {
 	totalItems: number;
 	nextPage: number;
 	prevPage: number;
+	firstPage: string;
+	lastPage: string;
+	baseUrl: string;
 }
 
 interface Link {
