@@ -35,100 +35,95 @@
 </script>
 
 {#if paginationData.totalPages > 1}
-	<div class="flex flex-col items-center my-12 pagination">
-		<ul class="flex font-medium text-gray-700">
-			{#if previews}
-				<li class="mr-1 ">
-					<a sveltekit:prefetch href={`${previews}`} class="arrow" aria-label="Página anterior">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="100%"
-							height="100%"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-							stroke-width="3"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="w-4 h-4 feather feather-chevron-left"
-						>
-							<polyline points="15 18 9 12 15 6" />
-						</svg>
-					</a>
-				</li>
+	<div class="flex items-center justify-center my-12 pagination">
+		{#if previews}
+			<a sveltekit:prefetch href={`${previews}`} class="mr-1 arrow" aria-label="Página anterior">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="100%"
+					height="100%"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+					stroke-width="3"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="w-4 h-4 feather feather-chevron-left"
+				>
+					<polyline points="15 18 9 12 15 6" />
+				</svg>
+			</a>
+		{/if}
+
+		{#if start > 1}
+			<a sveltekit:prefetch href={`${paginationData.firstPage}`}> 1 </a>
+
+			{#if start > 2}
+				<div class="dots">...</div>
+			{/if}
+		{/if}
+
+		{#each range(start, end) as item}
+			{#if item == 1}
+				<a
+					sveltekit:prefetch
+					href={paginationData.firstPage}
+					class:active={paginationData.currentPage == item}
+				>
+					{item}
+				</a>
+			{:else}
+				<a
+					sveltekit:prefetch
+					href={`${paginationData.baseUrl}/${item}`}
+					class:active={paginationData.currentPage == item}
+				>
+					{item}
+				</a>
+			{/if}
+		{/each}
+
+		{#if end < paginationData.totalPages}
+			{#if end + 1 < paginationData.totalPages}
+				<div class="dots">...</div>
 			{/if}
 
-			{#if start > 1}
-				<li class="item">
-					<a sveltekit:prefetch href={`${paginationData.firstPage}`}> 1 </a>
-				</li>
+			<a sveltekit:prefetch href={`${paginationData.baseUrl}/${paginationData.totalPages}`}
+				>{paginationData.totalPages}</a
+			>
+		{/if}
 
-				{#if start > 2}
-					<li class="dots">...</li>
-				{/if}
-			{/if}
-
-			{#each range(start, end) as item}
-				<li class="item" class:active={paginationData.currentPage == item}>
-					{#if item == 1}
-						<a sveltekit:prefetch href={paginationData.firstPage}>
-							{item}
-						</a>
-					{:else}
-						<a sveltekit:prefetch href={`${paginationData.baseUrl}/${item}`}>
-							{item}
-						</a>
-					{/if}
-				</li>
-			{/each}
-
-			{#if end < paginationData.totalPages}
-				{#if end + 1 < paginationData.totalPages}
-					<li class="dots">...</li>
-				{/if}
-
-				<li class="item">
-					<a sveltekit:prefetch href={`${paginationData.baseUrl}/${paginationData.totalPages}`}
-						>{paginationData.totalPages}</a
-					>
-				</li>
-			{/if}
-
-			{#if next}
-				<li class="ml-1">
-					<a sveltekit:prefetch href={`${next}`} class="arrow" aria-label="Página siguiente">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="100%"
-							height="100%"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-							stroke-width="3"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="w-4 h-4 feather feather-chevron-right"
-						>
-							<polyline points="9 18 15 12 9 6" />
-						</svg></a
-					>
-				</li>
-			{/if}
-		</ul>
+		{#if next}
+			<a sveltekit:prefetch href={`${next}`} class="ml-1 arrow" aria-label="Página siguiente">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="100%"
+					height="100%"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+					stroke-width="3"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="w-4 h-4 feather feather-chevron-right"
+				>
+					<polyline points="9 18 15 12 9 6" />
+				</svg></a
+			>
+		{/if}
 	</div>
 {/if}
 
 <style lang="postcss">
 	.pagination {
 		a {
-			@apply no-underline;
-		}
-		.item {
-			@apply w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in hover:text-pink-900 text-gray-500;
+			@apply no-underline h-8 w-8 text-center;
+			@apply w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in hover:text-pink-900 text-gray-500
+			 dark:text-gray-200;
 		}
 
 		.dots {
-			@apply w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in text-gray-500;
+			@apply w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in text-gray-500 dark:text-gray-200 h-8 text-center;
 		}
 
 		.active {
@@ -136,7 +131,7 @@
 		}
 
 		.arrow {
-			@apply h-8 w-8 flex justify-center items-center cursor-pointer hover:text-pink-900 text-gray-500;
+			@apply h-8 w-8 flex justify-center items-center cursor-pointer hover:text-pink-900 text-gray-500 dark:text-gray-200;
 		}
 	}
 </style>

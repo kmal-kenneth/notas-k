@@ -43,7 +43,7 @@ const queryMetadata = `query metadata {
 	}`;
 
 // Limit: number of posts per page
-const limit = 3;
+const limit = 11;
 
 /**
  * Get the post data for a specific page with a specific limit and offset.
