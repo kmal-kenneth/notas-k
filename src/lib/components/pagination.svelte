@@ -39,7 +39,7 @@
 		<ul class="flex font-medium text-gray-700">
 			{#if previews}
 				<li class="mr-1 ">
-					<a sveltekit:prefetch href={`${previews}`} class="arrow">
+					<a sveltekit:prefetch href={`${previews}`} class="arrow" aria-label="Página anterior">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="100%"
@@ -96,7 +96,7 @@
 
 			{#if next}
 				<li class="ml-1">
-					<a sveltekit:prefetch href={`${next}`} class="arrow">
+					<a sveltekit:prefetch href={`${next}`} class="arrow" aria-label="Página siguiente">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="100%"

@@ -40,6 +40,7 @@
 					class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 					on:click={openMenu}
 					type="button"
+					aria-label="Abrir menú de navegación"
 				>
 					<Fa icon={faBars} />
 				</button>
@@ -63,6 +64,7 @@
 						class="text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 						on:click={openMenu}
 						type="button"
+						aria-label="Abrir menú de navegación"
 					>
 						<Fa icon={faBars} />
 					</button>

@@ -59,6 +59,7 @@
 			class="mx-4 text-2xl text-gray-800 transition-all duration-300 dark:text-gray-200 md:hidden focus:outline-none focus:shadow-outline hover:text-pink-800"
 			autofocus
 			type="button"
+			aria-label="Cerrar menú de navegación"
 			on:click={close}><Fa icon={faTimes} /></button
 		>
 	</div>
