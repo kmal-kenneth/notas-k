@@ -2,7 +2,8 @@
  * Set the pagination data for the blog page.
  * @param page {number} page
  * @param totalItems {number} total number of articles
- * @param limit {number} limit of posts per page
+ * @param totalPages {number} total number of pages
+ * @param pageSize {number} number of articles per page
  * @param baseUrl {string} base url
  * @param firstPage {string} first page
  * @returns  {PaginationData} the pagination data
@@ -10,14 +11,11 @@
 export function buildPaginationData(
 	page: number,
 	totalItems: number,
-	limit = 11,
+	totalPages: number,
+	pageSize: number,
 	baseUrl: string,
 	firstPage?: string
 ): PaginationData {
-	// total number of pages
-	const tempTotalItems: number = totalItems;
-	const totalPages = Math.ceil(tempTotalItems / limit);
-
 	// current page and the previous and next page
 	const currentPage: number = page;
 	const prevPage: number = currentPage > 1 ? currentPage - 1 : null;
@@ -33,10 +31,11 @@ export function buildPaginationData(
 		currentPage,
 		prevPage,
 		nextPage,
-		totalItems: tempTotalItems,
+		totalItems: totalItems,
 		firstPage: tempFirstPage,
 		lastPage,
-		baseUrl
+		baseUrl,
+		pageSize
 	};
 
 	return paginationData;

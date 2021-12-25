@@ -17,9 +17,9 @@
 		<div>
 			<div class="flex items-center justify-between mt-2 mb-1 text-xs leading-none">
 				<p class="text-gray-700 dark:text-gray-300">
-					<span class="font-semibold dark:text-gray-300">{article.group.name}</span>
+					<span class="font-semibold dark:text-gray-300">{article.collection.name}</span>
 					&nbsp;&bull;&nbsp;
-					<time datetime={article.published_at}>{timeHumans(article.published_at)}</time>
+					<time datetime={article.publishedAt}>{timeHumans(article.publishedAt)}</time>
 					&nbsp;&bull;&nbsp;
 					{readingTime(article.content)} min read
 				</p>

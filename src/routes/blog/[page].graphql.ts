@@ -1,107 +1,112 @@
 import { getData } from '$lib/utils/fetch';
 import type { EndpointOutput } from '@sveltejs/kit';
-import { buildPaginationData } from '$lib/utils/pagination';
+import { toArticle, toPageMetadata, toPaginationData, toUnknowToString } from '$lib/utils/strapi';
 
 // Query: the articles of a specific page
-const query = `query ArticlePage($start: Int, $limit: Int) {
-	articles(start: $start, limit: $limit, sort: "published_at:DESC") {
-	  slug
-	  title
-	  image {
-		url
-		alternativeText
-	  }
-	  description
-	  content
-	  writer {
-		name
-	  }
-	  group{
-		name
-	  }
-	  published_at
-	}
-  }
-`;
-
-// Query: number of articles
-const queryCount = `query articlesCount {
-articlesCount
-}
-  `;
-
-// Query: metadata
-const queryMetadata = `query metadata {
-	meta {
-		title
-		description
-		image {
-		  url
-		  alternativeText
+const query = `query paginateArticles($page: Int, $pageSize: Int) {
+	articles(
+	  pagination: { page: $page, pageSize: $pageSize }
+	  sort: "publishedAt:desc"
+	) {
+	  data {
+		attributes {
+		  slug
+		  title
+		  description
+		  content
+		  cover {
+			data {
+			  attributes {
+				url
+				alternativeText
+			  }
+			}
+		  }
+		  writer {
+			data {
+			  attributes {
+				name
+			  }
+			}
+		  }
+		  collection {
+			data {
+			  attributes {
+				name
+				slug
+			  }
+			}
+		  }
+		  publishedAt
 		}
 	  }
-	}`;
+	  meta {
+		pagination {
+		  total
+		  page
+		  pageSize
+		  pageCount
+		}
+	  }
+	}
+	meta {
+	  data {
+		attributes {
+		  title
+		  description
+		  image {
+			data {
+			  attributes {
+				url
+				alternativeText
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }  
+`;
 
 // Limit: number of posts per page
 const limit = 11;
 
-/**
- * Get the post data for a specific page with a specific limit and offset.
- * @param param0 {number} page
- * @returns  {Promise<EndpointOutput>} wthin the data property the posts are returned and the paginationData is returned
- */
 export async function get({ params }): Promise<EndpointOutput> {
 	const { page } = params;
 
-	// start: the offset of the posts. To evit the index out of bounds
-	const start = page == 1 ? 0 : (page - 1) * limit;
-
 	const res = await getData(query, {
-		start,
-		limit
+		page: parseInt(page),
+		pageSize: limit
 	});
 
 	if (!res.ok) {
 		return { status: res.status };
 	}
 
-	const resCount = await getData(queryCount, {});
-
-	if (!resCount.ok) {
-		return { status: resCount.status };
-	}
-
-	const resMeta = await getData(queryMetadata, {});
-
-	if (!resMeta.ok) {
-		return { status: resMeta.status };
-	}
-
 	const data = await res.json();
-	const dataCount = await resCount.json();
-	const dataMeta = await resMeta.json();
 
-	const { articles } = data.data;
-	const { articlesCount } = dataCount.data;
-	const { meta } = dataMeta.data;
+	const { articles, meta } = data.data;
 
-	const article = articles[0];
-	articles.shift();
+	const metadata = await toPageMetadata(meta);
 
-	// set the pagination data to stringify
-	const paginationData = buildPaginationData(
-		parseInt(page),
-		articlesCount,
-		limit,
-		'/blog',
-		'/'
-	) as unknown as string;
+	const newArticles: Article[] = [];
+
+	for (const article of articles.data) {
+		newArticles.push(await toArticle(article));
+	}
+
+	const article = newArticles[0];
+	newArticles.shift();
+
+	const pagination = articles.meta.pagination;
+
+	const paginationData = await toPaginationData(pagination, '/blog', '/');
 
 	const body = {
-		article: article,
-		articles: articles,
-		paginationData: paginationData,
-		metadata: meta
+		article: toUnknowToString(article),
+		articles: toUnknowToString(newArticles),
+		paginationData: toUnknowToString(paginationData),
+		metadata: toUnknowToString(metadata)
 	};
 
 	return { status: res.status, body: body };

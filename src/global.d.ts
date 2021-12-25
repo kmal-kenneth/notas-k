@@ -30,39 +30,40 @@ interface Image {
 
 interface Writer {
 	name: string;
-	biography: string;
-	cover: Image;
-	photo: Image;
-	slug: string;
+	biography?: string;
+	cover?: Image;
+	photo?: Image;
+	slug?: string;
 }
 
-interface Group {
+interface Collection {
 	slug: string;
 	name: string;
 }
 interface Article {
-	id: number;
-	title: string;
-	description: string;
-	content: string;
-	writer: Writer;
-	image: Image;
-	slug: string;
-	group: Group;
-	created_at: string;
-	updated_at: string;
-	published_at: string;
+	id?: number;
+	title?: string;
+	description?: string;
+	content?: string;
+	writer?: Writer;
+	image?: Image;
+	slug?: string;
+	collection?: Collection;
+	createdAt?: string;
+	updatedAt?: string;
+	publishedAt?: string;
 }
 
 interface PaginationData {
-	currentPage: number;
-	totalPages: number;
-	totalItems: number;
-	nextPage: number;
-	prevPage: number;
-	firstPage: string;
-	lastPage: string;
-	baseUrl: string;
+	currentPage?: number;
+	totalPages?: number;
+	totalItems?: number;
+	nextPage?: number;
+	prevPage?: number;
+	firstPage?: string;
+	lastPage?: string;
+	baseUrl?: string;
+	pageSize?: number;
 }
 
 interface Link {
