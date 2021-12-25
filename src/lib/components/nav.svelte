@@ -42,10 +42,6 @@
 		{
 			text: 'Home',
 			href: '/'
-		},
-		{
-			text: 'Blog',
-			href: '/blog/1'
 		}
 	];
 </script>
