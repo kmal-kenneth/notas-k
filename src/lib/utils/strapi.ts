@@ -32,7 +32,7 @@ async function toArticle(json: any): Promise<Article> {
 	const { slug, title, content, description, cover, writer, collection, publishedAt } =
 		json.attributes;
 	const { url, alternativeText } = cover.data.attributes;
-	const { name } = writer.data.attributes;
+	const { name, slug: slugWriter } = writer.data.attributes;
 	const { name: collectionName, slug: collectionSlug } = collection.data.attributes;
 
 	const article: Article = {
@@ -45,7 +45,8 @@ async function toArticle(json: any): Promise<Article> {
 			alternativeText: alternativeText
 		},
 		writer: {
-			name: name
+			name: name,
+			slug: slugWriter
 		},
 		collection: {
 			name: collectionName,
@@ -86,6 +87,33 @@ async function toPaginationData(
 }
 
 /**
+ * convert json to Writer object.
+ * @param json - The json to convert.
+ * @returns The writer.
+ */
+async function toWriter(json: any): Promise<Writer> {
+	const { slug, name, photo, cover, biography } = json.attributes;
+	const { url, alternativeText } = cover.data.attributes;
+	const { url: urlPhoto, alternativeText: alternativeTextPhoto } = photo.data.attributes;
+
+	const writer: Writer = {
+		slug: slug,
+		name: name,
+		cover: {
+			url: url,
+			alternativeText: alternativeText
+		},
+		photo: {
+			url: urlPhoto,
+			alternativeText: alternativeTextPhoto
+		},
+		biography: biography
+	};
+
+	return writer;
+}
+
+/**
  * convert unknow to string
  * @param any any object
  * @returns  string
@@ -94,4 +122,4 @@ function toUnknowToString(any) {
 	return any as unknown as string;
 }
 
-export { toPageMetadata, toArticle, toPaginationData, toUnknowToString };
+export { toPageMetadata, toArticle, toPaginationData, toWriter, toUnknowToString };

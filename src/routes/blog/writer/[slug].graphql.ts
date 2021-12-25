@@ -1,24 +1,37 @@
 import type { EndpointOutput } from '@sveltejs/kit';
 import { getData } from '$lib/utils/fetch';
+import { toUnknowToString, toWriter } from '$lib/utils/strapi';
 
 export async function get({ params }): Promise<EndpointOutput> {
 	const { slug } = params;
 
-	const query = `query AuthorPageQuery($slug: String!) {
-		authors(where: { slug: $slug }) {
-			slug
-			name
-			photo{
-			  url
-			  alternativeText
+	const query = `query pageWriter($slug: String) {
+		writers(filters: { slug: { eq: $slug } }) {
+		  data {
+			attributes {
+			  slug
+			  name
+			  photo {
+				data {
+				  attributes {
+					alternativeText
+					url
+				  }
+				}
+			  }
+			  cover {
+				data {
+				  attributes {
+					url
+					alternativeText
+				  }
+				}
+			  }
+			  biography
 			}
-			cover {
-			  url
-			  alternativeText
-			}
-			biography
-          }
-        }`;
+		  }
+		}
+	  }`;
 
 	const res = await getData(query, { slug });
 
@@ -28,10 +41,18 @@ export async function get({ params }): Promise<EndpointOutput> {
 
 	const data = await res.json();
 
-	const { authors } = data.data;
+	const { writers } = data.data;
+
+	const newWriters: Writer[] = [];
+
+	for (const writerT of writers.data) {
+		newWriters.push(await toWriter(writerT));
+	}
+
+	const writer = newWriters[0];
 
 	const body = {
-		writer: authors[0]
+		writer: toUnknowToString(writer)
 	};
 
 	return { status: res.status, body: body };
