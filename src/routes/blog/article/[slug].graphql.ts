@@ -3,45 +3,60 @@ import { Marked } from '@ts-stack/markdown';
 import { MyRenderer } from '$lib/marked/renderer';
 import prism from 'prismjs';
 import loadLanguages from 'prismjs/components/index.js';
+import { getData } from '$lib/utils/fetch';
+import { toArticle, toUnknowToString } from '$lib/utils/strapi';
 
 export async function get({ params }): Promise<EndpointOutput> {
 	const { slug } = params;
 
-	const query = `query ArticlePageQuery($slug: String!) {
-          articles(where: { slug: $slug }) {
-            slug
-			title
-			image {
-			url
-			alternativeText
+	const query = `query pageArticle($slug: String) {
+		articles(filters: { slug: { eq: $slug } }) {
+		  data {
+			attributes {
+			  slug
+			  title
+			  description
+			  content
+			  cover {
+				data {
+				  attributes {
+					url
+					alternativeText
+				  }
+				}
+			  }
+			  writer {
+				data {
+				  attributes {
+					name
+					slug
+				  }
+				}
+			  }
+			  collection {
+				data {
+				  attributes {
+					name
+					slug
+				  }
+				}
+			  }
+			  tags {
+				data {
+				  attributes {
+					name
+					slug
+				  }
+				}
+			  }
+			  publishedAt
 			}
-			description
-			content
-			writer {
-			slug
-			name
-			}
-			group {
-			slug
-			name
-			}
-			tags {
-			slug
-			}
-			published_at
-          }
-        }`;
+		  }
+		}
+	  }`;
 
-	const res = await fetch(`${import.meta.env.VITE_STRAPI_URL}/graphql`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json'
-		},
-		body: JSON.stringify({
-			query,
-			variables: { slug }
-		})
+	const res = await getData(query, {
+		slug: slug
 	});
 
 	if (!res.ok) {
@@ -49,6 +64,16 @@ export async function get({ params }): Promise<EndpointOutput> {
 	}
 
 	const data = await res.json();
+
+	const { articles } = data.data;
+
+	const newArticles: Article[] = [];
+
+	for (const article of articles.data) {
+		newArticles.push(await toArticle(article));
+	}
+
+	const article = newArticles[0];
 
 	loadLanguages();
 
@@ -64,8 +89,8 @@ export async function get({ params }): Promise<EndpointOutput> {
 	});
 
 	const body = {
-		article: data.data.articles[0],
-		content: Marked.parse(data.data.articles[0].content)
+		article: toUnknowToString(article),
+		content: Marked.parse(article.content)
 	};
 
 	return { status: res.status, body: body };

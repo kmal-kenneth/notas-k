@@ -63,10 +63,10 @@
 		<span class="text-sm tracking-wide">
 			<a
 				class="font-medium text-gray-800 dark:text-gray-200"
-				href={`#/blog/collections/${article.group.slug}`}>{article.group.name}</a
+				href={`#/blog/collections/${article.collection.slug}`}>{article.collection.name}</a
 			>
 			&nbsp;&middot;&nbsp;
-			<time datetime={article.published_at}>{timeHumans(article.published_at)}</time>
+			<time datetime={article.publishedAt}>{timeHumans(article.publishedAt)}</time>
 			&nbsp;&middot;&nbsp;
 			{readingTime(article.content)} min read &nbsp;&middot;&nbsp;
 			<span
