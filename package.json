@@ -33,7 +33,6 @@
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
 		"prism-themes": "^1.9.0",
-		"prismjs": "^1.25.0",
 		"svelte": "^3.34.0",
 		"svelte-check": "^2.2.6",
 		"svelte-fa": "^2.3.3",
@@ -48,6 +47,7 @@
 		"@fontsource/fira-mono": "^4.5.0",
 		"@lukeed/uuid": "^2.0.0",
 		"@ts-stack/markdown": "^1.4.0",
-		"cookie": "^0.4.1"
+		"cookie": "^0.4.1",
+		"prismjs": "^1.25.0"
 	}
 }
