@@ -29,7 +29,8 @@
 </script>
 
 <script lang="ts">
-	import 'prism-themes/themes/prism-one-dark.css';
+	// import 'prism-themes/themes/prism-one-dark.css';
+	import 'highlight.js/styles/atom-one-dark.css';
 	import '../../../lib/assets/css/article.postcss';
 
 	import { MetaApp, ImageApp } from '$lib/components/';

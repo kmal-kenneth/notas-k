@@ -5,6 +5,7 @@ import { MyRenderer } from '$lib/marked/renderer';
 // import loadLanguages from 'prismjs/components/index.js';
 import { getData } from '$lib/utils/fetch';
 import { toArticle, toUnknowToString } from '$lib/utils/strapi';
+import hljs from 'highlight.js';
 
 export async function get({ params }): Promise<EndpointOutput> {
 	const { slug } = params;
@@ -78,7 +79,7 @@ export async function get({ params }): Promise<EndpointOutput> {
 	// loadLanguages();
 
 	Marked.setOptions({
-		renderer: new MyRenderer()
+		renderer: new MyRenderer(),
 		// highlight: function (code, lang) {
 		// 	if (prism.languages[lang]) {
 		// 		return prism.highlight(code, prism.languages[lang], lang);
@@ -86,6 +87,19 @@ export async function get({ params }): Promise<EndpointOutput> {
 		// 		return code;
 		// 	}
 		// }
+		highlight: function (code, lang) {
+			return hljs.highlight(code, {
+				language: 'bash'
+			}).value;
+
+			// if (hljs.listLanguages[lang]) {
+			// 	return hljs.highlight(code, {
+			// 		language: lang
+			// 	}).value;
+			// } else {
+			// 	return hljs.highlightAuto(code).value;
+			// }
+		}
 	});
 
 	const body = {
