@@ -26,6 +26,7 @@
 		"eslint-plugin-svelte3": "^3.2.1",
 		"graphql": "^16.0.1",
 		"graphql-request": "^3.6.1",
+		"highlight.js": "^11.3.1",
 		"mdsvex": "^0.9.8",
 		"postcss": "^8.3.9",
 		"postcss-load-config": "^3.1.0",
@@ -41,11 +42,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"-": "^0.0.1",
 		"@cloudinary/url-gen": "^1.1.0",
 		"@fontsource/fira-mono": "^4.5.0",
 		"@lukeed/uuid": "^2.0.0",
 		"@ts-stack/markdown": "^1.4.0",
-		"cookie": "^0.4.1",
-		"highlight.js": "^11.3.1"
+		"cookie": "^0.4.1"
 	}
 }
