@@ -4,8 +4,7 @@ import { MyRenderer } from '$lib/marked/renderer';
 import { getData } from '$lib/utils/fetch';
 import { toArticle, toUnknowToString } from '$lib/utils/strapi';
 import Prism from 'prismjs';
-import loadLanguages from 'prismjs/components/';
-
+import loadLanguages from 'prismjs/components/index.js';
 // import hljs from 'highlight.js';
 
 export async function get({ params }): Promise<EndpointOutput> {
