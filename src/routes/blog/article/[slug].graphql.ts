@@ -1,10 +1,9 @@
 import type { EndpointOutput } from '@sveltejs/kit';
 import { Marked } from '@ts-stack/markdown';
 import { MyRenderer } from '$lib/marked/renderer';
-// import prism from 'prismjs';
-// import loadLanguages from 'prismjs/components/index.js';
 import { getData } from '$lib/utils/fetch';
 import { toArticle, toUnknowToString } from '$lib/utils/strapi';
+import hljs from 'highlight.js';
 
 export async function get({ params }): Promise<EndpointOutput> {
 	const { slug } = params;
@@ -75,17 +74,18 @@ export async function get({ params }): Promise<EndpointOutput> {
 
 	const article = newArticles[0];
 
-	// loadLanguages();
-
 	Marked.setOptions({
-		renderer: new MyRenderer()
-		// highlight: function (code, lang) {
-		// 	if (prism.languages[lang]) {
-		// 		return prism.highlight(code, prism.languages[lang], lang);
-		// 	} else {
-		// 		return code;
-		// 	}
-		// }
+		renderer: new MyRenderer(),
+
+		highlight: function (code, lang) {
+			if (hljs.listLanguages().includes(lang)) {
+				return hljs.highlight(code, {
+					language: lang
+				}).value;
+			} else {
+				return code;
+			}
+		}
 	});
 
 	const body = {
