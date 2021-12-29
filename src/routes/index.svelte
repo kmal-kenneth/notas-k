@@ -38,8 +38,8 @@
 			props: {
 				article: article,
 				articles: articles,
-				paginationData: paginationData
-				// metadata: meta
+				paginationData: paginationData,
+				metadata: meta
 			}
 		};
 	};
@@ -55,10 +55,10 @@
 	export let article: Article;
 	export let articles: Article[];
 	export let paginationData: PaginationData;
-	// export let metadata: Meta;
+	export let metadata: Meta;
 </script>
 
-<!-- <MetaApp meta={metadata} /> -->
+<MetaApp meta={metadata} />
 
 <section class="px-4 mt-10 mb-16">
 	<PrimaryCard {article} />
