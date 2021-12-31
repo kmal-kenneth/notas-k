@@ -30,7 +30,6 @@
 
 <script lang="ts">
 	import 'highlight.js/styles/atom-one-dark.css';
-	import '../../../lib/assets/css/article.postcss';
 
 	import { MetaApp, ImageApp } from '$lib/components/';
 
@@ -116,3 +115,118 @@
 		</div>
 	</section>
 </article>
+
+<style lang="postcss" global>
+	.content {
+		@apply font-open;
+
+		p,
+		span:not(.token),
+		li {
+			@apply tracking-wider leading-relaxed font-normal text-base;
+		}
+
+		p {
+			@apply mb-4;
+		}
+
+		strong {
+			@apply font-bold;
+		}
+
+		ol {
+			@apply list-decimal ml-5 my-5;
+		}
+
+		ul {
+			@apply list-disc ml-5 my-5;
+		}
+
+		a {
+			@apply text-pink-1000 dark:text-pink-700;
+		}
+
+		li {
+			ul,
+			ol {
+				@apply mt-0;
+			}
+
+			a {
+				line-height: 48px;
+			}
+		}
+
+		.contains-task-list {
+			@apply list-none ml-0;
+			.task-list-item > input[type='checkbox'] {
+				@apply h-4 w-4  mr-2 leading-tight;
+			}
+		}
+
+		pre {
+			@apply w-full my-4 mx-auto py-8 px-4 rounded-lg shadow-lg bg-gray-900 dark:bg-gray-1000 text-gray-200 dark:text-gray-100;
+
+			code {
+				@apply whitespace-pre-wrap break-words font-victor;
+				word-spacing: normal;
+				tab-size: 4;
+				hyphens: none;
+			}
+		}
+
+		:not(pre) > code {
+			@apply p-1 text-pink-1000 text-base break-words bg-pink-100 dark:bg-pink-1000 dark:text-pink-100 rounded-md font-victor;
+		}
+
+		h1 {
+			@apply text-3xl font-bold  mt-6 mb-2;
+		}
+
+		h2 {
+			@apply text-2xl font-bold mt-6 mb-2;
+		}
+
+		h3 {
+			@apply text-xl font-bold mt-6 mb-2;
+		}
+
+		h4 {
+			@apply text-lg font-bold mt-6 mb-2;
+		}
+
+		h5 {
+			@apply text-base font-bold mt-6 mb-2;
+		}
+
+		h6 {
+			@apply text-sm font-bold mt-6 mb-2;
+		}
+
+		table {
+			@apply my-6 w-full table-auto rounded-t-lg overflow-hidden;
+
+			thead {
+				@apply text-gray-100 bg-pink-1000;
+				@apply text-left text-sm font-medium;
+				tr {
+					th {
+						@apply py-2 px-1;
+					}
+				}
+			}
+
+			tbody {
+				@apply text-left text-base font-normal;
+
+				tr {
+					@apply p-1 border-b border-gray-200 dark:border-gray-700 hover:bg-pink-700 hover:text-gray-100;
+				}
+			}
+		}
+
+		blockquote {
+			@apply my-6 w-full pl-4 border-l-4 italic border-pink-800;
+		}
+	}
+</style>

@@ -29,8 +29,6 @@
 </script>
 
 <script lang="ts">
-	import '../../../lib/assets/css/article.postcss';
-
 	import { ImageApp, MetaApp } from '$lib/components/';
 
 	export let writer: Writer;
