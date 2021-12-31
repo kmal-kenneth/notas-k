@@ -14,6 +14,7 @@
 		"@fortawesome/free-solid-svg-icons": "^5.15.4",
 		"@sveltejs/adapter-cloudflare": "^1.0.0-next.4",
 		"@sveltejs/kit": "next",
+		"@ts-stack/markdown": "^1.4.0",
 		"@types/cookie": "^0.4.1",
 		"@types/marked": "^3.0.2",
 		"@typescript-eslint/eslint-plugin": "^4.31.1",
@@ -42,7 +43,6 @@
 		"@cloudinary/url-gen": "^1.1.0",
 		"@fontsource/fira-mono": "^4.5.0",
 		"@lukeed/uuid": "^2.0.0",
-		"@ts-stack/markdown": "^1.4.0",
 		"cookie": "^0.4.1"
 	}
 }
