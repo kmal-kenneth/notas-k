@@ -2,15 +2,12 @@
 	import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 	import { Resize } from '@cloudinary/url-gen/actions/resize';
 	import { blur } from '@cloudinary/url-gen/actions/effect';
+	import lozad from 'lozad';
+	import { onMount } from 'svelte';
 
-	// Create your instance
-	let cld = new Cloudinary({
-		cloud: {
-			cloudName: 'dsovqcsof'
-		},
-		url: {
-			secure: true // force https, set to false to force http
-		}
+	onMount(async () => {
+		const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+		observer.observe();
 	});
 
 	export let src: string;
@@ -20,48 +17,72 @@
 	let clazz: any;
 	export { clazz as class };
 
-	let image: CloudinaryImage;
-	let placeholder: CloudinaryImage;
-	let myURL: string;
-	let placeholderURL: string;
+	const sizes = [1536, 1280, 1024, 768, 640, 320];
+	const imagesSizes = [320, 640, 960, 1280, 1920, 2560];
 
-	$: if (src) {
-		let filename = src.substring(src.lastIndexOf('/') + 1);
+	/**
+	 * Get the image url from the src
+	 * Use the cloudinary url generator to generate the url
+	 * Defaults size is 10 and the image is blurred for placeholder
+	 * @param {string} src
+	 * @param {number} width - the width of the image, defaults to 10
+	 * @returns {string} - the url of the image
+	 */
+	function getImage(src: string, width = 10): string {
+		// Create your instance
+		const cld = new Cloudinary({
+			cloud: {
+				cloudName: `${import.meta.env.VITE_CLOUDINARY_NAME}`
+			},
+			url: {
+				secure: true // force https, set to false to force http
+			}
+		});
 
-		// Let's create a new image
-		image = cld.image(filename);
+		let image: CloudinaryImage;
 
-		if (height || width) {
-			let resize = Resize.fit();
+		if (src) {
+			const filename = src.substring(src.lastIndexOf('/') + 1);
 
-			if (height) {
-				resize = resize.height(height);
+			// Let's create a new image
+			image = cld.image(filename);
+
+			const resize = Resize.fit().width(width);
+
+			if (width <= 10) {
+				image.resize(Resize.fit().width(10)).effect(blur(100)).format('auto').quality('auto');
+			} else {
+				image.resize(resize).format('auto').quality('auto');
 			}
 
-			if (width) {
-				resize = resize.width(width);
-			}
-
-			image.resize(resize).format('auto').quality('auto');
-		} else {
-			image.format('auto').quality('auto');
+			return image.toURL();
 		}
 
-		placeholder = cld.image(filename);
-		placeholder.resize(Resize.fit().width(10)).effect(blur(2000)).format('auto').quality('auto');
-
-		myURL = image.toURL();
-		placeholderURL = placeholder.toURL();
+		return null;
 	}
+
+	// When we're done, we can apply all our changes and create a URL.
+	const myURL = getImage(src, 1024);
+	const placeholderURL = getImage(src);
+
+	const newSizes = sizes.map((size) => `(min-width: ${size}px) ${size}px`).join(', ') + ', 100vw';
+	const newSrcset = imagesSizes
+		.map((size) => {
+			const href = getImage(src, size);
+			return `${href} ${size}w`;
+		})
+		.join(', ');
 </script>
 
 <img
 	loading="lazy"
 	decoding="async"
-	src={myURL}
+	src={placeholderURL}
+	data-src={myURL}
+	data-srcset={newSrcset}
+	sizes={newSizes}
 	{alt}
 	{height}
 	{width}
-	class={`bg-cover ${clazz || ''}`}
-	style="background-image: url({placeholderURL}); "
+	class={`lozad ${clazz || ''}`}
 />
