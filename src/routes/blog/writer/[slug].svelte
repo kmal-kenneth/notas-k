@@ -3,7 +3,7 @@
 
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page: { params, path }, fetch }) => {
+	export const load: Load = async ({ params, fetch, url }) => {
 		const { slug } = params;
 
 		const res = await fetch(`/blog/writer/${slug}.graphql`);
@@ -17,10 +17,10 @@
 		const meta: Meta = {
 			title: `${writer.name} | notas {K}`,
 			description: writer.biography,
-			url: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
+			url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
 			image: writer.cover.url,
 			lenguage: 'es',
-			canonical: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
+			canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
 			robots: 'index, follow'
 		};
 
@@ -30,6 +30,7 @@
 
 <script lang="ts">
 	import { ImageApp, MetaApp } from '$lib/components/';
+	import type { Meta, Writer } from 'src/global';
 
 	export let writer: Writer;
 	export let meta: Meta;

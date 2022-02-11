@@ -3,28 +3,29 @@
 
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page: { params, path }, fetch }) => {
-		const { page } = params;
+	/** @type {import('@sveltejs/kit').Load} */
+	export const load: Load = async ({ fetch, url }) => {
+		const response = await fetch(`/blog/${1}.graphql`);
+		const resSeo = await fetch(`home.graphql`);
 
-		const res = await fetch(`/blog/${1}.graphql`);
-
-		if (!res.ok) {
-			return { status: res.status };
+		if (!response.ok || !resSeo.ok) {
+			return { status: response.status, error: await response.text() };
 		}
 
-		const data = await res.json();
+		const data = await response.json();
+		const dataSeo = await resSeo.json();
 		const { article, articles } = data;
+		const { seo } = dataSeo;
 
-		const metadata: PageMetadata = data.metadata || {};
 		const paginationData: PaginationData = data.paginationData || {};
 
 		const meta: Meta = {
-			title: `Pagina ${paginationData.currentPage} - ${metadata.title}`,
-			description: metadata.description,
-			url: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
-			image: metadata.image.url,
+			title: seo.title,
+			description: seo.description,
+			url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
+			image: seo.image.url,
 			lenguage: 'es',
-			canonical: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
+			canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
 			robots: 'index, follow',
 			next: paginationData.nextPage
 				? `${import.meta.env.VITE_WEBSITE_URL}/blog/${paginationData.nextPage}`
@@ -35,6 +36,7 @@
 		};
 
 		return {
+			status: response.status,
 			props: {
 				article: article,
 				articles: articles,
@@ -51,6 +53,7 @@
 	import MyCard from '$lib/components/article/card.svelte';
 	import PrimaryCard from '$lib/components/article/primary_card.svelte';
 	import { MetaApp } from '$lib/components';
+	import type { Article, Meta, PageMetadata, PaginationData, Seo } from 'src/global';
 
 	export let article: Article;
 	export let articles: Article[];

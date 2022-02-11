@@ -1,11 +1,13 @@
-import type { EndpointOutput } from '@sveltejs/kit';
 import { Marked } from '@ts-stack/markdown';
 import { MyRenderer } from '$lib/marked/renderer';
 import { getData } from '$lib/utils/fetch';
-import { toArticle, toUnknowToString } from '$lib/utils/strapi';
 import hljs from 'highlight.js';
+import { convertArticle } from '$lib/utils/strapi';
+import type { Article, ArticlesResponse } from 'src/global';
 
-export async function get({ params }): Promise<EndpointOutput> {
+/** @type {import('@sveltejs/kit').RequestHandler} */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function get({ params }) {
 	const { slug } = params;
 
 	const query = `query pageArticle($slug: String) {
@@ -59,20 +61,14 @@ export async function get({ params }): Promise<EndpointOutput> {
 	});
 
 	if (!res.ok) {
-		return { status: res.status };
+		return { status: 404 };
 	}
 
-	const data = await res.json();
+	const data: ArticlesResponse = await res.json();
 
 	const { articles } = data.data;
 
-	const newArticles: Article[] = [];
-
-	for (const article of articles.data) {
-		newArticles.push(await toArticle(article));
-	}
-
-	const article = newArticles[0];
+	const article = convertArticle(articles.data.shift());
 
 	Marked.setOptions({
 		renderer: new MyRenderer(),
@@ -89,9 +85,9 @@ export async function get({ params }): Promise<EndpointOutput> {
 	});
 
 	const body = {
-		article: toUnknowToString(article),
+		article,
 		content: Marked.parse(article.content)
 	};
 
-	return { status: res.status, body: body };
+	return { body: body };
 }

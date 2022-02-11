@@ -3,7 +3,8 @@
 
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page: { params, path }, fetch }) => {
+	/** @type {import('@sveltejs/kit').Load} */
+	export const load: Load = async ({ fetch, url, params }) => {
 		const { slug } = params;
 
 		const res = await fetch(`/blog/article/${slug}.graphql`);
@@ -17,10 +18,10 @@
 		const meta: Meta = {
 			title: `${article.title} | notas {K}`,
 			description: article.description,
-			url: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
-			image: article.image.url,
+			url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
+			image: article.cover.url,
 			lenguage: 'es',
-			canonical: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
+			canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
 			robots: 'index, follow'
 		};
 
@@ -34,6 +35,7 @@
 	import { MetaApp, ImageApp } from '$lib/components/';
 
 	import { readingTime, timeHumans } from '$lib/utils/time';
+	import type { Article, Meta } from 'src/global';
 
 	export let article: Article;
 	export let content: string;
@@ -46,7 +48,7 @@
 	<section class="px-4">
 		<ImageApp
 			src={meta.image}
-			alt={article.image.alternativeText}
+			alt={article.cover.alternativeText}
 			height="768"
 			class="object-cover object-center w-full h-48 rounded-lg sm:h-80 md:h-96"
 		/>

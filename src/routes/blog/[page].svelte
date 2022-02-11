@@ -3,31 +3,32 @@
 
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page: { params, path }, fetch }) => {
+	/** @type {import('@sveltejs/kit').Load} */
+	export const load: Load = async ({ fetch, url, params }) => {
 		const { page } = params;
 
-		const res = await fetch(`/blog/${page}.graphql`);
+		const response = await fetch(`/blog/${page}.graphql`);
 
-		if (!res.ok) {
-			return { status: res.status };
+		if (!response.ok) {
+			return { status: response.status };
 		}
 
-		const data = await res.json();
+		const data = await response.json();
 		const { article, articles } = data;
 
-		const metadata: PageMetadata = data.metadata || {};
+		const seo: Seo = data.seo || {};
 		const paginationData: PaginationData = data.paginationData || {};
 
 		const meta: Meta = {
-			title: `Pagina ${paginationData.currentPage} - ${metadata.title}`,
-			description: metadata.description,
-			url: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
-			image: metadata.image.url,
+			title: `Pagina ${paginationData.currentPage} - ${seo.title}`,
+			description: seo.description,
+			url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
+			image: seo.image.url,
 			lenguage: 'es',
 			canonical:
 				page == '1'
 					? `${import.meta.env.VITE_WEBSITE_URL}`
-					: `${import.meta.env.VITE_WEBSITE_URL}${path}`,
+					: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
 			robots: 'index, follow',
 			next: paginationData.nextPage
 				? `${import.meta.env.VITE_WEBSITE_URL}/blog/${paginationData.nextPage}`
@@ -38,6 +39,7 @@
 		};
 
 		return {
+			status: response.status,
 			props: {
 				article: article,
 				articles: articles,
@@ -54,6 +56,7 @@
 	import MyCard from '$lib/components/article/card.svelte';
 	import PrimaryCard from '$lib/components/article/primary_card.svelte';
 	import { MetaApp } from '$lib/components';
+	import type { Article, Meta, PaginationData, Seo } from 'src/global';
 
 	export let article: Article;
 	export let articles: Article[];

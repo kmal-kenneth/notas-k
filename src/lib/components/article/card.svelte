@@ -1,14 +1,15 @@
 <script lang="ts">
 	import MyImg from '$lib/components/img.svelte';
 	import { readingTime, timeHumans } from '$lib/utils/time';
+	import type { Article } from 'src/global';
 
 	export let article: Article;
 </script>
 
 <a sveltekit:prefetch href={'/blog/article/' + article.slug} class="flex flex-wrap no-underline">
 	<MyImg
-		src={article.image.url}
-		alt={article.image.alternativeText}
+		src={article.cover.url}
+		alt={article.cover.alternativeText}
 		height="384"
 		class="object-cover object-center w-full rounded-lg h-44 sm:h-72 md:h-44 lg:h-64 xl:h-80 2xl:h-96 "
 	/>

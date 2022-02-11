@@ -1,77 +1,116 @@
 import { getData } from '$lib/utils/fetch';
-import type { EndpointOutput } from '@sveltejs/kit';
-import { toArticle, toPageMetadata, toPaginationData, toUnknowToString } from '$lib/utils/strapi';
+import { convertArticle, convertPaginationData } from '$lib/utils/strapi';
+import type { Article, PaginateArticlesResponse, Seo } from 'src/global';
 
 // Query: the articles of a specific page
 const query = `query paginateArticles($page: Int, $pageSize: Int) {
-	articles(
-	  pagination: { page: $page, pageSize: $pageSize }
-	  sort: "publishedAt:desc"
-	) {
-	  data {
-		attributes {
-		  slug
-		  title
-		  description
-		  content
-		  cover {
-			data {
-			  attributes {
-				url
-				alternativeText
-			  }
-			}
-		  }
-		  writer {
-			data {
-			  attributes {
-				name
-			  }
-			}
-		  }
-		  collection {
-			data {
-			  attributes {
-				name
-				slug
-			  }
-			}
-		  }
-		  publishedAt
-		}
-	  }
-	  meta {
-		pagination {
-		  total
-		  page
-		  pageSize
-		  pageCount
-		}
-	  }
-	}
-	meta {
-	  data {
-		attributes {
-		  title
-		  description
-		  image {
-			data {
-			  attributes {
-				url
-				alternativeText
-			  }
-			}
-		  }
-		}
-	  }
-	}
-  }  
+    articles(
+      pagination: {page: $page, pageSize: $pageSize}
+      sort: "publishedAt:desc"
+    ) {
+      data {
+        attributes {
+          indexable
+          content
+          slug
+          title
+          description
+          cover {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          writer {
+            data {
+              attributes {
+                name
+                slug
+              }
+            }
+          }
+          collection {
+            data {
+              attributes {
+                name
+                slug
+              }
+            }
+          }
+          tags {
+            data {
+              attributes {
+                name
+                slug
+              }
+            }
+          }
+          publishedAt
+          locale
+          localizations {
+            data {
+              attributes {
+                indexable
+                content
+                slug
+                title
+                description
+                cover {
+                  data {
+                    attributes {
+                      url
+                      alternativeText
+                    }
+                  }
+                }
+                writer {
+                  data {
+                    attributes {
+                      name
+                      slug
+                    }
+                  }
+                }
+                collection {
+                  data {
+                    attributes {
+                      name
+                      slug
+                    }
+                  }
+                }
+                tags {
+                  data {
+                    attributes {
+                      name
+                      slug
+                    }
+                  }
+                }
+                publishedAt
+                locale
+              }
+            }
+          }
+        }
+      }
+      meta {
+        pagination {
+          pageCount
+        }
+      }
+    }
+  } 
 `;
 
 // Limit: number of posts per page
 const limit = 11;
 
-export async function get({ params }): Promise<EndpointOutput> {
+/** @type {import('@sveltejs/kit').RequestHandler} */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function get({ params }) {
 	const { page } = params;
 
 	const res = await getData(query, {
@@ -80,34 +119,33 @@ export async function get({ params }): Promise<EndpointOutput> {
 	});
 
 	if (!res.ok) {
-		return { status: res.status };
+		return { status: 404 };
 	}
 
-	const data = await res.json();
+	const data: PaginateArticlesResponse = await res.json();
 
-	const { articles, meta } = data.data;
+	const articles: Article[] = data.data.articles.data.map((article) => convertArticle(article));
+	const article = articles.shift();
 
-	const metadata = await toPageMetadata(meta);
+	const paginationData = await convertPaginationData(
+		data.data.articles.meta.pagination,
+		'/blog',
+		'/'
+	);
 
-	const newArticles: Article[] = [];
-
-	for (const article of articles.data) {
-		newArticles.push(await toArticle(article));
-	}
-
-	const article = newArticles[0];
-	newArticles.shift();
-
-	const pagination = articles.meta.pagination;
-
-	const paginationData = await toPaginationData(pagination, '/blog', '/');
-
-	const body = {
-		article: toUnknowToString(article),
-		articles: toUnknowToString(newArticles),
-		paginationData: toUnknowToString(paginationData),
-		metadata: toUnknowToString(metadata)
+	const seo: Seo = {
+		title: article.title,
+		description: article.description,
+		image: article.cover,
+		indexable: article.indexable
 	};
 
-	return { status: res.status, body: body };
+	const body = {
+		article,
+		articles,
+		paginationData,
+		seo
+	};
+
+	return { body: body };
 }

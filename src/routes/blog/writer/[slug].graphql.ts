@@ -1,8 +1,10 @@
-import type { EndpointOutput } from '@sveltejs/kit';
 import { getData } from '$lib/utils/fetch';
-import { toUnknowToString, toWriter } from '$lib/utils/strapi';
+import { convertWriter } from '$lib/utils/strapi';
+import type { ArticleResponse, Writer, WriterResponse, WritersResponse } from 'src/global';
 
-export async function get({ params }): Promise<EndpointOutput> {
+/** @type {import('@sveltejs/kit').RequestHandler} */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function get({ params }) {
 	const { slug } = params;
 
 	const query = `query pageWriter($slug: String) {
@@ -36,24 +38,16 @@ export async function get({ params }): Promise<EndpointOutput> {
 	const res = await getData(query, { slug });
 
 	if (!res.ok) {
-		return { status: res.status };
+		return { status: 404 };
 	}
 
-	const data = await res.json();
+	const data: WritersResponse = await res.json();
 
 	const { writers } = data.data;
 
-	const newWriters: Writer[] = [];
-
-	for (const writerT of writers.data) {
-		newWriters.push(await toWriter(writerT));
-	}
-
-	const writer = newWriters[0];
-
 	const body = {
-		writer: toUnknowToString(writer)
+		writer: convertWriter(writers.data.shift())
 	};
 
-	return { status: res.status, body: body };
+	return { body: body };
 }

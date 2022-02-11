@@ -3,7 +3,8 @@
 	export function load({ error, status }) {
 		return {
 			props: {
-				title: `${status}: ${error.message}`
+				title: status,
+				message: error.stack
 			}
 		};
 	}
@@ -11,6 +12,9 @@
 
 <script>
 	export let title;
+	export let message;
 </script>
 
 <h1>{title}</h1>
+
+<p>{message}</p>

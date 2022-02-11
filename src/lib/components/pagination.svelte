@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { range } from '$lib/utils/utils';
+	import type { PaginationData } from 'src/global';
 
 	export let paginationData: PaginationData;
 	export let sidePages: number = 2;
