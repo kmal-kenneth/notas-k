@@ -30,12 +30,20 @@
 </script>
 
 <script lang="ts">
+	import lozad from 'lozad';
+
 	import 'highlight.js/styles/atom-one-dark.css';
 
 	import { MetaApp, ImageApp } from '$lib/components/';
 
 	import { readingTime, timeHumans } from '$lib/utils/time';
 	import type { Article, Meta } from 'src/global';
+	import { onMount } from 'svelte';
+
+	onMount(async () => {
+		const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+		observer.observe();
+	});
 
 	export let article: Article;
 	export let content: string;
