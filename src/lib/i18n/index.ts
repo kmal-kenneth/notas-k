@@ -11,14 +11,12 @@ export const config = {
 		{
 			locale: 'es',
 			key: 'nav',
-			routes: ['/'],
 			loader: async () => (await import('./es/nav.json')).default
 		},
 
 		{
 			locale: 'en',
 			key: 'nav',
-			routes: ['/'],
 			loader: async () => (await import('./en/nav.json')).default
 		}
 	]

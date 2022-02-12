@@ -25,13 +25,6 @@
 	import MyLogo from '$lib/components/logo.svelte';
 	import type { Link } from 'src/global';
 
-	let links: Link[] = [];
-
-	$: links[0] = {
-		text: $t('nav.inicio'),
-		href: '/'
-	};
-
 	let year = new Date().getFullYear();
 
 	let showMenu = false;
@@ -64,7 +57,7 @@
 			{/if}
 
 			{#if showMenu}
-				<MyNav {links} on:close={openMenu} />
+				<MyNav on:close={openMenu} />
 			{/if}
 
 			<select bind:value={$locale}>
@@ -95,7 +88,7 @@
 			{/if}
 
 			{#if showMenu}
-				<MyNav {links} on:close={openMenu} />
+				<MyNav on:close={openMenu} />
 			{/if}
 		</div>
 		<p class="py-2 text-xs text-gray-800 dark:text-gray-200">

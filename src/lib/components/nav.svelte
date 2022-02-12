@@ -2,6 +2,7 @@
 	import { createEventDispatcher, onDestroy } from 'svelte';
 	import Fa from 'svelte-fa';
 	import { faTimes } from '@fortawesome/free-solid-svg-icons';
+	import { t } from '$lib/i18n';
 
 	const dispatch = createEventDispatcher();
 	const close = () => dispatch('close');
@@ -37,13 +38,6 @@
 			previously_focused.focus();
 		});
 	}
-
-	export let links: Link[] = [
-		{
-			text: 'Home',
-			href: '/'
-		}
-	];
 </script>
 
 <svelte:window on:keydown={handle_keydown} />
@@ -62,16 +56,14 @@
 
 	<nav class=" menu">
 		<ul>
-			{#each links as item}
-				<li>
-					<a
-						sveltekit:prefetch
-						href={item.href}
-						class="text-gray-900 no-underline dark:text-gray-100"
-						on:click={close}>{item.text}</a
-					>
-				</li>
-			{/each}
+			<li>
+				<a
+					sveltekit:prefetch
+					href="/"
+					class="text-gray-900 no-underline dark:text-gray-100"
+					on:click={close}>{$t('nav.inicio')}</a
+				>
+			</li>
 		</ul>
 	</nav>
 </div>
