@@ -1,6 +1,6 @@
 import { getData } from '$lib/utils/fetch';
-import { convertArticle, convertPaginationData } from '$lib/utils/strapi';
-import type { Article, PaginateArticlesResponse } from 'src/global';
+import { convertArticle, convertPaginationData, generateI18nArticle } from '$lib/utils/strapi';
+import type { Article, I18nObject, PaginateArticlesResponse } from 'src/global';
 
 // Query: the articles of a specific page
 const query = `query paginateArticles($page: Int, $pageSize: Int) {
@@ -108,8 +108,6 @@ const query = `query paginateArticles($page: Int, $pageSize: Int) {
 // Limit: number of posts per page
 const limit = 11;
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function get({ params }) {
 	const { page } = params;
 
@@ -124,7 +122,9 @@ export async function get({ params }) {
 
 	const data: PaginateArticlesResponse = await res.json();
 
-	const articles: Article[] = data.data.articles.data.map((article) => convertArticle(article));
+	const articles: I18nObject[] = data.data.articles.data.map((article) =>
+		generateI18nArticle(convertArticle(article))
+	);
 	const article = articles.shift();
 
 	const paginationData = await convertPaginationData(

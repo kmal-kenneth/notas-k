@@ -1,9 +1,18 @@
 <script lang="ts">
 	import MyImg from '$lib/components/img.svelte';
+	import { locale } from '$lib/i18n';
 	import { readingTime, timeHumans } from '$lib/utils/time';
 	import type { Article } from 'src/global';
 
-	export let article: Article;
+	export let articleI18n: { [key: string]: Article };
+
+	let article: Article;
+
+	$: if (articleI18n[$locale]) {
+		article = articleI18n[$locale];
+	} else {
+		article = articleI18n.es;
+	}
 </script>
 
 <a sveltekit:prefetch href={'/blog/article/' + article.slug} class="flex flex-wrap no-underline">

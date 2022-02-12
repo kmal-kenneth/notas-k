@@ -13,7 +13,15 @@
 		}
 
 		const data = await response.json();
-		const { article, articles, paginationData } = data;
+		const {
+			article,
+			articles,
+			paginationData
+		}: {
+			article: I18nObject;
+			articles: I18nObject[];
+			paginationData: PaginationData;
+		} = data;
 		// const paginationData: PaginationData = data.paginationData || {};
 
 		const dataSeo = await resSeo.json();
@@ -34,10 +42,10 @@
 		return {
 			status: response.status,
 			props: {
-				article: article,
-				articles: articles,
-				paginationData: paginationData,
-				metadata: meta
+				article,
+				articles,
+				paginationData,
+				meta
 			}
 		};
 	};
@@ -49,24 +57,24 @@
 	import MyCard from '$lib/components/article/card.svelte';
 	import PrimaryCard from '$lib/components/article/primary_card.svelte';
 	import { MetaApp } from '$lib/components';
-	import type { Article, Meta, PaginationData, Seo } from 'src/global';
+	import type { Article, I18nObject, Meta, PaginationData, Seo } from 'src/global';
 
-	export let article: Article;
-	export let articles: Article[];
+	export let article: { [key: string]: Article };
+	export let articles: { [key: string]: Article }[];
 	export let paginationData: PaginationData;
-	export let metadata: Meta;
+	export let meta: Meta;
 </script>
 
-<MetaApp meta={metadata} />
+<MetaApp {meta} />
 
 <section class="px-4 mt-10 mb-16">
-	<PrimaryCard {article} />
+	<PrimaryCard articleI18n={article} />
 </section>
 
 <section class="px-4">
 	<Grid>
 		{#each articles as article}
-			<MyCard {article} />
+			<MyCard articleI18n={article} />
 		{/each}
 	</Grid>
 </section>

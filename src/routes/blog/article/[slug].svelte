@@ -46,8 +46,8 @@
 		observer.observe();
 	});
 
-	export let articleI18n;
-	export let meta;
+	export let articleI18n: { [key: string]: Article };
+	export let meta: Meta;
 
 	let article: Article;
 
