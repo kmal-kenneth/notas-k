@@ -13,19 +13,19 @@
 			return { status: res.status };
 		}
 
-		const { articleI18n } = await res.json();
+		const { articleI18n }: { articleI18n: { [key: string]: Article } } = await res.json();
 
-		// const meta: Meta = {
-		// 	title: `${article.title} | notas {K}`,
-		// 	description: article.description,
-		// 	url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
-		// 	image: article.cover.url,
-		// 	lenguage: 'es',
-		// 	canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
-		// 	robots: 'index, follow'
-		// };
+		const meta = {
+			title: `${articleI18n.es.title} | notas {K}`,
+			description: articleI18n.es.description,
+			url: `${url}`,
+			image: articleI18n.es.cover.url,
+			lenguage: 'es',
+			canonical: `${url}`,
+			robots: articleI18n.es.indexable ? 'index, follow' : 'noindex, nofollow'
+		};
 
-		return { props: { articleI18n, url } };
+		return { props: { articleI18n, meta } };
 	};
 </script>
 
@@ -37,7 +37,7 @@
 	import { MetaApp, ImageApp } from '$lib/components/';
 
 	import { readingTime, timeHumans } from '$lib/utils/time';
-	import type { Article, Meta } from 'src/global';
+	import type { Article, I18nObject, Meta } from 'src/global';
 	import { onMount } from 'svelte';
 	import { locale } from '$lib/i18n';
 
@@ -47,7 +47,7 @@
 	});
 
 	export let articleI18n;
-	export let url;
+	export let meta;
 
 	let article: Article;
 
@@ -56,18 +56,6 @@
 	} else {
 		article = articleI18n.es;
 	}
-
-	let meta: Meta = {} as Meta;
-
-	$: meta = {
-		title: `${article.title} | notas {K}`,
-		description: article.description,
-		url: `${url}`,
-		image: article.cover.url,
-		lenguage: 'es',
-		canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
-		robots: article.indexable ? 'index, follow' : 'noindex, nofollow'
-	};
 </script>
 
 <MetaApp {meta} />

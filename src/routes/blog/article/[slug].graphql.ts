@@ -2,7 +2,7 @@ import { Marked } from '@ts-stack/markdown';
 import { MyRenderer } from '$lib/marked/renderer';
 import { getData } from '$lib/utils/fetch';
 import hljs from 'highlight.js';
-import { cloneObject, convertArticle } from '$lib/utils/strapi';
+import { cloneObject, convertArticle, generateI18nArticle } from '$lib/utils/strapi';
 import type { Article, ArticlesResponse } from 'src/global';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
@@ -118,39 +118,8 @@ export async function get({ params }) {
 
 	const article = convertArticle(articles.data.shift());
 
-	Marked.setOptions({
-		renderer: new MyRenderer(),
-
-		highlight: function (code, lang) {
-			if (hljs.listLanguages().includes(lang)) {
-				return hljs.highlight(code, {
-					language: lang
-				}).value;
-			} else {
-				return code;
-			}
-		}
-	});
-
-	// object with all locales as keys
-	const articleI18n = {};
-
-	article.content = Marked.parse(article.content);
-	articleI18n[article.locale] = cloneObject(article, ['localizations']);
-
-	if (article.localizations) {
-		article.localizations.forEach((localization) => {
-			localization.slug = article.slug;
-			localization.content = Marked.parse(localization.content);
-
-			articleI18n[localization.locale] = localization;
-
-			return localization;
-		});
-	}
-
 	const body = {
-		articleI18n: articleI18n
+		articleI18n: generateI18nArticle(article)
 	};
 
 	return { body: body };

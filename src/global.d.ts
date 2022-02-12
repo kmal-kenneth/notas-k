@@ -278,3 +278,8 @@ export interface GqlhomeResponse {
 		};
 	};
 }
+
+// ------------------------------------ especial types ------------------------------------
+export interface I18nObject {
+	[key: string]: Article;
+}

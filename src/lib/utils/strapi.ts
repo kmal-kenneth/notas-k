@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { MyRenderer } from '$lib/marked/renderer';
+import { Marked } from '@ts-stack/markdown';
+import hljs from 'highlight.js';
 import type {
 	ImageResponse,
 	Image,
@@ -16,7 +19,8 @@ import type {
 	HomeResponse,
 	Home,
 	PaginationData,
-	Pagination
+	Pagination,
+	I18nObject
 } from 'src/global';
 
 /**
@@ -242,6 +246,68 @@ function convertPaginationData(
 	return paginationData;
 }
 
+/**
+ * Generate a i18n object from article
+ * @param {Article} article
+ * @param {I18nObject} i18nObject
+ */
+function generateI18nArticle(article: Article): I18nObject {
+	Marked.setOptions({
+		renderer: new MyRenderer(),
+
+		highlight: function (code, lang) {
+			if (hljs.listLanguages().includes(lang)) {
+				return hljs.highlight(code, {
+					language: lang
+				}).value;
+			} else {
+				return code;
+			}
+		}
+	});
+
+	const articleI18n: I18nObject = {};
+
+	article.content = Marked.parse(article.content);
+	articleI18n[article.locale] = cloneObject(article, ['localizations']);
+
+	if (article.localizations) {
+		article.localizations.forEach((localization) => {
+			localization.slug = article.slug;
+			localization.content = Marked.parse(localization.content);
+
+			articleI18n[localization.locale] = localization;
+
+			return localization;
+		});
+	}
+
+	return articleI18n;
+}
+
+/**
+ * Generate a i18n object from generic object
+ * @param {*} object
+ * @param {I18nObject} i18nObject
+ */
+function generateI18nObject(object: any): I18nObject {
+	const i18nObject: I18nObject = {};
+
+	i18nObject[object.locale] = cloneObject(object, ['localizations']);
+
+	if (object.localizations) {
+		object.localizations.forEach((localization) => {
+			localization.slug = object.slug;
+
+			i18nObject[localization.locale] = localization;
+
+			return localization;
+		});
+	}
+
+	return i18nObject;
+}
+
 export {
 	convertArticle,
 	convertHome,
@@ -252,5 +318,7 @@ export {
 	convertImage,
 	cloneObject,
 	readingTime,
-	convertPaginationData
+	convertPaginationData,
+	generateI18nArticle,
+	generateI18nObject
 };
