@@ -17,22 +17,18 @@
 		// const paginationData: PaginationData = data.paginationData || {};
 
 		const dataSeo = await resSeo.json();
-		const { seo } = dataSeo;
+		const { seo }: { seo: Seo } = dataSeo;
 
 		const meta: Meta = {
 			title: seo.title,
 			description: seo.description,
-			url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
+			url: `${url}`,
 			image: seo.image.url,
 			lenguage: 'es',
-			canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
-			robots: 'index, follow',
-			next: paginationData.nextPage
-				? `${import.meta.env.VITE_WEBSITE_URL}/blog/${paginationData.nextPage}`
-				: null,
-			prev: paginationData.prevPage
-				? `${import.meta.env.VITE_WEBSITE_URL}/blog/${paginationData.prevPage}`
-				: null
+			canonical: `${url}`,
+			robots: seo.indexable ? 'index, follow' : 'noindex, nofollow',
+			next: paginationData.nextPage ? `${url.origin}/blog/${paginationData.nextPage}` : null,
+			prev: paginationData.prevPage ? `${url.origin}/blog/${paginationData.prevPage}` : null
 		};
 
 		return {
@@ -53,7 +49,7 @@
 	import MyCard from '$lib/components/article/card.svelte';
 	import PrimaryCard from '$lib/components/article/primary_card.svelte';
 	import { MetaApp } from '$lib/components';
-	import type { Article, Meta, PaginationData } from 'src/global';
+	import type { Article, Meta, PaginationData, Seo } from 'src/global';
 
 	export let article: Article;
 	export let articles: Article[];
