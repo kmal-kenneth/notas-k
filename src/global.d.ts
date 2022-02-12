@@ -112,6 +112,7 @@ export interface Article {
 	tags: Tag[];
 	indexable: boolean;
 	readingTime: number;
+	localizations: Article[];
 }
 
 /* --------- Responces from Strapi ---------- */

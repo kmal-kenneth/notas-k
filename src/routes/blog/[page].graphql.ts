@@ -1,6 +1,6 @@
 import { getData } from '$lib/utils/fetch';
 import { convertArticle, convertPaginationData } from '$lib/utils/strapi';
-import type { Article, PaginateArticlesResponse, Seo } from 'src/global';
+import type { Article, PaginateArticlesResponse } from 'src/global';
 
 // Query: the articles of a specific page
 const query = `query paginateArticles($page: Int, $pageSize: Int) {
@@ -133,18 +133,10 @@ export async function get({ params }) {
 		'/'
 	);
 
-	const seo: Seo = {
-		title: article.title,
-		description: article.description,
-		image: article.cover,
-		indexable: article.indexable
-	};
-
 	const body = {
 		article,
 		articles,
-		paginationData,
-		seo
+		paginationData
 	};
 
 	return { body: body };

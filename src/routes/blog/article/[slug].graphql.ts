@@ -2,7 +2,7 @@ import { Marked } from '@ts-stack/markdown';
 import { MyRenderer } from '$lib/marked/renderer';
 import { getData } from '$lib/utils/fetch';
 import hljs from 'highlight.js';
-import { convertArticle } from '$lib/utils/strapi';
+import { cloneObject, convertArticle } from '$lib/utils/strapi';
 import type { Article, ArticlesResponse } from 'src/global';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
@@ -11,13 +11,14 @@ export async function get({ params }) {
 	const { slug } = params;
 
 	const query = `query pageArticle($slug: String) {
-		articles(filters: { slug: { eq: $slug } }) {
+		articles(filters: {slug: {eq: $slug}}) {
 		  data {
 			attributes {
+			  indexable
+			  content
 			  slug
 			  title
 			  description
-			  content
 			  cover {
 				data {
 				  attributes {
@@ -51,10 +52,57 @@ export async function get({ params }) {
 				}
 			  }
 			  publishedAt
+			  locale
+			  localizations {
+				data {
+				  attributes {
+					indexable
+					content
+					slug
+					title
+					description
+					cover {
+					  data {
+						attributes {
+						  url
+						  alternativeText
+						}
+					  }
+					}
+					writer {
+					  data {
+						attributes {
+						  name
+						  slug
+						}
+					  }
+					}
+					collection {
+					  data {
+						attributes {
+						  name
+						  slug
+						}
+					  }
+					}
+					tags {
+					  data {
+						attributes {
+						  name
+						  slug
+						}
+					  }
+					}
+					publishedAt
+					locale
+				  }
+				}
+			  }
 			}
 		  }
 		}
-	  }`;
+	  }
+	  `;
 
 	const res = await getData(query, {
 		slug: slug
@@ -84,9 +132,25 @@ export async function get({ params }) {
 		}
 	});
 
+	// object with all locales as keys
+	const articleI18n = {};
+
+	article.content = Marked.parse(article.content);
+	articleI18n[article.locale] = cloneObject(article, ['localizations']);
+
+	if (article.localizations) {
+		article.localizations.forEach((localization) => {
+			localization.slug = article.slug;
+			localization.content = Marked.parse(localization.content);
+
+			articleI18n[localization.locale] = localization;
+
+			return localization;
+		});
+	}
+
 	const body = {
-		article,
-		content: Marked.parse(article.content)
+		articleI18n: articleI18n
 	};
 
 	return { body: body };

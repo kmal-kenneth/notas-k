@@ -73,7 +73,7 @@ export class MyRenderer extends Renderer {
             alt="${text}"
 			width="1024"
 			sizes="${newSizes}"
-            class="w-full rounded-lg lozad"
+            class="w-full rounded-lg lozad "
             style=" width: 1024; "
             />
 

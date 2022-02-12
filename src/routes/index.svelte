@@ -13,11 +13,11 @@
 		}
 
 		const data = await response.json();
-		const dataSeo = await resSeo.json();
-		const { article, articles } = data;
-		const { seo } = dataSeo;
+		const { article, articles, paginationData } = data;
+		// const paginationData: PaginationData = data.paginationData || {};
 
-		const paginationData: PaginationData = data.paginationData || {};
+		const dataSeo = await resSeo.json();
+		const { seo } = dataSeo;
 
 		const meta: Meta = {
 			title: seo.title,
@@ -53,7 +53,7 @@
 	import MyCard from '$lib/components/article/card.svelte';
 	import PrimaryCard from '$lib/components/article/primary_card.svelte';
 	import { MetaApp } from '$lib/components';
-	import type { Article, Meta, PageMetadata, PaginationData, Seo } from 'src/global';
+	import type { Article, Meta, PaginationData } from 'src/global';
 
 	export let article: Article;
 	export let articles: Article[];

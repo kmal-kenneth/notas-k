@@ -1,3 +1,21 @@
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+	import { t, locale, locales, loadTranslations } from '$lib/i18n';
+
+	/** @type {import('@sveltejs/kit').Load} */
+	export const load: Load = async ({ url }) => {
+		const { pathname } = url;
+
+		const defaultLocale = 'es'; // get from cookie, user session, ...
+
+		const initLocale = locale.get() || defaultLocale; // set default if no locale already set
+
+		await loadTranslations(initLocale, pathname);
+
+		return {};
+	};
+</script>
+
 <script lang="ts">
 	import '../app.css';
 	import Fa from 'svelte-fa';
@@ -5,13 +23,16 @@
 
 	import MyNav from '$lib/components/nav.svelte';
 	import MyLogo from '$lib/components/logo.svelte';
+	import type { Link } from 'src/global';
 
-	const links: Link[] = [
-		{
-			text: 'Home',
-			href: '/'
-		}
-	];
+	let links: Link[] = [];
+
+	$: links[0] = {
+		text: $t('nav.inicio'),
+		href: '/'
+	};
+
+	let year = new Date().getFullYear();
 
 	let showMenu = false;
 	let innerWidth = 0;
@@ -45,6 +66,12 @@
 			{#if showMenu}
 				<MyNav {links} on:close={openMenu} />
 			{/if}
+
+			<select bind:value={$locale}>
+				{#each $locales as value}
+					<option {value}>{$t(`lang.${value}`)}</option>
+				{/each}
+			</select>
 		</header>
 
 		<main class="min-h-full">
@@ -71,6 +98,8 @@
 				<MyNav {links} on:close={openMenu} />
 			{/if}
 		</div>
-		<p class="py-2 text-xs text-gray-800 dark:text-gray-200">Copyright © 2021 notas {'{K}'}</p>
+		<p class="py-2 text-xs text-gray-800 dark:text-gray-200">
+			Copyright © {year} notas {'{K}'}
+		</p>
 	</footer>
 </div>

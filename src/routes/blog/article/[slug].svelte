@@ -13,19 +13,19 @@
 			return { status: res.status };
 		}
 
-		const { article, content } = await res.json();
+		const { articleI18n } = await res.json();
 
-		const meta: Meta = {
-			title: `${article.title} | notas {K}`,
-			description: article.description,
-			url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
-			image: article.cover.url,
-			lenguage: 'es',
-			canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
-			robots: 'index, follow'
-		};
+		// const meta: Meta = {
+		// 	title: `${article.title} | notas {K}`,
+		// 	description: article.description,
+		// 	url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
+		// 	image: article.cover.url,
+		// 	lenguage: 'es',
+		// 	canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
+		// 	robots: 'index, follow'
+		// };
 
-		return { props: { article: article, content: content, meta: meta } };
+		return { props: { articleI18n, url } };
 	};
 </script>
 
@@ -39,15 +39,35 @@
 	import { readingTime, timeHumans } from '$lib/utils/time';
 	import type { Article, Meta } from 'src/global';
 	import { onMount } from 'svelte';
+	import { locale } from '$lib/i18n';
 
 	onMount(async () => {
 		const observer = lozad(); // lazy loads elements with default selector as '.lozad'
 		observer.observe();
 	});
 
-	export let article: Article;
-	export let content: string;
-	export let meta: Meta;
+	export let articleI18n;
+	export let url;
+
+	let article: Article;
+
+	$: if (articleI18n[$locale]) {
+		article = articleI18n[$locale];
+	} else {
+		article = articleI18n.es;
+	}
+
+	let meta: Meta = {} as Meta;
+
+	$: meta = {
+		title: `${article.title} | notas {K}`,
+		description: article.description,
+		url: `${url}`,
+		image: article.cover.url,
+		lenguage: 'es',
+		canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
+		robots: article.indexable ? 'index, follow' : 'noindex, nofollow'
+	};
 </script>
 
 <MetaApp {meta} />
@@ -55,7 +75,7 @@
 <article>
 	<section class="px-4">
 		<ImageApp
-			src={meta.image}
+			src={article.cover.url}
 			alt={article.cover.alternativeText}
 			height="768"
 			class="object-cover object-center w-full h-48 rounded-lg sm:h-80 md:h-96"
@@ -77,7 +97,7 @@
 			&nbsp;&middot;&nbsp;
 			<time datetime={article.publishedAt}>{timeHumans(article.publishedAt)}</time>
 			&nbsp;&middot;&nbsp;
-			{readingTime(article.content)} min read &nbsp;&middot;&nbsp;
+			{article.readingTime} min read &nbsp;&middot;&nbsp;
 			<span
 				>By <a
 					class="font-medium text-gray-800 dark:text-gray-200"
@@ -119,7 +139,7 @@
 		<div class="px-4 border-b">
 			<section class="mx-auto">
 				<div class="content">
-					{@html content}
+					{@html article.content}
 				</div>
 			</section>
 		</div>

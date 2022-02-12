@@ -137,7 +137,8 @@ function convertArticle(articleResponse: ArticleResponse): Article {
 		tags,
 		cover,
 		writer,
-		collection
+		collection,
+		localizations
 	} = articleResponse.attributes;
 
 	return {
@@ -174,7 +175,12 @@ function convertArticle(articleResponse: ArticleResponse): Article {
 			'locale',
 			'indexable',
 			'indexable'
-		])
+		]),
+		localizations: localizations
+			? localizations.data.map((localization) => {
+					return cloneObject(convertArticle(localization), ['slug', 'localizations', 'indexable']);
+			  })
+			: []
 	};
 }
 
