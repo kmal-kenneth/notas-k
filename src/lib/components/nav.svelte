@@ -57,11 +57,8 @@
 	<nav class=" menu">
 		<ul>
 			<li>
-				<a
-					sveltekit:prefetch
-					href="/"
-					class="text-gray-900 no-underline dark:text-gray-100"
-					on:click={close}>{$t('nav.inicio')}</a
+				<a href="/" class="text-gray-900 no-underline dark:text-gray-100" on:click={close}
+					>{$t('nav.inicio')}</a
 				>
 			</li>
 		</ul>
