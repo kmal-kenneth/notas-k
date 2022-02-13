@@ -64,6 +64,26 @@ font-family: 'Open Sans', sans-serif; */
 		}
 	}
 
+	.pagination {
+		a {
+			@apply no-underline h-8 w-8 text-center;
+			@apply w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in hover:text-pink-900 text-gray-500
+			 dark:text-gray-200;
+		}
+
+		.dots {
+			@apply w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in text-gray-500 dark:text-gray-200 h-8 text-center;
+		}
+
+		.active {
+			@apply border-b-4 border-pink-900 text-pink-900 font-bold flex;
+		}
+
+		.arrow {
+			@apply h-8 w-8 flex justify-center items-center cursor-pointer hover:text-pink-900 text-gray-500 dark:text-gray-200;
+		}
+	}
+
 	/* ----------------------- article -----------------------*/
 	.content {
 		a {

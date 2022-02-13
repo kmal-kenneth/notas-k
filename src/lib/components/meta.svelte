@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Meta } from 'src/global';
+
 	export let meta: Meta;
 </script>
 
