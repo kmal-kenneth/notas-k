@@ -1,5 +1,5 @@
 import { getData } from '$lib/utils/fetch';
-import { convertWriter } from '$lib/utils/strapi';
+import { convertWriter, generateI18nObject } from '$lib/utils/strapi';
 import type { ArticleResponse, Writer, WriterResponse, WritersResponse } from 'src/global';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
@@ -9,31 +9,63 @@ export async function get({ params }) {
 
 	const query = `query pageWriter($slug: String) {
 		writers(filters: { slug: { eq: $slug } }) {
-		  data {
-			attributes {
-			  slug
-			  name
-			  photo {
-				data {
-				  attributes {
-					alternativeText
-					url
+			data {
+				attributes {
+				  slug
+				  name
+				  biography
+				  cover {
+					data {
+					  attributes {
+						url
+						alternativeText
+					  }
+					}
+				  }
+				  photo {
+					data {
+					  attributes {
+						url
+						alternativeText
+					  }
+					}
+				  }
+				  indexable
+				  updatedAt
+				  locale
+				  localizations {
+					data {
+					  attributes {
+						slug
+						name
+						biography
+						cover {
+						  data {
+							attributes {
+							  url
+							  alternativeText
+							}
+						  }
+						}
+						photo {
+						  data {
+							attributes {
+							  url
+							  alternativeText
+							}
+						  }
+						}
+						indexable
+						updatedAt
+						locale
+					  }
+					}
 				  }
 				}
 			  }
-			  cover {
-				data {
-				  attributes {
-					url
-					alternativeText
-				  }
-				}
-			  }
-			  biography
 			}
 		  }
-		}
-	  }`;
+		  `;
 
 	const res = await getData(query, { slug });
 
@@ -45,8 +77,10 @@ export async function get({ params }) {
 
 	const { writers } = data.data;
 
+	const writer = convertWriter(writers.data.shift());
+
 	const body = {
-		writer: convertWriter(writers.data.shift())
+		writer: generateI18nObject(writer)
 	};
 
 	return { body: body };
