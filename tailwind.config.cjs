@@ -1,14 +1,9 @@
 const config = {
 	mode: 'jit',
-	purge: ['./src/**/*.{html,js,svelte,ts}'],
-	darkMode: 'media',
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		fontFamily: {
-			dancing: ['Dancing Script', 'cursive'],
-			victor: ['Victor Mono', 'monospace'],
-			open: ['Open Sans', 'sans-serif']
-		},
+		fontFamily: {},
 
 		colors: {
 			gray: {
@@ -94,14 +89,8 @@ const config = {
 			}
 		}
 	},
-	variants: {
-		extend: {
-			boxShadow: ['active'],
-			textColor: ['active'],
-			fontWeight: ['active']
-		}
-	},
-	plugins: []
+
+	plugins: [require('@tailwindcss/typography')]
 };
 
 module.exports = config;
