@@ -18,7 +18,16 @@ const config = {
 
 		adapter: cloudflare({
 			// any esbuild options
-		})
+		}),
+		vite: {
+			build: {
+				rollupOptions: {
+					output: {
+						manualChunks: undefined
+					}
+				}
+			}
+		}
 	}
 };
 
