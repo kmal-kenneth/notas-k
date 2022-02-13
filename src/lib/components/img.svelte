@@ -75,8 +75,6 @@
 </script>
 
 <img
-	loading="lazy"
-	decoding="async"
 	src={placeholderURL}
 	data-src={myURL}
 	data-srcset={newSrcset}
