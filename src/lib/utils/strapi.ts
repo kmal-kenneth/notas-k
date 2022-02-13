@@ -279,6 +279,7 @@ function generateI18nArticle(article: Article): I18nObject {
 	if (article.localizations) {
 		article.localizations.forEach((localization) => {
 			localization.slug = article.slug;
+			localization.writer = article.writer;
 			localization.content = Marked.parse(localization.content);
 
 			articleI18n[localization.locale] = localization;
