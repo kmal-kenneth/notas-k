@@ -9,31 +9,40 @@
 		const res = await fetch(`/blog/writer/${slug}.graphql`);
 
 		if (!res.ok) {
-			return { status: res.status };
+			return { status: res.status, error: await res.text() };
 		}
 
-		const { writer } = await res.json();
+		const { writer }: { writer: { [key: string]: Writer } } = await res.json();
 
 		const meta: Meta = {
-			title: `${writer.name} | notas {K}`,
-			description: writer.biography,
-			url: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
-			image: writer.cover.url,
+			title: `${writer.es.name} | notas {K}`,
+			description: writer.es.biography,
+			url: `${url}`,
+			image: writer.es.cover.url,
 			lenguage: 'es',
-			canonical: `${import.meta.env.VITE_WEBSITE_URL}${url.pathname}`,
-			robots: 'index, follow'
+			canonical: `${url}`,
+			robots: writer.es.indexable ? 'index, follow' : 'noindex, nofollow'
 		};
 
-		return { props: { writer: writer, meta: meta } };
+		return { status: res.status, props: { writerI18n: writer, meta } };
 	};
 </script>
 
 <script lang="ts">
 	import { ImageApp, MetaApp } from '$lib/components/';
 	import type { Meta, Writer } from 'src/global';
+	import { locale } from '$lib/i18n';
 
-	export let writer: Writer;
+	export let writerI18n: { [key: string]: Writer };
 	export let meta: Meta;
+
+	let writer: Writer;
+
+	$: if (writerI18n[$locale]) {
+		writer = writerI18n[$locale];
+	} else {
+		writer = writerI18n.es;
+	}
 </script>
 
 <MetaApp {meta} />

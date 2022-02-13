@@ -97,6 +97,7 @@ export interface Writer {
 	updatedAt: string;
 	locale: string;
 	indexable: boolean;
+	localizations: Writers[];
 }
 
 export interface Article {

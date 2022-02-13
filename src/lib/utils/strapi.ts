@@ -90,7 +90,7 @@ function convertCollection(collectionResponse: CollectionResponse): Collection {
  * @returns {Writer}
  */
 function convertWriter(writerResponse: WriterResponse): Writer {
-	const { slug, name, biography, cover, photo, updatedAt, locale, indexable } =
+	const { slug, name, biography, cover, photo, updatedAt, locale, indexable, localizations } =
 		writerResponse.attributes;
 
 	return {
@@ -101,7 +101,12 @@ function convertWriter(writerResponse: WriterResponse): Writer {
 		photo: photo === undefined ? null : convertImage(photo),
 		updatedAt,
 		locale,
-		indexable
+		indexable,
+		localizations: localizations
+			? localizations.data.map((localization) => {
+					return cloneObject(convertWriter(localization), ['slug', 'localizations', 'indexable']);
+			  })
+			: []
 	};
 }
 
