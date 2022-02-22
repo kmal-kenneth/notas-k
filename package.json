@@ -12,7 +12,7 @@
 	},
 	"devDependencies": {
 		"@fortawesome/free-solid-svg-icons": "^5.15.4",
-		"@sveltejs/adapter-cloudflare": "^1.0.0-next.9",
+		"@sveltejs/adapter-netlify": "^1.0.0-next.46",
 		"@sveltejs/kit": "next",
 		"@tailwindcss/typography": "^0.5.1",
 		"@ts-stack/markdown": "^1.4.0",
