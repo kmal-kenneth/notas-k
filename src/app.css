@@ -15,12 +15,11 @@ font-family: 'Victor Mono', monospace;
 font-family: 'Open Sans', sans-serif; */
 
 @layer base {
+	body {
+		@apply bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200  h-full;
+	}
 	html {
 		@apply h-full overflow-auto;
-
-		body {
-			@apply bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200  h-full;
-		}
 
 		a {
 			@apply text-pink-600  hover:text-pink-900 transition-all duration-200 underline;

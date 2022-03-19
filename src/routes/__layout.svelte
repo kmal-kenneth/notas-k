@@ -38,7 +38,7 @@
 
 <svelte:window bind:innerWidth />
 
-<SvelteTheme />
+<SvelteTheme attribute="class" />
 
 <div class="container flex flex-col justify-between min-h-screen mx-auto  ">
 	<div>
