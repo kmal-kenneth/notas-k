@@ -1,6 +1,12 @@
 <script context="module" lang="ts">
+	import { ColorMode, LogoApp, NavApp } from '$lib/components';
+	import { loadTranslations, locale, locales, t } from '$lib/i18n';
+	import themeStore from '$lib/mode/index';
+	import SvelteTheme from '$lib/mode/SvelteTheme.svelte';
+	import { faBars } from '@fortawesome/free-solid-svg-icons';
 	import type { Load } from '@sveltejs/kit';
-	import { t, locale, locales, loadTranslations } from '$lib/i18n';
+	import Fa from 'svelte-fa';
+	import '../app.css';
 
 	/** @type {import('@sveltejs/kit').Load} */
 	export const load: Load = async ({ url }) => {
@@ -17,14 +23,6 @@
 </script>
 
 <script lang="ts">
-	import '../app.css';
-	import Fa from 'svelte-fa';
-	import { faBars } from '@fortawesome/free-solid-svg-icons';
-
-	import MyNav from '$lib/components/nav.svelte';
-	import MyLogo from '$lib/components/logo.svelte';
-	import type { Link } from 'src/global';
-
 	let year = new Date().getFullYear();
 
 	let showMenu = false;
@@ -40,10 +38,12 @@
 
 <svelte:window bind:innerWidth />
 
-<div class="container flex flex-col justify-between min-h-screen mx-auto ">
+<SvelteTheme />
+
+<div class="container flex flex-col justify-between min-h-screen mx-auto  ">
 	<div>
 		<header class="flex items-center justify-between w-full h-12 px-4">
-			<MyLogo />
+			<LogoApp />
 
 			{#if !showMenu}
 				<button
@@ -57,7 +57,7 @@
 			{/if}
 
 			{#if showMenu}
-				<MyNav on:close={openMenu} />
+				<NavApp on:close={openMenu} />
 			{/if}
 
 			<select bind:value={$locale}>
@@ -65,6 +65,8 @@
 					<option {value}>{$t(`lang.${value}`)}</option>
 				{/each}
 			</select>
+
+			<ColorMode />
 		</header>
 
 		<main class="min-h-full">
@@ -88,7 +90,7 @@
 			{/if}
 
 			{#if showMenu}
-				<MyNav on:close={openMenu} />
+				<NavApp on:close={openMenu} />
 			{/if}
 		</div>
 		<p class="py-2 text-xs text-gray-800 dark:text-gray-200">
