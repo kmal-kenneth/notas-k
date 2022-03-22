@@ -1,7 +1,13 @@
 <script lang="ts" context="module">
 	export const prerender = true;
 
+	import { MetaApp } from '$lib/components';
+	import MyCard from '$lib/components/article/card.svelte';
+	import PrimaryCard from '$lib/components/article/primary_card.svelte';
+	import Grid from '$lib/components/grid.svelte';
+	import Pagination from '$lib/components/pagination.svelte';
 	import type { Load } from '@sveltejs/kit';
+	import type { Article, I18nObject, Meta, PaginationData, Seo } from 'src/global';
 
 	/** @type {import('@sveltejs/kit').Load} */
 	export const load: Load = async ({ fetch, url }) => {
@@ -52,13 +58,6 @@
 </script>
 
 <script lang="ts">
-	import Pagination from '$lib/components/pagination.svelte';
-	import Grid from '$lib/components/grid.svelte';
-	import MyCard from '$lib/components/article/card.svelte';
-	import PrimaryCard from '$lib/components/article/primary_card.svelte';
-	import { MetaApp } from '$lib/components';
-	import type { Article, I18nObject, Meta, PaginationData, Seo } from 'src/global';
-
 	export let article: { [key: string]: Article };
 	export let articles: { [key: string]: Article }[];
 	export let paginationData: PaginationData;
@@ -67,7 +66,7 @@
 
 <MetaApp {meta} />
 
-<section class="px-4 mt-10 mb-16">
+<section class="px-4 mb-16">
 	<PrimaryCard articleI18n={article} />
 </section>
 
