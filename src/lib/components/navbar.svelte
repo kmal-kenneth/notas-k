@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ColorMode, LogoApp } from '$lib/components';
-	import { loadTranslations, locale, locales, t } from '$lib/i18n';
+	import { ColorMode, DropdownApp, LogoApp } from '$lib/components';
+	import { t } from '$lib/i18n';
 
 	let showMenu = false;
 
@@ -9,7 +9,9 @@
 	}
 </script>
 
-<nav class="sticky top-0 flex items-center py-1 mb-10 bg-gray-100 shadow h-min dark:bg-gray-900">
+<nav
+	class="sticky top-0 flex items-center py-1 mb-10 bg-gray-100 shadow h-min dark:bg-gray-900 dark:shadow-gray-800"
+>
 	<div class="container flex flex-wrap items-center justify-between mx-auto">
 		<div class="flex justify-between w-full px-4 lg:w-auto ">
 			<LogoApp />
@@ -61,11 +63,7 @@
 				</li>
 
 				<li class="px-3 py-2">
-					<select bind:value={$locale}>
-						{#each $locales as value}
-							<option {value}>{$t(`lang.${value}`)}</option>
-						{/each}
-					</select>
+					<DropdownApp />
 				</li>
 
 				<li class="px-3 py-2">

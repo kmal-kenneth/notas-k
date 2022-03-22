@@ -124,6 +124,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@popperjs/core@^2.11.4":
+  version "2.11.4"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.4.tgz#d8c7b8db9226d2d7664553a0741ad7d0397ee503"
+  integrity sha512-q/ytXxO5NKvyT37pmisQAItCFqA7FD/vNb8dgaJy3/630Fsc+Mz9/9f2SziBoIZ30TJooXyTwZmhi1zjXmObYg==
+
 "@rollup/pluginutils@^4.1.2":
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.2.tgz#ed5821c15e5e05e32816f5fb9ec607cdf5a75751"
@@ -1240,6 +1245,11 @@ fill-range@^7.0.1:
   integrity sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
   dependencies:
     to-regex-range "^5.0.1"
+
+flag-icons@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-6.1.1.tgz#8d6cee1534b05da3cdc103f5f8bdeb3003164e05"
+  integrity sha512-7QJaPXelUF5yLKppUvfqx915oLm2q6DVM037vrBzww4DjwzyVPooq74SLfPPsYabbN3kMPbDQstYjHrx8kBUPg==
 
 flat-cache@^3.0.4:
   version "3.0.4"
