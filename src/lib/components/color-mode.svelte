@@ -18,7 +18,7 @@
 <button
 	aria-label="color-mode"
 	on:click={colorModeToggle}
-	class="w-6 h-6 flex justify-center items-center"
+	class="flex items-center justify-center w-6 h-6 border-b-2 border-transparent"
 >
 	{#if $themeStore.theme === 'system'}
 		<svg
