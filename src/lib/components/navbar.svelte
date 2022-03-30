@@ -10,7 +10,7 @@
 </script>
 
 <nav
-	class="sticky top-0 flex items-center py-1 mb-10 bg-gray-100 shadow h-min dark:bg-gray-900 dark:shadow-gray-800"
+	class="sticky top-0 flex items-center py-1 mb-10 bg-gray-100 shadow h-12 dark:bg-gray-900 dark:shadow-gray-800"
 >
 	<div class="container flex flex-wrap items-center justify-between mx-auto">
 		<div class="flex justify-between w-full px-4 lg:w-auto ">
