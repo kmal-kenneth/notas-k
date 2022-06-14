@@ -7,6 +7,10 @@
 	function toggleNavbar() {
 		showMenu = !showMenu;
 	}
+
+	function closeNavbar() {
+		showMenu = false;
+	}
 </script>
 
 <nav
@@ -61,7 +65,7 @@
 		<div class="lg:flex lg:items-center flex-grow lg:flex-grow-0 {showMenu ? 'flex' : 'hidden'}">
 			<ul class="flex flex-col px-4 list-none lg:items-center lg:flex-row">
 				<li class="nav-item ">
-					<a href="/">
+					<a href="/" on:click={closeNavbar}>
 						{$t('nav.inicio')}
 					</a>
 				</li>
