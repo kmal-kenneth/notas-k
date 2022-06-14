@@ -39,7 +39,7 @@ font-family: 'Open Sans', sans-serif; */
 	}
 
 	.nav-item {
-		@apply hover:border-b-2 hover:border-pink-500 transition-all duration-300 border-b-2 border-transparent;
+		@apply hover:border-b-2 lg:hover:border-pink-500 transition-all duration-300 border-b-2 border-transparent;
 		@apply flex items-center px-3 h-min;
 
 		a {

@@ -10,10 +10,14 @@
 </script>
 
 <nav
-	class="sticky top-0 flex items-center py-1 mb-10 bg-gray-100 shadow h-12 dark:bg-gray-900 dark:shadow-gray-800"
+	class=" top-0 flex    bg-gray-100   dark:bg-gray-900 dark:shadow-gray-800 {showMenu
+		? 'fixed h-full w-full '
+		: 'sticky items-center h-12 shadow mb-10'}"
 >
-	<div class="container flex flex-wrap items-center justify-between mx-auto">
-		<div class="flex justify-between w-full px-4 lg:w-auto ">
+	<div
+		class="container flex flex-col lg:flex-row items-start lg:items-center justify-between mx-auto "
+	>
+		<div class="flex justify-between w-full px-4 lg:w-auto py-1 h-12">
 			<LogoApp />
 
 			<button
@@ -54,8 +58,8 @@
 			</button>
 		</div>
 
-		<div class="lg:flex lg:flex-grow items-center {showMenu ? 'flex' : 'hidden'}">
-			<ul class="flex flex-col px-4 ml-auto list-none lg:items-center lg:flex-row">
+		<div class="lg:flex lg:items-center flex-grow lg:flex-grow-0 {showMenu ? 'flex' : 'hidden'}">
+			<ul class="flex flex-col px-4 list-none lg:items-center lg:flex-row">
 				<li class="nav-item ">
 					<a href="/">
 						{$t('nav.inicio')}
