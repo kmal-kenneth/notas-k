@@ -34,12 +34,15 @@
 
 	import 'highlight.js/styles/atom-one-dark.css';
 
-	import { MetaApp, ImageApp } from '$lib/components/';
+	import { MetaApp, ImageApp, ArticleData } from '$lib/components/';
 
 	import { readingTime, timeHumans } from '$lib/utils/time';
 	import type { Article, I18nObject, Meta } from 'src/global';
 	import { onMount } from 'svelte';
-	import { locale } from '$lib/i18n';
+	import { getLanguageStore, getTranslate } from '@tolgee/svelte';
+
+	const languageStore = getLanguageStore();
+	const t = getTranslate();
 
 	onMount(async () => {
 		const observer = lozad(); // lazy loads elements with default selector as '.lozad'
@@ -51,8 +54,8 @@
 
 	let article: Article;
 
-	$: if (articleI18n[$locale]) {
-		article = articleI18n[$locale];
+	$: if (articleI18n[$languageStore]) {
+		article = articleI18n[$languageStore];
 	} else {
 		article = articleI18n.es;
 	}
@@ -73,29 +76,31 @@
 	<section
 		class="max-w-5xl px-4 mx-auto my-4 prose border-b prose-slate dark:prose-invert lg:prose-lg lg:w-max "
 	>
-		<header class="mt-8 mb-16 text-center ">
+		<header class="mt-8 mb-10 text-center ">
 			<h1
 				class="mb-6 text-2xl font-extrabold tracking-wider text-gray-800 sm:text-3xl lg:text-4xl dark:text-gray-200 "
 			>
 				{article.title}
 			</h1>
 
-			<span class="text-sm tracking-wide">
-				<a
-					class="font-medium text-gray-800 dark:text-gray-200"
-					href={`#/blog/collections/${article.collection.slug}`}>{article.collection.name}</a
-				>
-				&nbsp;&middot;&nbsp;
-				<time datetime={article.publishedAt}>{timeHumans(article.publishedAt)}</time>
-				&nbsp;&middot;&nbsp;
-				{article.readingTime} min read &nbsp;&middot;&nbsp;
-				<span
-					>By <a
-						class="font-medium text-gray-800 dark:text-gray-200"
-						href={`/blog/writer/${article.writer.slug}`}>{article.writer.name}</a
-					></span
-				>
-			</span>
+			<div class="flex justify-around text-sm flex-wrap mx-auto w-max">
+				<ArticleData
+					title={$t({ key: 'article_collection_label' })}
+					subtitle={article.collection.name}
+				/>
+
+				<ArticleData title={$t({ key: 'article_author_label' })} subtitle={article.writer.name} />
+
+				<ArticleData
+					title={$t({ key: 'article_date_label' })}
+					subtitle={timeHumans(article.publishedAt, $languageStore)}
+				/>
+
+				<ArticleData
+					title={$t({ key: 'article_time_label' })}
+					subtitle={$t({ key: 'article_time_to_read', parameters: { time: article.readingTime } })}
+				/>
+			</div>
 		</header>
 
 		<!-- <div class="px-4 mb-6">

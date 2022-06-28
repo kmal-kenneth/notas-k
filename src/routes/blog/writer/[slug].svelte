@@ -31,15 +31,17 @@
 <script lang="ts">
 	import { ImageApp, MetaApp } from '$lib/components/';
 	import type { Meta, Writer } from 'src/global';
-	import { locale } from '$lib/i18n';
+	import { getLanguageStore } from '@tolgee/svelte';
+
+	const languageStore = getLanguageStore();
 
 	export let writerI18n: { [key: string]: Writer };
 	export let meta: Meta;
 
 	let writer: Writer;
 
-	$: if (writerI18n[$locale]) {
-		writer = writerI18n[$locale];
+	$: if (writerI18n[$languageStore]) {
+		writer = writerI18n[$languageStore];
 	} else {
 		writer = writerI18n.es;
 	}

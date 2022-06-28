@@ -1,0 +1,8 @@
+{
+  "article_author_label" : "Author",
+  "article_collection_label" : "Collection",
+  "article_date_label" : "Date",
+  "article_time_label" : "Time",
+  "article_time_to_read" : "{time, plural, one {# min read} other {# min of reading}}",
+  "navbar_home" : "Home"
+}

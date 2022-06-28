@@ -3,9 +3,14 @@
 	import { createPopper } from '@popperjs/core';
 	import cr from 'flag-icons/flags/1x1/cr.svg';
 	import us from 'flag-icons/flags/1x1/us.svg';
-	import { locale, locales, t } from '$lib/i18n';
+	import { getLanguageStore } from '@tolgee/svelte';
 
-	let icons = { en: us, es: cr };
+	const languageStore = getLanguageStore();
+
+	let options = {
+		es: { icon: cr, name: 'Español', value: 'es' },
+		en: { icon: us, name: 'English', value: 'en' }
+	};
 
 	// core components
 	let dropdownPopoverShow = false;
@@ -25,7 +30,6 @@
 	};
 
 	function selectLocale(value) {
-		locale.set(value);
 		toggleDropdown();
 	}
 </script>
@@ -41,10 +45,12 @@
 				on:click={toggleDropdown}
 			>
 				<div class="object-cover w-4 h-4 mr-2 overflow-hidden rounded-full">
-					<img src={icons[$locale]} alt="Flag of {$locale} locale" />
+					<img src={options[$languageStore].icon} alt="Flag of {$languageStore} locale" />
 				</div>
 
-				{$t(`lang.${$locale}`)}
+				<div class="w-20 flex ">
+					{options[$languageStore].name}
+				</div>
 
 				<svg
 					class="w-6 h-6 ml-1"
@@ -66,17 +72,20 @@
 					? 'block'
 					: 'hidden'}"
 			>
-				{#each $locales as value}
+				{#each Object.keys(options) as value}
 					<li
 						class="flex items-center px-4 py-2 text-sm transition-all duration-300 
-						{$locale === value ? 'bg-teal-700 text-gray-100' : ''}"
-						on:click={() => selectLocale(value)}
+						{$languageStore === value ? 'bg-teal-700 text-gray-100' : ''}"
+						on:click={() => {
+							$languageStore = value;
+							selectLocale(value);
+						}}
 					>
 						<div class="object-cover w-4 h-4 mr-2 overflow-hidden rounded-full">
-							<img src={icons[value]} alt="Flag of {value} locale" />
+							<img src={options[value].icon} alt="Flag of {value} locale" />
 						</div>
 
-						{$t(`lang.${value}`)}
+						{options[value].name}
 					</li>
 				{/each}
 			</ul>

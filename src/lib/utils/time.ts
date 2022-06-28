@@ -8,10 +8,10 @@ const readingTime = (content: string): number => {
 	return Math.ceil(words / wordsPerMinute);
 };
 
-const timeHumans = (date: string): string => {
+const timeHumans = (date: string, locale = 'es'): string => {
 	// const options  = { year: 'numeric', month: 'long', day: 'numeric' }
 	// return new Date(date).toLocaleDateString('en', options)
-	return new Intl.DateTimeFormat('en', { dateStyle: 'medium' }).format(new Date(date));
+	return new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(new Date(date));
 };
 
 export { readingTime, timeHumans };

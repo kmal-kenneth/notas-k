@@ -47,6 +47,7 @@
 		"@fontsource/fira-mono": "4.5.0",
 		"@lukeed/uuid": "2.0.0",
 		"@popperjs/core": "2.11.4",
+		"@tolgee/svelte": "^4.7.1",
 		"cookie": "0.4.1",
 		"lozad": "1.16.0"
 	}

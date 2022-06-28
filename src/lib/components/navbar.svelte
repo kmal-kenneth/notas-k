@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ColorMode, DropdownApp, LogoApp } from '$lib/components';
-	import { t } from '$lib/i18n';
+	import { ColorMode, LangSelector, LogoApp } from '$lib/components';
+	import { T } from '@tolgee/svelte';
 
 	let showMenu = false;
 
@@ -65,13 +65,11 @@
 		<div class="lg:flex lg:items-center flex-grow lg:flex-grow-0 {showMenu ? 'flex' : 'hidden'}">
 			<ul class="flex flex-col px-4 list-none lg:items-center lg:flex-row">
 				<li class="nav-item ">
-					<a href="/" on:click={closeNavbar}>
-						{$t('nav.inicio')}
-					</a>
+					<a href="/" on:click={closeNavbar}> <T keyName="navbar_home" /> </a>
 				</li>
 
 				<li class="px-3 py-2">
-					<DropdownApp />
+					<LangSelector />
 				</li>
 
 				<li class="px-3 py-2">

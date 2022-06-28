@@ -1,15 +1,17 @@
 <script lang="ts">
 	import MyImg from '$lib/components/img.svelte';
-	import { locale } from '$lib/i18n';
 	import { readingTime, timeHumans } from '$lib/utils/time';
 	import type { Article } from 'src/global';
+	import { getLanguageStore } from '@tolgee/svelte';
+
+	const languageStore = getLanguageStore();
 
 	export let articleI18n: { [key: string]: Article };
 
 	let article: Article;
 
-	$: if (articleI18n[$locale]) {
-		article = articleI18n[$locale];
+	$: if (articleI18n[$languageStore]) {
+		article = articleI18n[$languageStore];
 	} else {
 		article = articleI18n.es;
 	}
