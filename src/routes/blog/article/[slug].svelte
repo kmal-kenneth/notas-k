@@ -80,23 +80,28 @@
 				{article.title}
 			</h1>
 
-			<div class="flex justify-around text-sm flex-wrap mx-auto w-max">
-				<ArticleData
-					title={$t({ key: 'article_collection_label' })}
-					subtitle={article.collection.name}
-				/>
+			<div class="flex justify-center">
+				<div class="flex text-sm flex-wrap">
+					<ArticleData
+						title={$t({ key: 'article_collection_label' })}
+						subtitle={article.collection.name}
+					/>
 
-				<ArticleData title={$t({ key: 'article_author_label' })} subtitle={article.writer.name} />
+					<ArticleData title={$t({ key: 'article_author_label' })} subtitle={article.writer.name} />
 
-				<ArticleData
-					title={$t({ key: 'article_date_label' })}
-					subtitle={timeHumans(article.publishedAt, $languageStore)}
-				/>
+					<ArticleData
+						title={$t({ key: 'article_date_label' })}
+						subtitle={timeHumans(article.publishedAt, $languageStore)}
+					/>
 
-				<ArticleData
-					title={$t({ key: 'article_time_label' })}
-					subtitle={$t({ key: 'article_time_to_read', parameters: { time: article.readingTime } })}
-				/>
+					<ArticleData
+						title={$t({ key: 'article_time_label' })}
+						subtitle={$t({
+							key: 'article_time_to_read',
+							parameters: { time: article.readingTime }
+						})}
+					/>
+				</div>
 			</div>
 		</header>
 
