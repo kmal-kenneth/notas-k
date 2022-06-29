@@ -30,16 +30,13 @@
 </script>
 
 <script lang="ts">
-	import lozad from 'lozad';
-
-	import 'highlight.js/styles/atom-one-dark.css';
-
-	import { MetaApp, ImageApp, ArticleData } from '$lib/components/';
-
-	import { readingTime, timeHumans } from '$lib/utils/time';
-	import type { Article, I18nObject, Meta } from 'src/global';
-	import { onMount } from 'svelte';
+	import { ArticleData, ImageApp, MetaApp } from '$lib/components/';
+	import { timeHumans } from '$lib/utils/time';
 	import { getLanguageStore, getTranslate } from '@tolgee/svelte';
+	import 'highlight.js/styles/atom-one-dark.css';
+	import lozad from 'lozad';
+	import type { Article, Meta } from 'src/global';
+	import { onMount } from 'svelte';
 
 	const languageStore = getLanguageStore();
 	const t = getTranslate();

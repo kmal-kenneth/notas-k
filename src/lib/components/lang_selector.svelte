@@ -31,6 +31,7 @@
 
 	function selectLocale(value) {
 		toggleDropdown();
+		location.reload();
 	}
 </script>
 
