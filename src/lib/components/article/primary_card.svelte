@@ -2,13 +2,15 @@
 	import MyImg from '$lib/components/img.svelte';
 	import { readingTime, timeHumans } from '$lib/utils/time';
 	import type { Article } from 'src/global';
-	import { getLanguageStore } from '@tolgee/svelte';
+	import { getLanguageStore, T } from '@tolgee/svelte';
 
 	const languageStore = getLanguageStore();
 
 	export let articleI18n: { [key: string]: Article };
 
 	let article: Article;
+
+	let onlyEs = articleI18n.en ? false : true;
 
 	$: if (articleI18n[$languageStore]) {
 		article = articleI18n[$languageStore];
@@ -35,6 +37,14 @@
 					&nbsp;&bull;&nbsp;
 					{readingTime(article.content)} min read
 				</p>
+
+				{#if onlyEs}
+					<p
+						class="bg-yellow-300 text-yellow-900 p-1 rounded border border-yellow-600 dark:border-yellow-600 dark:bg-yellow-900 dark:text-yellow-300"
+					>
+						<T keyName="only_spanish_card" />
+					</p>
+				{/if}
 			</div>
 
 			<h2

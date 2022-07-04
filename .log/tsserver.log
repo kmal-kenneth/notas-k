@@ -1,13 +1,13 @@
-Info 0    [14:24:46.803] Starting TS Server
-Info 1    [14:24:46.804] Version: 4.4.3
-Info 2    [14:24:46.804] Arguments: /usr/bin/node /home/kenet/Proyectos/notas-k/node_modules/typescript/lib/tsserver.js --logFile /home/kenet/Proyectos/notas-k/.log/tsserver.log --logVerbosity info --cancellationPipeName /tmp/49f31af3dfaa9daaad56489c33dd9b15/tscancellation*
-Info 3    [14:24:46.804] Platform: linux NodeVersion: 16 CaseSensitive: true
-Info 4    [14:24:46.804] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
-Info 5    [14:24:46.821] Format host information updated
-Info 6    [14:24:46.835] Search path: /home/kenet/Proyectos/notas-k/src/lib/components
-Info 7    [14:24:46.837] For info: /home/kenet/Proyectos/notas-k/src/lib/components/index.ts :: Config file name: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 8    [14:24:46.838] Creating configuration project /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 9    [14:24:46.875] Config: /home/kenet/Proyectos/notas-k/tsconfig.json : {
+Info 0    [19:13:20.255] Starting TS Server
+Info 1    [19:13:20.255] Version: 4.4.3
+Info 2    [19:13:20.255] Arguments: /usr/bin/node /home/kenet/Proyectos/notas-k/node_modules/typescript/lib/tsserver.js --logFile /home/kenet/Proyectos/notas-k/.log/tsserver.log --logVerbosity info --cancellationPipeName /tmp/c4c2bc312f8357d15ee65e29ea784f7d/tscancellation*
+Info 3    [19:13:20.255] Platform: linux NodeVersion: 16 CaseSensitive: true
+Info 4    [19:13:20.255] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [19:13:20.270] Format host information updated
+Info 6    [19:13:20.303] Search path: /home/kenet/Proyectos/notas-k
+Info 7    [19:13:20.305] For info: /home/kenet/Proyectos/notas-k/tailwind.config.cjs :: Config file name: /home/kenet/Proyectos/notas-k/tsconfig.json
+Info 8    [19:13:20.306] Creating configuration project /home/kenet/Proyectos/notas-k/tsconfig.json
+Info 9    [19:13:20.343] Config: /home/kenet/Proyectos/notas-k/tsconfig.json : {
  "rootNames": [
   "/home/kenet/Proyectos/notas-k/src/global.d.ts",
   "/home/kenet/Proyectos/notas-k/src/lib/types.d.ts",
@@ -59,158 +59,59 @@ Info 9    [14:24:46.875] Config: /home/kenet/Proyectos/notas-k/tsconfig.json : {
   "configFilePath": "/home/kenet/Proyectos/notas-k/tsconfig.json"
  }
 }
-Info 10   [14:24:46.897] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 11   [14:24:49.016] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 2118.4815600002185ms
-Info 12   [14:24:49.016] Project '/home/kenet/Proyectos/notas-k/tsconfig.json' (Configured)
-Info 13   [14:24:49.016] 	Files (378)
+Info 10   [19:13:20.364] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
+Info 11   [19:13:22.419] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 2054.3099800003693ms
+Info 12   [19:13:22.419] Project '/home/kenet/Proyectos/notas-k/tsconfig.json' (Configured)
+Info 13   [19:13:22.419] 	Files (378)
 
-Info 14   [14:24:49.016] -----------------------------------------------
-Info 15   [14:24:49.031] Starting updateGraphWorker: Project: /dev/null/autoImportProviderProject1*
-Info 16   [14:24:49.140] Finishing updateGraphWorker: Project: /dev/null/autoImportProviderProject1* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 108.6234710002318ms
-Info 17   [14:24:49.140] Project '/dev/null/autoImportProviderProject1*' (AutoImportProvider)
-Info 18   [14:24:49.140] 	Files (115)
+Info 14   [19:13:22.419] -----------------------------------------------
+Info 15   [19:13:22.441] Starting updateGraphWorker: Project: /dev/null/inferredProject1*
+Info 16   [19:13:23.866] Finishing updateGraphWorker: Project: /dev/null/inferredProject1* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 1424.4135440001264ms
+Info 17   [19:13:23.866] Project '/dev/null/inferredProject1*' (Inferred)
+Info 18   [19:13:23.866] 	Files (173)
 
-Info 19   [14:24:49.140] -----------------------------------------------
-Info 20   [14:24:56.232] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 21   [14:24:56.285] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 2 structureChanged: true structureIsReused:: SafeModules Elapsed: 53.746244999580085ms
-Info 22   [14:24:56.286] Different program with same set of files
-Info 23   [14:25:00.094] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 24   [14:25:00.118] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 3 structureChanged: false structureIsReused:: Completely Elapsed: 23.311170999892056ms
-Info 25   [14:25:00.118] Different program with same set of files
-Info 26   [14:25:03.143] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 27   [14:25:03.166] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 4 structureChanged: false structureIsReused:: Completely Elapsed: 22.965006000362337ms
-Info 28   [14:25:03.166] Different program with same set of files
-Info 29   [14:25:04.284] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 30   [14:25:04.304] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 5 structureChanged: false structureIsReused:: Completely Elapsed: 20.124346000142395ms
-Info 31   [14:25:04.305] Different program with same set of files
-Info 32   [14:25:05.422] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 33   [14:25:05.441] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 6 structureChanged: false structureIsReused:: Completely Elapsed: 19.095854999497533ms
-Info 34   [14:25:05.441] Different program with same set of files
-Info 35   [14:25:06.318] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 36   [14:25:06.332] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 7 structureChanged: false structureIsReused:: Completely Elapsed: 13.432718000374734ms
-Info 37   [14:25:06.332] Different program with same set of files
-Info 38   [14:25:06.335] getCompletionData: Get current token: 0.020037999376654625
-Info 39   [14:25:06.335] getCompletionData: Is inside comment: 0.2104569999501109
-Info 40   [14:25:06.335] getCompletionData: Get previous token: 0.13429300021380186
-Info 41   [14:25:06.336] getCompletionsAtPosition: isCompletionListBlocker: 0.32010400015860796
-Info 42   [14:25:06.336] Returning an empty list because completion was requested in an invalid position.
-Info 43   [14:25:06.351] getCompletionData: Get current token: 0.02625000011175871
-Info 44   [14:25:06.351] getCompletionData: Is inside comment: 0.07669499982148409
-Info 45   [14:25:06.351] getCompletionData: Get previous token: 0.18230400048196316
-Info 46   [14:25:06.351] getCompletionsAtPosition: isCompletionListBlocker: 0.008365999907255173
-Info 47   [14:25:06.351] Returning an empty list because completion was requested in an invalid position.
-Info 48   [14:25:06.352] getCompletionData: Get current token: 0.03437500074505806
-Info 49   [14:25:06.352] getCompletionData: Is inside comment: 0.07887900061905384
-Info 50   [14:25:06.352] getCompletionData: Get previous token: 0.13817999977618456
-Info 51   [14:25:06.353] getCompletionsAtPosition: isCompletionListBlocker: 0.007042999379336834
-Info 52   [14:25:06.353] Returning an empty list because completion was requested in an invalid position.
-Info 53   [14:25:06.353] getCompletionData: Get current token: 0.034174999222159386
-Info 54   [14:25:06.353] getCompletionData: Is inside comment: 0.07719600014388561
-Info 55   [14:25:06.353] getCompletionData: Get previous token: 0.13010499998927116
-Info 56   [14:25:06.354] getCompletionsAtPosition: isCompletionListBlocker: 0.00787500012665987
-Info 57   [14:25:06.354] Returning an empty list because completion was requested in an invalid position.
-Info 58   [14:25:06.560] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 59   [14:25:06.582] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 8 structureChanged: false structureIsReused:: Completely Elapsed: 22.08398300036788ms
-Info 60   [14:25:06.582] Different program with same set of files
-Info 61   [14:25:06.583] getCompletionData: Get current token: 0.009868999943137169
-Info 62   [14:25:06.583] getCompletionData: Is inside comment: 0.02655000053346157
-Info 63   [14:25:06.583] getCompletionData: Get previous token: 0.03862200025469065
-Info 64   [14:25:06.583] getCompletionsAtPosition: isCompletionListBlocker: 0.004528000019490719
-Info 65   [14:25:06.583] Returning an empty list because completion was requested in an invalid position.
-Info 66   [14:25:06.606] getCompletionData: Get current token: 0.012063000351190567
-Info 67   [14:25:06.606] getCompletionData: Is inside comment: 0.037951999343931675
-Info 68   [14:25:06.606] getCompletionData: Get previous token: 0.060012999922037125
-Info 69   [14:25:06.606] getCompletionsAtPosition: isCompletionListBlocker: 0.004909000359475613
-Info 70   [14:25:06.606] Returning an empty list because completion was requested in an invalid position.
-Info 71   [14:25:06.608] getCompletionData: Get current token: 0.009837999939918518
-Info 72   [14:25:06.608] getCompletionData: Is inside comment: 0.026600000448524952
-Info 73   [14:25:06.608] getCompletionData: Get previous token: 0.05636700056493282
-Info 74   [14:25:06.608] getCompletionsAtPosition: isCompletionListBlocker: 0.0047690002247691154
-Info 75   [14:25:06.608] Returning an empty list because completion was requested in an invalid position.
-Info 76   [14:25:06.612] getCompletionData: Get current token: 0.04496499989181757
-Info 77   [14:25:06.612] getCompletionData: Is inside comment: 0.08765600062906742
-Info 78   [14:25:06.612] getCompletionData: Get previous token: 0.13706899993121624
-Info 79   [14:25:06.612] getCompletionsAtPosition: isCompletionListBlocker: 0.008165000006556511
-Info 80   [14:25:06.612] Returning an empty list because completion was requested in an invalid position.
-Info 81   [14:25:07.110] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 82   [14:25:07.127] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 9 structureChanged: false structureIsReused:: Completely Elapsed: 17.36117099970579ms
-Info 83   [14:25:07.127] Different program with same set of files
-Info 84   [14:25:07.129] getCompletionData: Get current token: 0.010831000283360481
-Info 85   [14:25:07.129] getCompletionData: Is inside comment: 0.03278100024908781
-Info 86   [14:25:07.129] getCompletionData: Get previous token: 0.05390099994838238
-Info 87   [14:25:07.129] getCompletionsAtPosition: isCompletionListBlocker: 0.00611099973320961
-Info 88   [14:25:07.129] Returning an empty list because completion was requested in an invalid position.
-Info 89   [14:25:07.152] getCompletionData: Get current token: 0.012493999674916267
-Info 90   [14:25:07.152] getCompletionData: Is inside comment: 0.043011000379920006
-Info 91   [14:25:07.152] getCompletionData: Get previous token: 0.07688499987125397
-Info 92   [14:25:07.152] getCompletionsAtPosition: isCompletionListBlocker: 0.006872999481856823
-Info 93   [14:25:07.152] Returning an empty list because completion was requested in an invalid position.
-Info 94   [14:25:07.155] getCompletionData: Get current token: 0.01623000018298626
-Info 95   [14:25:07.155] getCompletionData: Is inside comment: 0.06032400019466877
-Info 96   [14:25:07.156] getCompletionData: Get previous token: 0.1051479997113347
-Info 97   [14:25:07.156] getCompletionsAtPosition: isCompletionListBlocker: 0.008405999280512333
-Info 98   [14:25:07.156] Returning an empty list because completion was requested in an invalid position.
-Info 99   [14:25:07.156] getCompletionData: Get current token: 0.02425600029528141
-Info 100  [14:25:07.157] getCompletionData: Is inside comment: 0.07412999961525202
-Info 101  [14:25:07.157] getCompletionData: Get previous token: 0.11934500001370907
-Info 102  [14:25:07.157] getCompletionsAtPosition: isCompletionListBlocker: 0.008145999163389206
-Info 103  [14:25:07.157] Returning an empty list because completion was requested in an invalid position.
-Info 104  [14:25:08.805] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 105  [14:25:08.827] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 10 structureChanged: false structureIsReused:: Completely Elapsed: 21.468491000123322ms
-Info 106  [14:25:08.827] Different program with same set of files
-Info 107  [14:25:08.827] getCompletionData: Get current token: 0.007323999889194965
-Info 108  [14:25:08.828] getCompletionData: Is inside comment: 0.01823499985039234
-Info 109  [14:25:08.828] getCompletionData: Get previous token: 0.03039800003170967
-Info 110  [14:25:08.828] getCompletionsAtPosition: isCompletionListBlocker: 0.00290600024163723
-Info 111  [14:25:08.828] Returning an empty list because completion was requested in an invalid position.
-Info 112  [14:25:08.836] getCompletionData: Get current token: 0.007503999397158623
-Info 113  [14:25:08.836] getCompletionData: Is inside comment: 0.018674999475479126
-Info 114  [14:25:08.836] getCompletionData: Get previous token: 0.028973999433219433
-Info 115  [14:25:08.837] getCompletionsAtPosition: isCompletionListBlocker: 0.0038370005786418915
-Info 116  [14:25:08.837] Returning an empty list because completion was requested in an invalid position.
-Info 117  [14:25:08.842] getCompletionData: Get current token: 0.00748400017619133
-Info 118  [14:25:08.842] getCompletionData: Is inside comment: 0.02961600013077259
-Info 119  [14:25:08.842] getCompletionData: Get previous token: 0.031309000216424465
-Info 120  [14:25:08.842] getCompletionsAtPosition: isCompletionListBlocker: 0.0038880007341504097
-Info 121  [14:25:08.842] Returning an empty list because completion was requested in an invalid position.
-Info 122  [14:25:08.842] getCompletionData: Get current token: 0.008946999907493591
-Info 123  [14:25:08.842] getCompletionData: Is inside comment: 0.03205099981278181
-Info 124  [14:25:08.843] getCompletionData: Get previous token: 0.03100800048559904
-Info 125  [14:25:08.843] getCompletionsAtPosition: isCompletionListBlocker: 0.005470000207424164
-Info 126  [14:25:08.843] Returning an empty list because completion was requested in an invalid position.
-Info 127  [14:25:09.221] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 128  [14:25:09.238] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 11 structureChanged: false structureIsReused:: Completely Elapsed: 16.417290000244975ms
-Info 129  [14:25:09.238] Different program with same set of files
-Info 130  [14:25:09.240] getCompletionData: Get current token: 0.01570000033825636
-Info 131  [14:25:09.240] getCompletionData: Is inside comment: 0.03213000018149614
-Info 132  [14:25:09.240] getCompletionData: Get previous token: 0.0499640004709363
-Info 133  [14:25:09.240] getCompletionsAtPosition: isCompletionListBlocker: 0.005189999938011169
-Info 134  [14:25:09.240] Returning an empty list because completion was requested in an invalid position.
-Info 135  [14:25:09.263] getCompletionData: Get current token: 0.009167000651359558
-Info 136  [14:25:09.264] getCompletionData: Is inside comment: 0.0641109999269247
-Info 137  [14:25:09.264] getCompletionData: Get previous token: 0.08773500006645918
-Info 138  [14:25:09.264] getCompletionsAtPosition: isCompletionListBlocker: 0.006641999818384647
-Info 139  [14:25:09.264] Returning an empty list because completion was requested in an invalid position.
-Info 140  [14:25:09.267] getCompletionData: Get current token: 0.012803999707102776
-Info 141  [14:25:09.268] getCompletionData: Is inside comment: 0.04898199997842312
-Info 142  [14:25:09.268] getCompletionData: Get previous token: 0.07544200029224157
-Info 143  [14:25:09.268] getCompletionsAtPosition: isCompletionListBlocker: 0.00558099988847971
-Info 144  [14:25:09.268] Returning an empty list because completion was requested in an invalid position.
-Info 145  [14:25:09.271] getCompletionData: Get current token: 0.012463999912142754
-Info 146  [14:25:09.271] getCompletionData: Is inside comment: 0.06109500024467707
-Info 147  [14:25:09.271] getCompletionData: Get previous token: 0.07720600068569183
-Info 148  [14:25:09.271] getCompletionsAtPosition: isCompletionListBlocker: 0.006812999956309795
-Info 149  [14:25:09.271] Returning an empty list because completion was requested in an invalid position.
-Info 150  [14:25:16.386] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 151  [14:25:16.439] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 12 structureChanged: true structureIsReused:: SafeModules Elapsed: 52.755467999726534ms
-Info 152  [14:25:16.439] Different program with same set of files
-Info 153  [14:25:19.855] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 154  [14:25:19.903] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 13 structureChanged: true structureIsReused:: SafeModules Elapsed: 48.68304200004786ms
-Info 155  [14:25:19.903] Different program with same set of files
-Info 156  [14:25:20.637] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 157  [14:25:20.680] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 14 structureChanged: true structureIsReused:: SafeModules Elapsed: 42.546862999908626ms
-Info 158  [14:25:20.680] Different program with same set of files
-Info 159  [14:25:22.551] Format host information updated
-Info 160  [14:25:22.772] Starting updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json
-Info 161  [14:25:22.810] Finishing updateGraphWorker: Project: /home/kenet/Proyectos/notas-k/tsconfig.json Version: 15 structureChanged: false structureIsReused:: Completely Elapsed: 38.106393000110984ms
-Info 162  [14:25:22.810] Different program with same set of files
+Info 19   [19:13:23.866] -----------------------------------------------
+Info 20   [19:13:23.874] Starting updateGraphWorker: Project: /dev/null/autoImportProviderProject1*
+Info 21   [19:13:24.141] Finishing updateGraphWorker: Project: /dev/null/autoImportProviderProject1* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 267.8285189997405ms
+Info 22   [19:13:24.142] Project '/dev/null/autoImportProviderProject1*' (AutoImportProvider)
+Info 23   [19:13:24.142] 	Files (357)
+
+Info 24   [19:13:24.142] -----------------------------------------------
+Info 25   [19:13:25.175] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry 0:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 26   [19:13:25.175] Elapsed:: 0.5077959997579455ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry 0:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 27   [19:13:25.175] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry 1:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 28   [19:13:25.176] Elapsed:: 0.08790699951350689ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry 1:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 29   [19:13:25.176] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/types-registry 2:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 30   [19:13:25.176] Elapsed:: 0.03063100017607212ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/types-registry 2:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 31   [19:13:25.176] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/README.md 3:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 32   [19:13:25.176] Elapsed:: 0.023799000307917595ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/README.md 3:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 33   [19:13:25.176] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/index.json 4:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 34   [19:13:25.176] Elapsed:: 0.3418889995664358ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/index.json 4:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 35   [19:13:25.176] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/package.json 5:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 36   [19:13:25.176] Elapsed:: 0.08670799992978573ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/package.json 5:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 37   [19:13:25.176] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/types-registry 6:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 38   [19:13:25.176] Elapsed:: 0.020653000101447105ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/types-registry 6:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 39   [19:13:25.177] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/types-registry 7:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 40   [19:13:25.177] Elapsed:: 0.07051900029182434ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/types-registry/types-registry 7:: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 41   [19:13:25.346] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/@types/eslint :: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 42   [19:13:25.347] Elapsed:: 0.2391320001333952ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/@types/eslint :: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 43   [19:13:25.348] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/@types/tailwindcss :: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 44   [19:13:25.348] Elapsed:: 0.07296600006520748ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules/@types/tailwindcss :: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 45   [19:13:26.305] Starting updateGraphWorker: Project: /dev/null/inferredProject1*
+Info 46   [19:13:27.174] Finishing updateGraphWorker: Project: /dev/null/inferredProject1* Version: 2 structureChanged: true structureIsReused:: Not Elapsed: 869.2884419998154ms
+Info 47   [19:13:27.174] Project '/dev/null/inferredProject1*' (Inferred)
+Info 48   [19:13:27.174] 	Files (581)
+
+Info 49   [19:13:27.174] -----------------------------------------------
+Info 50   [19:13:27.174] Project '/dev/null/autoImportProviderProject1*' (AutoImportProvider)
+Info 51   [19:13:27.174] 	Files (357)
+
+Info 52   [19:13:27.174] -----------------------------------------------
+Info 53   [19:13:27.179] DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules :: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 54   [19:13:27.179] Elapsed:: 0.02825499977916479ms DirectoryWatcher:: Triggered with /home/kenet/.cache/typescript/4.4/node_modules :: WatchInfo: /home/kenet/.cache/typescript/4.4/node_modules 1 undefined Project: /dev/null/inferredProject1* WatchType: Failed Lookup Locations
+Info 55   [19:13:27.395] Starting updateGraphWorker: Project: /dev/null/inferredProject1*
+Info 56   [19:13:27.502] Finishing updateGraphWorker: Project: /dev/null/inferredProject1* Version: 3 structureChanged: true structureIsReused:: SafeModules Elapsed: 107.59433799982071ms
+Info 57   [19:13:27.502] Different program with same set of files
+Info 58   [19:13:29.894] Before ensureProjectForOpenFiles:
+Info 59   [19:13:29.895] After ensureProjectForOpenFiles:
+Info 60   [19:13:29.898] got projects updated in background, updating diagnostics for /home/kenet/Proyectos/notas-k/tailwind.config.cjs
