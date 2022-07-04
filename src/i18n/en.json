@@ -4,5 +4,6 @@
   "article_date_label" : "Date",
   "article_time_label" : "Time",
   "article_time_to_read" : "{time, plural, one {# min read} other {# min of reading}}",
-  "navbar_home" : "Home"
+  "navbar_home" : "Home",
+  "only_spanish_card" : "Spanish only"
 }

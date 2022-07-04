@@ -4,5 +4,6 @@
   "article_date_label" : "Fecha",
   "article_time_label" : "Tiempo",
   "article_time_to_read" : "{time} min de lectura",
-  "navbar_home" : "Inicio"
+  "navbar_home" : "Inicio",
+  "only_spanish_card" : "Solo español"
 }
