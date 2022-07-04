@@ -33,9 +33,11 @@
 				<p class="text-gray-700 dark:text-gray-300">
 					<span class="font-semibold dark:text-gray-300">{article.collection.name}</span>
 					&nbsp;&bull;&nbsp;
-					<time datetime={article.publishedAt}>{timeHumans(article.publishedAt)}</time>
+					<time datetime={article.publishedAt}
+						>{timeHumans(article.publishedAt, $languageStore)}</time
+					>
 					&nbsp;&bull;&nbsp;
-					{readingTime(article.content)} min read
+					<T keyName="article_time_to_read" parameters={{ time: article.readingTime }} />
 				</p>
 
 				{#if onlyEs}
