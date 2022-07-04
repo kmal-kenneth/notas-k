@@ -32,7 +32,7 @@
 <script lang="ts">
 	import { ArticleData, ImageApp, MetaApp } from '$lib/components/';
 	import { timeHumans } from '$lib/utils/time';
-	import { getLanguageStore, getTranslate } from '@tolgee/svelte';
+	import { getLanguageStore, getTranslate, T } from '@tolgee/svelte';
 	import 'highlight.js/styles/atom-one-dark.css';
 	import lozad from 'lozad';
 	import type { Article, Meta } from 'src/global';
@@ -50,6 +50,8 @@
 	export let meta: Meta;
 
 	let article: Article;
+
+	let onlyEs = articleI18n.en ? false : true;
 
 	$: if (articleI18n[$languageStore]) {
 		article = articleI18n[$languageStore];
@@ -103,12 +105,20 @@
 					/>
 				</div>
 			</div>
+
+			{#if onlyEs}
+				<p
+					class="bg-yellow-300 text-yellow-900 p-1 rounded border border-yellow-600 dark:border-yellow-600 dark:bg-yellow-900 dark:text-yellow-300"
+				>
+					<T keyName="only_spanish_card" />
+				</p>
+			{/if}
 		</header>
 
 		<!-- <div class="px-4 mb-6">
 			<section class="relative mx-auto">
 				<p class="mb-4">{description}</p>
-				
+
 				<nav class="">
 					<ul>
 			  <li
