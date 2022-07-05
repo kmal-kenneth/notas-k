@@ -50,7 +50,6 @@
 	export let meta: Meta;
 
 	let article: Article;
-
 	let onlyEs = articleI18n.en ? false : true;
 
 	$: if (articleI18n[$languageStore]) {
