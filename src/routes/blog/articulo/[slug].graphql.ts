@@ -1,9 +1,6 @@
-import { Marked } from '@ts-stack/markdown';
-import { MyRenderer } from '$lib/marked/renderer';
 import { getData } from '$lib/utils/fetch';
-import hljs from 'highlight.js';
-import { cloneObject, convertArticle, generateI18nArticle } from '$lib/utils/strapi';
-import type { Article, ArticlesResponse } from 'src/global';
+import { convertArticle, generateI18nArticle } from '$lib/utils/strapi';
+import type { ArticlesResponse } from 'src/global';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

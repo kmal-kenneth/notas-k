@@ -7,7 +7,7 @@
 	export const load: Load = async ({ fetch, url, params }) => {
 		const { slug } = params;
 
-		const res = await fetch(`/blog/article/${slug}.graphql`);
+		const res = await fetch(`/blog/articulo/${slug}.graphql`);
 
 		if (!res.ok) {
 			return { status: res.status };
