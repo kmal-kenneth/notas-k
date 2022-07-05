@@ -61,7 +61,7 @@
 
 <MetaApp {meta} />
 
-<article>
+<article class="content">
 	<header class="px-4">
 		<ImageApp
 			src={article.cover.url}
@@ -71,13 +71,9 @@
 		/>
 	</header>
 
-	<section
-		class="max-w-5xl px-4 mx-auto my-4 prose border-b prose-slate dark:prose-invert lg:prose-lg lg:w-max "
-	>
+	<section class="max-w-5xl px-4 mx-auto my-4 prose prose-blue border-b lg:prose-lg lg:w-max ">
 		<header class="mt-8 mb-10 text-center ">
-			<h1
-				class="mb-6 text-2xl font-extrabold tracking-wider text-gray-800 sm:text-3xl lg:text-4xl dark:text-gray-200 "
-			>
+			<h1 class="!mb-6 !text-2xl !font-extrabold !tracking-wider!sm:text-3xl !lg:text-4xl ">
 				{article.title}
 			</h1>
 
@@ -142,7 +138,7 @@
 			</section>
 		</div> -->
 
-		<div class=" content">
+		<div>
 			{@html article.content}
 		</div>
 	</section>

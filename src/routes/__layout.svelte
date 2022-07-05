@@ -11,6 +11,12 @@
 </script>
 
 <script lang="ts">
+	import 'virtual:windi.css';
+
+	// if you want to enable windi devtools
+	// import { browser } from '$app/env';
+	// if (browser) import('virtual:windi-devtools');
+
 	import { TolgeeProvider } from '@tolgee/svelte';
 	import type { TolgeeConfig } from '@tolgee/core';
 	import esLang from '../i18n/es.json';
@@ -53,3 +59,6 @@
 		</footer>
 	</div>
 </TolgeeProvider>
+
+<style windi:preflights:global windi:safelist:global>
+</style>

@@ -1,3 +1,4 @@
+import WindiCSS from 'vite-plugin-windicss';
 import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-auto';
 
@@ -9,7 +10,7 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		preprocess({
-			postcss: true
+			// postcss: true
 		})
 	],
 
@@ -24,7 +25,8 @@ const config = {
 						manualChunks: undefined
 					}
 				}
-			}
+			},
+			plugins: [WindiCSS()]
 		}
 	}
 };

@@ -4,17 +4,11 @@
 
 /* Write your global styles here, in PostCSS syntax */
 
-@tailwind base;
-
-@tailwind components;
-
-@tailwind utilities;
-
 /* font-family: 'Dancing Script', cursive;
 font-family: 'Victor Mono', monospace;
 font-family: 'Open Sans', sans-serif; */
 
-@layer base {
+@layer components {
 	body {
 		@apply bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200  h-full;
 	}
@@ -69,15 +63,27 @@ font-family: 'Open Sans', sans-serif; */
 
 	/* ----------------------- article -----------------------*/
 	.content {
+		h1, h2, h3, h4, h5, h6 {
+			@apply text-gray-800 dark:text-gray-200;
+		}
+
+		p {
+			@apply text-pink;
+
+			strong {
+				@apply text-gray-800 dark:text-gray-200 ;
+			}
+		}
+		
 		a {
 			@apply text-blue-600 dark:text-blue-300 hover:text-blue-500 no-underline hover:underline;
 		}
 
 		pre {
-			@apply py-8 rounded-lg bg-blue-900 text-gray-200;
+			@apply py-8 rounded-lg bg-blue-900 text-gray-200 !important;
 
 			code {
-				@apply whitespace-pre-wrap break-words;
+				@apply whitespace-pre-wrap break-words !important;
 			}
 		}
 
