@@ -68,8 +68,6 @@ font-family: 'Open Sans', sans-serif; */
 		}
 
 		p {
-			@apply text-pink;
-
 			strong {
 				@apply text-gray-800 dark:text-gray-200 ;
 			}
@@ -115,6 +113,14 @@ font-family: 'Open Sans', sans-serif; */
 
 		blockquote {
 			@apply border-blue-700;
+		}
+
+		ul, ol {
+			@apply z-0;
+			
+			li {
+				@apply z-0;
+			}
 		}
 	}
 }

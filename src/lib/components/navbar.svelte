@@ -14,7 +14,7 @@
 </script>
 
 <nav
-	class=" top-0 flex    bg-gray-100   dark:bg-gray-900 dark:shadow-gray-800 {showMenu
+	class=" top-0 flex  z-50  bg-gray-100   dark:bg-gray-900 dark:shadow-gray-800 {showMenu
 		? 'fixed h-full w-full '
 		: 'sticky items-center h-12 shadow mb-10'}"
 >
