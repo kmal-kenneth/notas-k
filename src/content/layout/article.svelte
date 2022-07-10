@@ -6,7 +6,7 @@
 <script>
 	import { ImageApp, ArticleData } from '$lib/components';
 	import { getLanguageStore, getTranslate, T } from '@tolgee/svelte';
-	import 'prism-themes/themes/prism-one-dark.css';
+	import 'prism-themes/themes/prism-material-oceanic.css';
 
 	const t = getTranslate();
 
@@ -35,6 +35,6 @@ article.px-4
             +if('locales.length == 1')
                 p(class="bg-yellow-300 text-yellow-900 p-1 rounded border border-yellow-600 dark:border-yellow-600 dark:bg-yellow-900 dark:text-yellow-300")
                     T(keyName="only_spanish_card")
-    section(class="max-w-3xl  mx-auto my-4 prose border-b lg:prose-lg content")
+    section(class="max-w-3xl  mx-auto pb-8 prose border-b lg:prose-lg content")
         slot
 </template>

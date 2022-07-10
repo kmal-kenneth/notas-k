@@ -68,6 +68,8 @@ font-family: 'Open Sans', sans-serif; */
 		}
 
 		p {
+			@apply text-gray-800 dark:text-gray-200;
+
 			strong {
 				@apply text-gray-800 dark:text-gray-200 ;
 			}
@@ -119,7 +121,7 @@ font-family: 'Open Sans', sans-serif; */
 			@apply z-0;
 			
 			li {
-				@apply z-0;
+				@apply z-0 text-gray-800 dark:text-gray-200;
 			}
 		}
 	}

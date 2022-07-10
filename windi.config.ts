@@ -2,6 +2,7 @@ import { defineConfig } from 'windicss/helpers';
 // import colors from 'windicss/colors';
 // import plugin from 'windicss/plugin'
 import typography from 'windicss/plugin/typography';
+import aspectRatio from 'windicss/plugin/aspect-ratio';
 
 export default defineConfig({
 	extract: {
@@ -98,6 +99,7 @@ export default defineConfig({
 		typography({
 			dark: true
 			// modifiers: ['DEFAULT', 'sm', 'lg', 'red']
-		})
+		}),
+		aspectRatio
 	]
 });

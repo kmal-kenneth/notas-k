@@ -1,8 +1,8 @@
 import { getData } from '$lib/utils/fetch';
 import { convertArticle, generateI18nArticle, readingTime } from '$lib/utils/strapi';
-import type { ArticlesResponse } from 'src/global';
-import { writeFileSync, readFileSync } from 'fs';
 import { timeHumans } from '$lib/utils/time';
+import { writeFileSync } from 'fs';
+import type { ArticlesResponse } from 'src/global';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
