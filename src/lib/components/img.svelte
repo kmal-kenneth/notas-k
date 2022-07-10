@@ -14,6 +14,7 @@
 	export let alt: string;
 	export let height: string = '';
 	export let width: string = '';
+	export let lazy: boolean = false;
 	let clazz: any;
 	export { clazz as class };
 
@@ -75,6 +76,8 @@
 </script>
 
 <img
+	loading={lazy ? 'lazy' : ''}
+	decoding="auto"
 	src={placeholderURL}
 	data-src={myURL}
 	data-srcset={newSrcset}
