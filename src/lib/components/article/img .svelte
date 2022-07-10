@@ -8,5 +8,5 @@
 <template lang="pug">
 figure(class="my-8 flex flex-col items-center")
 	ImageApp(src!="{src}", alt!="{alt}", width="1024", lazy, class="w-full rounded-lg")
-	figcaption(class="text-center") {alt}
+	figcaption(class="text-center !text-gray-800 !dark:(text-gray-200)") {alt}
 </template>
