@@ -59,6 +59,10 @@
 	}
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" />
+</svelte:head>
+
 <MetaApp {meta} />
 
 <article class="content">

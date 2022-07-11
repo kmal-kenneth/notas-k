@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { MyRenderer } from '$lib/marked/renderer';
-import { Marked } from '@ts-stack/markdown';
+import MarkdownIt from 'markdown-it';
+import mk from 'markdown-it-katex';
+// import katex from 'katex';
 import hljs from 'highlight.js';
 import type {
 	ImageResponse,
@@ -257,30 +258,32 @@ function convertPaginationData(
  * @param {I18nObject} i18nObject
  */
 function generateI18nArticle(article: Article): I18nObject {
-	Marked.setOptions({
-		renderer: new MyRenderer(),
-
-		highlight: function (code, lang) {
-			if (hljs.listLanguages().includes(lang)) {
-				return hljs.highlight(code, {
-					language: lang
-				}).value;
-			} else {
-				return code;
+	const md = MarkdownIt({
+		highlight: function (str, lang) {
+			if (lang && hljs.getLanguage(lang)) {
+				try {
+					return hljs.highlight(str, { language: lang }).value;
+				} catch (e) {
+					console.log(e);
+				}
 			}
+
+			return ''; // use external default escaping
 		}
 	});
 
+	md.use(mk);
+
 	const articleI18n: I18nObject = {};
 
-	article.content = Marked.parse(article.content);
+	article.content = md.render(article.content);
 	articleI18n[article.locale] = cloneObject(article, ['localizations']);
 
 	if (article.localizations) {
 		article.localizations.forEach((localization) => {
 			localization.slug = article.slug;
 			localization.writer = article.writer;
-			localization.content = Marked.parse(localization.content);
+			localization.content = md.render(localization.content);
 
 			articleI18n[localization.locale] = localization;
 
