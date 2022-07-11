@@ -25,7 +25,8 @@
 			<LogoApp />
 
 			<button
-				class=" flex justify-center items-center py-1 px-2 text-xl leading-none text-white bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
+				class=" flex justify-center items-center py-1 px-2 text-xl leading-none bg-transparent border
+				 border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none dark:(text-gray-100)"
 				type="button"
 				aria-label="Cerrar menú de navegación"
 				on:click={toggleNavbar}
