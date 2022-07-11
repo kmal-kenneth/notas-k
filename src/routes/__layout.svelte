@@ -1,17 +1,9 @@
-<script context="module" lang="ts">
+<script lang="ts">
+	import 'virtual:windi.css';
 	import { NavbarApp } from '$lib/components';
 	import SvelteTheme from '$lib/mode/SvelteTheme.svelte';
 	import type { Load } from '@sveltejs/kit';
 	import '../app.css';
-
-	/** @type {import('@sveltejs/kit').Load} */
-	export const load: Load = async () => {
-		return {};
-	};
-</script>
-
-<script lang="ts">
-	import 'virtual:windi.css';
 
 	// if you want to enable windi devtools
 	// import { browser } from '$app/env';
@@ -59,6 +51,3 @@
 		</footer>
 	</div>
 </TolgeeProvider>
-
-<style windi:preflights:global windi:safelist:global>
-</style>

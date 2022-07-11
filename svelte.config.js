@@ -10,7 +10,6 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		preprocess({
-			postcss: true,
 			pug: true
 		})
 	],

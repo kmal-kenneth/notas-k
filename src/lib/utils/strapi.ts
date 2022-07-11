@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { MyRenderer } from '$lib/marked/renderer';
 import { Marked } from '@ts-stack/markdown';
-import hljs from 'highlight.js';
+import prism from 'prismjs';
+import loadLanguages from 'prismjs/components/';
 import type {
 	ImageResponse,
 	Image,
@@ -261,10 +262,9 @@ function generateI18nArticle(article: Article): I18nObject {
 		renderer: new MyRenderer(),
 
 		highlight: function (code, lang) {
-			if (hljs.listLanguages().includes(lang)) {
-				return hljs.highlight(code, {
-					language: lang
-				}).value;
+			loadLanguages(lang);
+			if (prism.languages[lang]) {
+				return prism.highlight(code, prism.languages[lang], lang);
 			} else {
 				return code;
 			}

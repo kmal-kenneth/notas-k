@@ -33,7 +33,7 @@
 	import { ArticleData, ImageApp, MetaApp } from '$lib/components/';
 	import { timeHumans } from '$lib/utils/time';
 	import { getLanguageStore, getTranslate, T } from '@tolgee/svelte';
-	import 'highlight.js/styles/atom-one-dark.css';
+	import 'prism-themes/themes/prism-material-oceanic.css';
 	import lozad from 'lozad';
 	import type { Article, Meta } from 'src/global';
 	import { onMount } from 'svelte';
@@ -71,7 +71,9 @@
 		/>
 	</header>
 
-	<section class="max-w-5xl px-4 mx-auto my-4 prose prose-blue border-b lg:prose-lg lg:w-max ">
+	<section
+		class="max-w-5xl px-4 mx-auto my-4 prose prose-blue border-b lg:prose-lg lg:w-screen-md "
+	>
 		<header class="mt-8 mb-10 text-center ">
 			<h1 class="!mb-6 !text-2xl !font-extrabold !tracking-wider!sm:text-3xl !lg:text-4xl ">
 				{article.title}

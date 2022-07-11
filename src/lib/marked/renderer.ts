@@ -83,4 +83,19 @@ export class MyRenderer extends Renderer {
         </figure>
         `;
 	}
+
+	table(header: string, body: string): string {
+		return `
+		<div class="over-table">
+			<table >
+				<thead>
+				${header}
+				</thead>
+				<tbody>
+				${body}
+				</tbody>
+			</table>
+		</div>
+		`;
+	}
 }
