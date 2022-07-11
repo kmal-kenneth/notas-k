@@ -33,7 +33,7 @@
 	import { ArticleData, ImageApp, MetaApp } from '$lib/components/';
 	import { timeHumans } from '$lib/utils/time';
 	import { getLanguageStore, getTranslate, T } from '@tolgee/svelte';
-	import 'prism-themes/themes/prism-material-oceanic.css';
+	import 'highlight.js/styles/atom-one-dark.css';
 	import lozad from 'lozad';
 	import type { Article, Meta } from 'src/global';
 	import { onMount } from 'svelte';

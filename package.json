@@ -23,6 +23,7 @@
 		"eslint-config-prettier": "8.3.0",
 		"eslint-plugin-svelte3": "3.2.1",
 		"flag-icons": "6.1.1",
+		"highlight.js": "^11.5.1",
 		"mdsvex": "^0.10.6",
 		"prettier": "2.4.1",
 		"prettier-plugin-svelte": "2.4.0",
