@@ -80,7 +80,7 @@ html {
 }
 
 .content table {
-	@apply border-collapse border border-teal-100 text-sm  m-0 mx-auto min-w-96 w-auto rounded-t-lg overflow-hidden ;
+	@apply border-collapse border border-transparent text-sm  m-0 mx-auto min-w-80 w-auto rounded-t-lg overflow-hidden ;
 }
 .content table thead tr {
 	@apply bg-teal-700 text-gray-100;
